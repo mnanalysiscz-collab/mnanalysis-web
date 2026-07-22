@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MN Analysis | IT analýza a konzultace</title>
+
+    <meta
+        name="description"
+        content="MN Analysis poskytuje služby v oblasti business analýzy, systémové analýzy, návrhu procesů, API a IT konzultací."
+    >
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #061426;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1120px, 90%);
+            margin: 0 auto;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(6, 20, 38, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+        }
+
+        nav {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand-mark {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, #ffffff, #1484ff);
+            color: #061426;
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        .brand-name {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .brand-name span {
+            color: #1687ff;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            font-size: 15px;
+            color: #cad6e5;
+        }
+
+        .nav-links a:hover {
+            color: #1687ff;
+        }
+
+        .hero {
+            min-height: calc(100vh - 76px);
+            display: flex;
+            align-items: center;
+            background:
+                radial-gradient(circle at 80% 20%, rgba(22, 135, 255, 0.20), transparent 32%),
+                radial-gradient(circle at 10% 70%, rgba(0, 90, 190, 0.14), transparent 30%);
+        }
+
+        .hero-content {
+            max-width: 840px;
+            padding: 100px 0;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 22px;
+            color: #54a9ff;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            max-width: 900px;
+            font-size: clamp(44px, 7vw, 82px);
+            line-height: 1.05;
+            letter-spacing: -3px;
+        }
+
+        h1 span {
+            color: #1687ff;
+        }
+
+        .hero-text {
+            max-width: 720px;
+            margin-top: 28px;
+            color: #b9c8d9;
+            font-size: 20px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 38px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 52px;
+            padding: 0 26px;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: 0.2s ease;
+        }
+
+        .button-primary {
+            background: #1687ff;
+            color: #ffffff;
+        }
+
+        .button-primary:hover {
+            background: #0075ed;
+            transform: translateY(-2px);
+        }
+
+        .button-secondary {
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: #ffffff;
+        }
+
+        .button-secondary:hover {
+            border-color: #1687ff;
+            color: #54a9ff;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-light {
+            background: #f5f8fc;
+            color: #07172a;
+        }
+
+        .section-heading {
+            max-width: 700px;
+            margin-bottom: 50px;
+        }
+
+        .section-heading p {
+            color: #1687ff;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(34px, 5vw, 50px);
+            line-height: 1.15;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .service-card {
+            padding: 32px;
+            border-radius: 14px;
+            background: #ffffff;
+            border: 1px solid #e2eaf3;
+            box-shadow: 0 12px 35px rgba(17, 52, 88, 0.06);
+        }
+
+        .service-number {
+            color: #1687ff;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 12px;
+            font-size: 22px;
+        }
+
+        .service-card p {
+            color: #5c6c7e;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: clamp(34px, 5vw, 50px);
+            line-height: 1.15;
+            margin-bottom: 24px;
+        }
+
+        .about-text p {
+            color: #b9c8d9;
+            margin-bottom: 18px;
+            font-size: 18px;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .skill {
+            padding: 18px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .skill strong {
+            color: #54a9ff;
+        }
+
+        .contact-box {
+            padding: 60px;
+            border-radius: 18px;
+            text-align: center;
+            background: linear-gradient(135deg, #0a2748, #0b4a8c);
+        }
+
+        .contact-box h2 {
+            font-size: clamp(34px, 5vw, 52px);
+            margin-bottom: 18px;
+        }
+
+        .contact-box p {
+            max-width: 650px;
+            margin: 0 auto 30px;
+            color: #d5e4f4;
+            font-size: 18px;
+        }
+
+        footer {
+            padding: 30px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            color: #8193a8;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        @media (max-width: 850px) {
+            .nav-links {
+                display: none;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-box {
+                padding: 40px 22px;
+            }
+
+            h1 {
+                letter-spacing: -1.5px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .skills {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content {
+                padding: 70px 0;
+            }
+
+            .hero-text {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <a class="brand" href="#home">
+                <div class="brand-mark">MN</div>
+
+                <div class="brand-name">
+                    MN<span>ANALYSIS</span>
+                </div>
+            </a>
+
+            <div class="nav-links">
+                <a href="#services">Služby</a>
+                <a href="#about">O mně</a>
+                <a href="#contact">Kontakt</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+
+                <span class="eyebrow">
+                    IT analýza &amp; konzultace
+                </span>
+
+                <h1>
+                    Od business požadavku k
+                    <span>funkčnímu IT řešení.</span>
+                </h1>
+
+                <p class="hero-text">
+                    Pomáhám firmám analyzovat procesy, definovat požadavky
+                    a navrhovat srozumitelná, realizovatelná a dlouhodobě
+                    udržitelná IT řešení.
+                </p>
+
+                <div class="hero-buttons">
+                    <a class="button button-primary" href="#contact">
+                        Nezávazná konzultace
+                    </a>
+
+                    <a class="button button-secondary" href="#services">
+                        Zobrazit služby
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section-light" id="services">
+        <div class="container">
+
+            <div class="section-heading">
+                <p>Služby</p>
+
+                <h2>
+                    Analýza, návrh a podpora realizace IT řešení
+                </h2>
+            </div>
+
+            <div class="services-grid">
+
+                <article class="service-card">
+                    <div class="service-number">01</div>
+
+                    <h3>Business analýza</h3>
+
+                    <p>
+                        Analýza potřeb, sběr požadavků, návrh procesů
+                        a převod obchodního zadání do srozumitelné podoby.
+                    </p>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-number">02</div>
+
+                    <h3>Systémová analýza</h3>
+
+                    <p>
+                        Návrh systémového chování, datových toků,
+                        integračních vazeb a technických specifikací.
+                    </p>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-number">03</div>
+
+                    <h3>Procesní analýza</h3>
+
+                    <p>
+                        Mapování současných procesů, hledání slabých míst
+                        a návrh efektivnějšího cílového řešení.
+                    </p>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-number">04</div>
+
+                    <h3>API a integrace</h3>
+
+                    <p>
+                        Návrh API kontraktů, integračních scénářů,
+                        datových struktur a komunikace mezi systémy.
+                    </p>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-number">05</div>
+
+                    <h3>Technická dokumentace</h3>
+
+                    <p>
+                        Tvorba funkční a technické dokumentace,
+                        diagramů, specifikací a akceptačních kritérií.
+                    </p>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-number">06</div>
+
+                    <h3>IT konzultace</h3>
+
+                    <p>
+                        Konzultace návrhu řešení, komunikace mezi businessem
+                        a vývojem a podpora projektu během realizace.
+                    </p>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+
+            <div class="about-grid">
+
+                <div class="about-text">
+                    <span class="eyebrow">MN Analysis</span>
+
+                    <h2>
+                        Propojuji business, procesy a technologie.
+                    </h2>
+
+                    <p>
+                        Specializuji se na business a systémovou analýzu
+                        komplexních IT řešení.
+                    </p>
+
+                    <p>
+                        Mým cílem je vytvářet zadání, kterému rozumí zákazník,
+                        vývojář, tester i provozní tým.
+                    </p>
+                </div>
+
+                <div class="skills">
+
+                    <div class="skill">
+                        <strong>Business analýza</strong><br>
+                        Požadavky a procesy
+                    </div>
+
+                    <div class="skill">
+                        <strong>Systémová analýza</strong><br>
+                        Návrh chování systémů
+                    </div>
+
+                    <div class="skill">
+                        <strong>API &amp; integrace</strong><br>
+                        REST, JSON a datové kontrakty
+                    </div>
+
+                    <div class="skill">
+                        <strong>Dokumentace</strong><br>
+                        UML, BPMN a technické zadání
+                    </div>
+
+                    <div class="skill">
+                        <strong>Projektová spolupráce</strong><br>
+                        Vývoj, testování a provoz
+                    </div>
+
+                    <div class="skill">
+                        <strong>Konzultace</strong><br>
+                        Návrh a optimalizace řešení
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+
+            <div class="contact-box">
+
+                <h2>
+                    Pojďme probrat vaše IT řešení
+                </h2>
+
+                <p>
+                    Potřebujete připravit analýzu, zpřesnit požadavky
+                    nebo navrhnout systémové řešení?
+                </p>
+
+                <a
+                    class="button button-primary"
+                    href="mailto:mnanalysis.cz@gmail.com"
+                >
+                    mnanalysis.cz@gmail.com
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container">
+        © 2026 MN Analysis · IT analýza &amp; konzultace
+    </div>
+</footer>
+
+</body>
+</html>
