@@ -399,50 +399,29 @@
             background: rgba(22, 135, 255, 0.06);
         }
 
-        .about-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
-            gap: 80px;
-            align-items: center;
+
+
+
+
+
+
+
+
+        .about-content {
+            max-width: 900px;
         }
 
-        .about-copy h2 {
-            margin-top: 18px;
-            font-size: clamp(38px, 5vw, 60px);
-            line-height: 1.08;
-            letter-spacing: -0.045em;
+        #about .section-title {
+            max-width: 900px;
         }
 
-        .about-copy p {
-            margin-top: 22px;
+        #about .section-copy {
+            max-width: 780px;
             color: var(--muted);
-            font-size: 18px;
         }
 
-        .experience-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
-        .experience-item {
-            min-height: 148px;
-            padding: 24px;
-            border: 1px solid var(--line-dark);
-            border-radius: var(--radius-md);
-            background: rgba(255, 255, 255, 0.045);
-        }
-
-        .experience-item strong {
-            display: block;
-            color: var(--blue-300);
-            font-size: 17px;
-        }
-
-        .experience-item span {
-            display: block;
-            margin-top: 8px;
-            color: var(--muted);
+        #about .section-copy + .section-copy {
+            margin-top: 14px;
         }
 
         .process {
@@ -543,8 +522,7 @@
         }
 
         @media (max-width: 1000px) {
-            .hero-grid,
-            .about-grid {
+            .hero-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -616,7 +594,6 @@
             }
 
             .services-grid,
-            .experience-grid,
             .process-grid {
                 grid-template-columns: 1fr;
             }
@@ -632,6 +609,16 @@
 
             .process-step:last-child {
                 border-bottom: 0;
+            }
+
+
+            #about .section-title {
+                font-size: clamp(34px, 11vw, 48px);
+                line-height: 1.1;
+            }
+
+            #about .section-copy {
+                font-size: 17px;
             }
 
             .contact-box {
@@ -672,7 +659,7 @@
             <div class="nav-links">
                 <a href="#services">Služby</a>
                 <a href="#about">O mně</a>
-                <a href="#experience">Zkušenosti</a>
+                <a href="#process">Spolupráce</a>
                 <a href="#contact">Kontakt</a>
             </div>
         </nav>
@@ -768,13 +755,18 @@
 
     <section id="about">
         <div class="container">
-            <div class="about-copy" style="max-width: 900px; margin: 0 auto;">
+            <div class="about-content">
                 <span class="eyebrow">Kdo stojí za MN Analysis</span>
-                <h2>Propojuji business, procesy a technologie.</h2>
-                <p>
+
+                <h2 class="section-title">
+                    Propojuji business, procesy a technologie.
+                </h2>
+
+                <p class="section-copy">
                     Jsem IT analytik se zkušenostmi s business a systémovou analýzou, návrhem řešení a spoluprací s klienty, projektovými manažery, vývojáři a testery.
                 </p>
-                <p>
+
+                <p class="section-copy">
                     Mým cílem je připravovat zadání a návrhy, kterým rozumí všechny zúčastněné strany a které lze skutečně implementovat, otestovat a dlouhodobě provozovat.
                 </p>
             </div>
