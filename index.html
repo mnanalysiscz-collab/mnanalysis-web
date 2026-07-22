@@ -59,29 +59,12 @@
         .brand {
             display: flex;
             align-items: center;
-            gap: 14px;
         }
 
-        .brand-mark {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            background: linear-gradient(135deg, #ffffff, #1484ff);
-            color: #061426;
-            font-weight: 800;
-            font-size: 18px;
-        }
-
-        .brand-name {
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .brand-name span {
-            color: #1687ff;
+        .brand img {
+            height: 54px;
+            width: auto;
+            display: block;
         }
 
         .nav-links {
@@ -339,12 +322,8 @@
 <header>
     <div class="container">
         <nav>
-            <a class="brand" href="#home">
-                <div class="brand-mark">MN</div>
-
-                <div class="brand-name">
-                    MN<span>ANALYSIS</span>
-                </div>
+            <a class="brand" href="#home" aria-label="MN Analysis – úvodní stránka">
+                <img src="images/logo-mn-analysis.png" alt="MN Analysis – IT analýza a konzultace">
             </a>
 
             <div class="nav-links">
