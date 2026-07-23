@@ -44,6 +44,9 @@
 
         html {
             scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
         body {
@@ -52,6 +55,8 @@
             color: var(--text);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
         body,
@@ -916,6 +921,71 @@
     scroll-margin-top:110px;
 }
 
+
+
+/* Barevny rytmus jednotlivych sekci */
+.hero {
+    background:
+        radial-gradient(circle at 76% 24%, rgba(22, 135, 255, 0.20), transparent 30%),
+        radial-gradient(circle at 90% 72%, rgba(41, 104, 175, 0.16), transparent 32%),
+        linear-gradient(135deg, #04101f, #071321 72%, #0a2038);
+}
+
+.services-dark {
+    background:
+        radial-gradient(circle at 82% 18%, rgba(22, 135, 255, 0.18), transparent 28%),
+        radial-gradient(circle at 12% 85%, rgba(41, 104, 175, 0.12), transparent 30%),
+        linear-gradient(135deg, #0a1d31, #0e2238 72%, #123052);
+}
+
+#about {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #071321 0%, #0b1726 100%);
+    color: var(--text);
+}
+
+#about::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.12;
+    background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 64px 64px;
+}
+
+#about .container {
+    position: relative;
+    z-index: 1;
+}
+
+#about .section-title,
+#about h3 {
+    color: #ffffff;
+}
+
+#about .section-copy,
+#about .competence-card p,
+#about .stat-card span {
+    color: #d2deeb;
+}
+
+#about .stat-card,
+#about .competence-card {
+    border-color: rgba(255, 255, 255, 0.13);
+    background: rgba(255, 255, 255, 0.055);
+    box-shadow: 0 18px 40px rgba(4, 16, 31, 0.14);
+}
+
+.contact {
+    background:
+        radial-gradient(circle at 15% 18%, rgba(22, 135, 255, 0.10), transparent 28%),
+        linear-gradient(135deg, #081626, #0b2139 64%, #0f3155);
+}
+
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KQBBKBWH2T"></script>
@@ -925,6 +995,105 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-KQBBKBWH2T');
 </script>
+
+
+<style>
+.contact-box{
+    padding:42px !important;
+}
+.contact-box h2{
+    font-size:40px !important;
+    max-width:650px !important;
+    margin-bottom:12px !important;
+}
+.contact-box p{
+    font-size:17px !important;
+    max-width:620px !important;
+}
+.contact-info-card{
+    max-width:380px !important;
+    padding:18px !important;
+    margin-top:22px !important;
+}
+.contact-name{font-size:18px !important;}
+.contact-role{font-size:13px !important;margin-bottom:10px !important;}
+.contact-row{font-size:14px !important;padding:8px 0 !important;}
+</style>
+
+<style>
+/* Výrazně kompaktnější kontaktní sekce */
+#contact{
+    padding:54px 0 !important;
+}
+
+#contact .container{
+    width:min(900px, calc(100% - 40px)) !important;
+}
+
+#contact .contact-box{
+    max-width:900px !important;
+    margin:0 auto !important;
+    padding:30px 34px !important;
+    border-radius:20px !important;
+    background:
+        radial-gradient(circle at 88% 18%, rgba(74,165,255,.12), transparent 34%),
+        linear-gradient(135deg, #0b2a4a 0%, #103d69 58%, #174f82 100%) !important;
+    box-shadow:
+        0 14px 34px rgba(0,0,0,.20),
+        inset 0 1px 0 rgba(255,255,255,.04) !important;
+}
+
+#contact .contact-box h2{
+    max-width:600px !important;
+    font-size:34px !important;
+    line-height:1.12 !important;
+    letter-spacing:-0.03em !important;
+}
+
+#contact .contact-box p{
+    max-width:620px !important;
+    margin-top:12px !important;
+    font-size:15px !important;
+    line-height:1.5 !important;
+}
+
+#contact .cta-contact{
+    margin-top:20px !important;
+    padding-top:18px !important;
+}
+
+#contact .cta-contact > div{
+    gap:9px !important;
+    font-size:15px !important;
+}
+
+#contact .cta-contact > div > div{
+    line-height:1.35 !important;
+}
+
+@media (max-width:760px){
+    #contact{
+        padding:42px 0 !important;
+    }
+
+    #contact .container{
+        width:min(100% - 28px, 900px) !important;
+    }
+
+    #contact .contact-box{
+        padding:26px 22px !important;
+        border-radius:18px !important;
+    }
+
+    #contact .contact-box h2{
+        font-size:29px !important;
+    }
+
+    #contact .contact-box p{
+        font-size:14px !important;
+    }
+}
+</style>
 
 </head>
 
