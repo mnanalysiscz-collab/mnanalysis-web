@@ -688,7 +688,235 @@
                 padding: 26px;
             }
         }
-    </style>
+    
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:32px}
+.stat-card{padding:20px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.03)}
+.about-list{margin-top:20px;padding-left:20px;line-height:1.9}
+.about-list li{margin-bottom:6px}
+
+
+.competence-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:24px}
+.competence-card{padding:22px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.03)}
+.competence-card h4{margin:0 0 10px}
+.competence-card p{margin:0;color:var(--muted);line-height:1.6}
+
+
+.process-intro{
+    max-width:820px;
+    margin-bottom:42px;
+}
+
+.process-timeline{
+    position:relative;
+    display:grid;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:18px;
+}
+
+.process-timeline::before{
+    content:"";
+    position:absolute;
+    top:42px;
+    left:7%;
+    right:7%;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
+    z-index:0;
+}
+
+.process-step{
+    position:relative;
+    z-index:1;
+    min-height:280px;
+    padding:28px 22px 24px;
+    border:1px solid rgba(40,96,180,.12);
+    border-radius:18px;
+    background:linear-gradient(180deg,rgba(19,40,74,.06),rgba(19,40,74,.02));
+    box-shadow:0 18px 45px rgba(18,42,74,.08);
+    transition:transform .25s ease,border-color .25s ease,background .25s ease;
+}
+
+.process-step:hover{
+    transform:translateY(-6px);
+    border-color:rgba(40,96,180,.28);
+    background:linear-gradient(180deg,rgba(32,78,154,.10),rgba(32,78,154,.04));
+}
+
+.process-number{
+    position:absolute;
+    top:16px;
+    right:18px;
+    font-size:.78rem;
+    letter-spacing:.12em;
+    color:var(--muted);
+}
+
+.process-icon{
+    width:60px;
+    height:60px;
+    display:grid;
+    place-items:center;
+    margin-bottom:22px;
+    border-radius:16px;
+    font-size:1.6rem;
+    background:linear-gradient(135deg,#e8f1ff,#d7e7ff);
+    border:1px solid rgba(59,130,246,.15);
+    box-shadow:0 8px 20px rgba(37,99,235,.12);
+}
+
+.process-step h3{
+    margin:0 0 12px;
+    font-size:1.05rem;
+}
+
+.process-step p{
+    margin:0;
+    color:var(--muted);
+    line-height:1.65;
+}
+
+@media (max-width:1050px){
+    .process-timeline{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+    .process-timeline::before{
+        display:none;
+    }
+}
+
+@media (max-width:640px){
+    .process-timeline{
+        grid-template-columns:1fr;
+    }
+
+    .process-step{
+        min-height:0;
+        padding:24px 20px;
+    }
+}
+
+
+.combined-grid{display:grid;grid-template-columns:1fr;gap:28px;margin-top:20px}
+.offer-card{background:linear-gradient(180deg,rgba(19,40,74,.06),rgba(19,40,74,.02));border:1px solid rgba(40,96,180,.12);border-radius:18px;padding:30px}
+.offer-card h3{margin-top:0;margin-bottom:20px}
+.offer-card ul{margin:0;padding-left:20px;line-height:2}
+.mini-step{display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.mini-step:last-child{border-bottom:none}
+.mini-step span{width:34px;height:34px;border-radius:50%;background:#2563eb;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex:none}
+@media(max-width:900px){.combined-grid{grid-template-columns:1fr}}
+
+
+.cta-contact{
+    margin:34px 0 26px;
+    padding-top:24px;
+    border-top:1px solid rgba(255,255,255,.12);
+}
+
+.cta-contact-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:16px 28px;
+    color:rgba(255,255,255,.92);
+}
+
+.cta-contact-grid strong{
+    color:#fff;
+}
+
+.cta-contact-grid span{
+    color:rgba(255,255,255,.75);
+}
+
+@media (max-width:700px){
+    .cta-contact-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+
+.services-dark{
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 82% 18%, rgba(22,135,255,.20), transparent 28%),
+        radial-gradient(circle at 12% 85%, rgba(41,104,175,.14), transparent 30%),
+        linear-gradient(135deg, #04101f, #08203b 72%, #09284a);
+    color:var(--text);
+}
+
+.services-dark::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    opacity:.20;
+    background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size:64px 64px;
+}
+
+.services-dark .container{
+    position:relative;
+    z-index:1;
+}
+
+.services-dark .section-title{
+    color:#fff;
+}
+
+.services-dark .section-copy{
+    color:#c2d0df;
+}
+
+.services-dark .offer-card{
+    border:1px solid rgba(255,255,255,.11);
+    background:linear-gradient(145deg, rgba(255,255,255,.085), rgba(255,255,255,.035));
+    box-shadow:0 28px 70px rgba(0,0,0,.22);
+    backdrop-filter:blur(12px);
+    transition:transform .25s ease,border-color .25s ease,background .25s ease;
+}
+
+.services-dark .offer-card:hover{
+    transform:translateY(-5px);
+    border-color:rgba(74,165,255,.35);
+    background:linear-gradient(145deg, rgba(255,255,255,.11), rgba(255,255,255,.045));
+}
+
+.services-dark .offer-card h3{
+    color:#fff;
+}
+
+.services-dark .offer-card ul,
+.services-dark .mini-step{
+    color:#dce7f2;
+}
+
+.services-dark .mini-step{
+    border-bottom:1px solid rgba(255,255,255,.09);
+}
+
+.services-dark .mini-step span{
+    background:var(--blue-500);
+    box-shadow:0 8px 22px rgba(22,135,255,.28);
+}
+
+
+.services-dark .combined-grid{
+    max-width:900px;
+}
+
+.services-dark .offer-card{
+    min-height:auto;
+}
+
+
+#experience{
+    scroll-margin-top:110px;
+}
+
+</style>
 </head>
 
 <body>
@@ -750,124 +978,103 @@
         </div>
     </section>
 
-    <section class="section-light" id="services">
-        <div class="container">
-            <span class="eyebrow">Moje role v projektu</span>
-            <h2 class="section-title">Co mohu projektu nabídnout</h2>
-            <p class="section-copy">
-                V průběhu projektu se věnuji jednotlivým krokům od prvotního zadání až po podporu realizace a ověření výsledku.
-            </p>
+    
+<section class="section-light services-dark" id="services">
+<div class="container">
+<span class="eyebrow">Jak mohu pomoci</span>
 
-            <div class="services-grid">
-                <article class="service-card">
-                    <div class="service-number">01</div>
-                    <h3>Analýza požadavků</h3>
-                    <p>Sběr, zpřesnění a převod business požadavků do realizovatelného zadání.</p>
-                </article>
+<h2 class="section-title">Co mohu projektu nabídnout</h2>
 
-                <article class="service-card">
-                    <div class="service-number">02</div>
-                    <h3>Návrh systému</h3>
-                    <p>Návrh systémového řešení, integračních vazeb a očekávaného chování systému.</p>
-                </article>
+<p class="section-copy" style="max-width:820px;margin-bottom:42px;">
+Od business požadavků až po úspěšné nasazení řešení. Pomáhám propojit business s vývojem a podílím se na celém životním cyklu projektu.
+</p>
 
-                <article class="service-card">
-                    <div class="service-number">03</div>
-                    <h3>Komunikace a spolupráce</h3>
-                    <p>Propojení klienta, businessu a vývojového týmu během analýzy i realizace.</p>
-                </article>
+<div class="combined-grid">
 
-                <article class="service-card">
-                    <div class="service-number">04</div>
-                    <h3>Technické specifikace</h3>
-                    <p>Příprava srozumitelných podkladů a specifikací pro vývoj a testování.</p>
-                </article>
+<div class="offer-card">
+<h3>Oblasti, ve kterých pomohu</h3>
+<ul>
+<li>Business analýza</li>
+<li>Systémová analýza</li>
+<li>Návrh integračních řešení</li>
+<li>Provisioning a konfigurace služeb</li>
+<li>Technické specifikace</li>
+<li>Testování a UAT</li>
+<li>Technická dokumentace</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
 
-                <article class="service-card">
-                    <div class="service-number">05</div>
-                    <h3>Implementace a testování</h3>
-                    <p>Podpora vývojového týmu, příprava testovacích scénářů a spolupráce při UAT.</p>
-                </article>
-
-                <article class="service-card">
-                    <div class="service-number">06</div>
-                    <h3>Dokumentace</h3>
-                    <p>Tvorba a údržba analytické a technické dokumentace včetně popisu změn.</p>
-                </article>
-            </div>
-        </div>
-    </section>
 
     <section id="about">
-        <div class="container">
-            <div class="about-copy" style="max-width: 900px; margin: 0 auto;">
-                <span class="eyebrow">Kdo stojí za MN Analysis</span>
-                <h2>Propojuji business, procesy a technologie.</h2>
-                <p>
-                    Jsem IT analytik se zkušenostmi s business a systémovou analýzou, návrhem řešení a spoluprací s klienty, projektovými manažery, vývojáři a testery.
-                </p>
-                <p>
-                    Mým cílem je připravovat zadání a návrhy, kterým rozumí všechny zúčastněné strany a které lze skutečně implementovat, otestovat a dlouhodobě provozovat.
-                </p>
+    <div class="container">
+        <div class="about-content">
+            <span class="eyebrow">Kdo stojí za MN Analysis</span>
+
+            <h2 class="section-title">Propojuji business, procesy a technologie.</h2>
+
+            <p class="section-copy">
+                Jsem IT analytik s více než <strong>10 lety zkušeností v telekomunikačním oboru</strong>, kde pomáhám převádět business požadavky do funkčních IT řešení. Specializuji se na business a systémovou analýzu, návrh řešení, provisioning, integrace a implementaci změn v komplexních informačních systémech.
+            </p>
+
+            <p class="section-copy">
+                Spolupracuji s klienty, projektovými manažery, vývojáři i testery a podílím se na celém životním cyklu projektu – od prvotní analýzy až po úspěšné nasazení do produkčního prostředí.
+            </p>
+
+            <div class="stats-grid" id="experience">
+                <div class="stat-card">
+                    <strong>10+ let</strong>
+                    <span>Zkušeností v telekomunikacích</span>
+                </div>
+                <div class="stat-card">
+                    <strong>Business &amp; System Analysis</strong>
+                    <span>Analýza požadavků a návrh řešení</span>
+                </div>
+                <div class="stat-card">
+                    <strong>Provisioning &amp; Integrace</strong>
+                    <span>Konfigurace procesů a služeb</span>
+                </div>
+            </div>
+
+            <h3 style="margin-top:48px;">Klíčové kompetence</h3>
+
+            <div class="competence-grid">
+                <div class="competence-card"><h4>📊 Business analýza</h4><p>Analýza požadavků • Business procesy • Funkční specifikace</p></div>
+                <div class="competence-card"><h4>⚙️ Systémová analýza</h4><p>Návrh řešení • Datové modely • Integrace systémů</p></div>
+                <div class="competence-card"><h4>🔄 Telco & Provisioning</h4><p>Konfigurace procesů • Provisioning • Workflow</p></div>
+                <div class="competence-card"><h4>🧪 Implementace a testování</h4><p>Podpora vývoje • Testovací scénáře • UAT</p></div>
+                <div class="competence-card"><h4>📄 Dokumentace</h4><p>Technické specifikace • Analytická dokumentace</p></div>
+                <div class="competence-card"><h4>🤝 Spolupráce</h4><p>Klienti • PM • Vývojáři • Testeři</p></div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="process" id="process">
-        <div class="container">
-            <span class="eyebrow">Jak probíhá spolupráce</span>
-            <h2 class="section-title">Přehledný postup od prvního zadání k ověřenému výsledku</h2>
-
-            <div class="process-grid">
-                <article class="process-step">
-                    <span>01</span>
-                    <h3>Seznámení s projektem</h3>
-                    <p>Upřesnění cíle, kontextu, očekávání a hlavních omezení projektu.</p>
-                </article>
-                <article class="process-step">
-                    <span>02</span>
-                    <h3>Analýza požadavků</h3>
-                    <p>Sběr informací, identifikace nejasností a sladění požadavků se zainteresovanými stranami.</p>
-                </article>
-                <article class="process-step">
-                    <span>03</span>
-                    <h3>Návrh řešení</h3>
-                    <p>Popis procesů, systémového chování, integračních vazeb a datových struktur.</p>
-                </article>
-                <article class="process-step">
-                    <span>04</span>
-                    <h3>Dokumentace</h3>
-                    <p>Příprava srozumitelného zadání, specifikací, diagramů a akceptačních kritérií.</p>
-                </article>
-                <article class="process-step">
-                    <span>05</span>
-                    <h3>Podpora realizace</h3>
-                    <p>Konzultace během vývoje, řešení nejasností a podpora komunikace v týmu.</p>
-                </article>
-                <article class="process-step">
-                    <span>06</span>
-                    <h3>Ověření výsledku</h3>
-                    <p>Podpora testování, UAT, nasazení a vyhodnocení, zda řešení odpovídá zadání.</p>
-                </article>
-            </div>
-        </div>
-    </section>
+    
 
     <section class="contact" id="contact">
         <div class="container">
             <div class="contact-box">
-                <h2>Pojďme probrat vaše požadavky a možnosti řešení.</h2>
+                <h2>Pojďme najít správné řešení pro váš projekt.</h2>
                 <p>
-                    Potřebujete připravit analýzu, zpřesnit zadání nebo konzultovat návrh systémového řešení? Ozvěte se a stručně popište, s čím potřebujete pomoci.
+Specializuji se na business a systémovou analýzu v oblasti telekomunikací. Pokud hledáte zkušeného analytika pro nový projekt, implementaci změn nebo odbornou konzultaci, rád s vámi projdu vaše požadavky a navrhnu vhodný postup.
                 </p>
 
-                <div class="contact-actions">
-                    <a class="button button-primary" href="mailto:mnanalysis.cz@gmail.com">mnanalysis.cz@gmail.com</a>
-                    <a class="button button-secondary" href="#home">Zpět nahoru</a>
-                </div>
-            </div>
+<div class="cta-contact" style="margin-top:36px;padding-top:28px;border-top:1px solid rgba(255,255,255,.15)">
+<div style="display:flex;flex-direction:column;gap:16px;font-size:18px;color:#fff">
+<div>👤 <strong>Miroslav Navrátil</strong><br><span style="opacity:.8">Business &amp; System Analyst</span></div>
+<div>📞 725&nbsp;501&nbsp;253</div>
+<div>📧 info@mnanalysis.cz</div>
+<div>🌐 www.mnanalysis.cz</div>
+<div>🧾 IČO: XXXX</div>
+</div>
+</div>
+</div>
         </div>
-    </section>
+    
+</section>
 </main>
 
 <footer>
