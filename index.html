@@ -1,1539 +1,1416 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="MN Analysis nabízí business analýzu, systémovou analýzu a IT konzultace se zkušenostmi z telekomunikačních projektů.">
-    <meta name="theme-color" content="#071526">
-
-    <title>MN Analysis | IT analýza a konzultace</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --navy-950: #04101f;
-            --navy-900: #071526;
-            --navy-850: #0a1b30;
-            --navy-800: #0d223c;
-            --blue-500: #1687ff;
-            --blue-400: #4aa5ff;
-            --blue-300: #8bc7ff;
-            --white: #ffffff;
-            --text: #f4f8fc;
-            --muted: #b8c7d9;
-            --muted-dark: #617186;
-            --surface: #ffffff;
-            --surface-soft: #f5f8fc;
-            --line-dark: rgba(255, 255, 255, 0.09);
-            --line-light: #e4ebf3;
-            --shadow: 0 24px 70px rgba(5, 25, 48, 0.12);
-            --radius-lg: 24px;
-            --radius-md: 16px;
-            --radius-sm: 10px;
-            --container: 1180px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
-        }
-
-        body {
-            font-family: "Inter", Arial, Helvetica, sans-serif;
-            background: var(--navy-950);
-            color: var(--text);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
-        }
-
-        body,
-        button,
-        input,
-        textarea {
-            font: inherit;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .container {
-            width: min(var(--container), calc(100% - 40px));
-            margin: 0 auto;
-        }
-
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--blue-400);
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-        }
-
-        .eyebrow::before {
-            content: "";
-            width: 28px;
-            height: 2px;
-            border-radius: 999px;
-            background: var(--blue-500);
-        }
-
-        .section-title {
-            max-width: 760px;
-            margin-top: 16px;
-            font-size: clamp(36px, 5vw, 58px);
-            line-height: 1.08;
-            letter-spacing: -0.04em;
-        }
-
-        .section-copy {
-            max-width: 720px;
-            margin-top: 20px;
-            color: var(--muted-dark);
-            font-size: 18px;
-        }
-
-        .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 54px;
-            padding: 0 26px;
-            border: 1px solid transparent;
-            border-radius: 10px;
-            font-weight: 800;
-            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-        }
-
-        .button:hover {
-            transform: translateY(-2px);
-        }
-
-        .button-primary {
-            background: var(--blue-500);
-            color: var(--white);
-            box-shadow: 0 14px 34px rgba(22, 135, 255, 0.24);
-        }
-
-        .button-primary:hover {
-            background: #0879eb;
-        }
-
-        .button-secondary {
-            border-color: rgba(255, 255, 255, 0.18);
-            background: rgba(255, 255, 255, 0.03);
-            color: var(--white);
-        }
-
-        .button-secondary:hover {
-            border-color: var(--blue-400);
-            color: var(--blue-300);
-        }
-
-        
-        .menu-toggle{
-            display:none;
-            background:none;
-            border:0;
-            color:#fff;
-            font-size:30px;
-            cursor:pointer;
-        }
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(4, 16, 31, 0.86);
-            border-bottom: 1px solid var(--line-dark);
-            backdrop-filter: blur(18px);
-        }
-
-        nav {
-            min-height: 82px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 32px;
-        }
-
-        .header-container {
-            width: min(1320px, calc(100% - 48px));
-            margin: 0 auto;
-        }
-
-        .brand {
-            display: inline-flex;
-            align-items: center;
-            flex: 0 0 auto;
-        }
-
-        .brand img {
-            width: 285px;
-            height: auto;
-            display: block;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 34px;
-            color: #d7e1ed;
-            font-family: "Inter", Arial, sans-serif;
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 0.035em;
-        }
-
-        .nav-links a {
-            position: relative;
-            padding: 8px 0;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 2px;
-            height: 1px;
-            background: var(--blue-400);
-            transform: scaleX(0);
-            transform-origin: center;
-            transition: transform 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--white);
-        }
-
-        .nav-links a:hover::after {
-            transform: scaleX(1);
-        }
-
-        .hero {
-            position: relative;
-            min-height: calc(100vh - 82px);
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            background:
-                radial-gradient(circle at 76% 24%, rgba(22, 135, 255, 0.22), transparent 30%),
-                radial-gradient(circle at 90% 72%, rgba(41, 104, 175, 0.18), transparent 32%),
-                linear-gradient(135deg, var(--navy-950), #08203b 72%, #09284a);
-        }
-
-        .hero::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            opacity: 0.28;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
-            background-size: 64px 64px;
-            mask-image: linear-gradient(to right, transparent 10%, black 65%, black 100%);
-        }
-
-        .hero-grid {
-            position: relative;
-            z-index: 1;
-            display: grid;
-            grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
-            gap: 80px;
-            align-items: center;
-            padding: 55px 0 112px;
-        }
-
-        .hero h1 {
-            max-width: 900px;
-            margin-top: 24px;
-            font-size: clamp(54px, 7.1vw, 92px);
-            line-height: 0.98;
-            letter-spacing: -0.055em;
-        }
-
-        .hero h1 span {
-            display: block;
-            color: var(--blue-500);
-        }
-
-        .hero-text {
-            max-width: 760px;
-            margin-top: 30px;
-            color: #c2d0df;
-            font-size: clamp(18px, 2vw, 21px);
-        }
-
-        .hero-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 38px;
-        }
-
-        .hero-panel {
-            position: relative;
-            padding: 34px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: var(--radius-lg);
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035));
-            box-shadow: 0 35px 90px rgba(0, 0, 0, 0.26);
-            backdrop-filter: blur(14px);
-        }
-
-        .hero-panel::before {
-            content: "";
-            position: absolute;
-            top: -1px;
-            left: 34px;
-            width: 80px;
-            height: 3px;
-            border-radius: 999px;
-            background: var(--blue-500);
-        }
-
-        .hero-panel h2 {
-            font-size: 25px;
-            line-height: 1.25;
-        }
-
-        .hero-panel p {
-            margin-top: 14px;
-            color: var(--muted);
-        }
-
-        .hero-list {
-            list-style: none;
-            display: grid;
-            gap: 16px;
-            margin-top: 28px;
-        }
-
-        .hero-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 13px;
-            color: #dce7f2;
-        }
-
-        .hero-list li::before {
-            content: "";
-            flex: 0 0 auto;
-            width: 9px;
-            height: 9px;
-            margin-top: 8px;
-            border-radius: 50%;
-            background: var(--blue-400);
-            box-shadow: 0 0 0 6px rgba(74, 165, 255, 0.12);
-        }
-
-        section {
-            padding: 112px 0;
-        }
-
-        .section-light {
-            background: var(--surface-soft);
-            color: #09192b;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-            margin-top: 54px;
-        }
-
-        .service-card {
-            position: relative;
-            min-height: 260px;
-            padding: 32px;
-            overflow: hidden;
-            border: 1px solid var(--line-light);
-            border-radius: var(--radius-md);
-            background: var(--surface);
-            box-shadow: 0 14px 44px rgba(20, 51, 84, 0.06);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow);
-        }
-
-        .service-number {
-            color: var(--blue-500);
-            font-size: 13px;
-            font-weight: 900;
-            letter-spacing: 0.16em;
-        }
-
-        .service-card h3 {
-            margin-top: 24px;
-            font-size: 25px;
-            line-height: 1.2;
-        }
-
-        .service-card p {
-            margin-top: 14px;
-            color: var(--muted-dark);
-        }
-
-        .service-card::after {
-            content: "";
-            position: absolute;
-            right: -40px;
-            bottom: -40px;
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            background: rgba(22, 135, 255, 0.06);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
-            gap: 80px;
-            align-items: center;
-        }
-
-        .about-copy h2 {
-            margin-top: 18px;
-            font-size: clamp(38px, 5vw, 60px);
-            line-height: 1.08;
-            letter-spacing: -0.045em;
-        }
-
-        .about-copy p {
-            margin-top: 22px;
-            color: var(--muted);
-            font-size: 18px;
-        }
-
-        .experience-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
-        .experience-item {
-            min-height: 148px;
-            padding: 24px;
-            border: 1px solid var(--line-dark);
-            border-radius: var(--radius-md);
-            background: rgba(255, 255, 255, 0.045);
-        }
-
-        .experience-item strong {
-            display: block;
-            color: var(--blue-300);
-            font-size: 17px;
-        }
-
-        .experience-item span {
-            display: block;
-            margin-top: 8px;
-            color: var(--muted);
-        }
-
-        .process {
-            background: var(--white);
-            color: #09192b;
-        }
-
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0;
-            margin-top: 58px;
-            border: 1px solid var(--line-light);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-        }
-
-        .process-step {
-            min-height: 230px;
-            padding: 32px;
-            border-right: 1px solid var(--line-light);
-            border-bottom: 1px solid var(--line-light);
-        }
-
-        .process-step:nth-child(3n) {
-            border-right: 0;
-        }
-
-        .process-step:nth-last-child(-n + 3) {
-            border-bottom: 0;
-        }
-
-        .process-step span {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: #eaf4ff;
-            color: var(--blue-500);
-            font-weight: 900;
-        }
-
-        .process-step h3 {
-            margin-top: 24px;
-            font-size: 21px;
-        }
-
-        .process-step p {
-            margin-top: 10px;
-            color: var(--muted-dark);
-        }
-
-        .contact {
-            background: var(--navy-950);
-        }
-
-        .contact-box {
-            position: relative;
-            overflow: hidden;
-            padding: 70px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 28px;
-            background:
-                radial-gradient(circle at 88% 18%, rgba(74, 165, 255, 0.24), transparent 27%),
-                linear-gradient(135deg, #0a2748, #0b4b8e);
-            box-shadow: 0 34px 100px rgba(0, 0, 0, 0.24);
-        }
-
-        .contact-box h2 {
-            max-width: 820px;
-            font-size: clamp(38px, 5vw, 62px);
-            line-height: 1.06;
-            letter-spacing: -0.045em;
-        }
-
-        .contact-box p {
-            max-width: 700px;
-            margin-top: 20px;
-            color: #d4e1ef;
-            font-size: 19px;
-        }
-
-        .contact-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-            margin-top: 34px;
-        }
-
-        footer {
-            padding: 34px 0;
-            border-top: 1px solid var(--line-dark);
-            color: #8193a8;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        @media (max-width: 1000px) {
-            .hero-grid,
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-grid {
-                gap: 46px;
-            }
-
-            .hero-panel {
-                max-width: 650px;
-            }
-
-            .services-grid,
-            .process-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .process-step:nth-child(3n) {
-                border-right: 1px solid var(--line-light);
-            }
-
-            .process-step:nth-child(2n) {
-                border-right: 0;
-            }
-
-            .process-step:nth-last-child(-n + 3) {
-                border-bottom: 1px solid var(--line-light);
-            }
-
-            .process-step:nth-last-child(-n + 2) {
-                border-bottom: 0;
-            }
-        }
-
-        @media (max-width: 760px) {
-            .menu-toggle{
-                display:block;
-            }
-
-            .nav-links{
-                display:none;
-                position:absolute;
-                top:72px;
-                left:0;
-                right:0;
-                background:#071526;
-                flex-direction:column;
-                padding:20px 28px;
-                gap:18px;
-                border-top:1px solid rgba(255,255,255,.1);
-            }
-
-            .nav-links.open{
-                display:flex;
-            }
-
-
-            .container {
-                width: min(100% - 28px, var(--container));
-            }
-
-            .header-container {
-                width: min(100% - 28px, 1480px);
-            }
-
-            nav {
-                min-height: 72px;
-            }
-
-            .brand img {
-                width: 205px;
-            }
-
-
-
-            .hero {
-                min-height: auto;
-            }
-
-            .hero-grid {
-                padding: 78px 0 86px;
-            }
-
-            .hero h1 {
-                font-size: clamp(46px, 14vw, 66px);
-            }
-
-            section {
-                padding: 82px 0;
-            }
-
-            .services-grid,
-            .experience-grid,
-            .process-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .process-step,
-            .process-step:nth-child(2n),
-            .process-step:nth-child(3n),
-            .process-step:nth-last-child(-n + 2),
-            .process-step:nth-last-child(-n + 3) {
-                border-right: 0;
-                border-bottom: 1px solid var(--line-light);
-            }
-
-            .process-step:last-child {
-                border-bottom: 0;
-            }
-
-            .contact-box {
-                padding: 42px 24px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .brand img {
-                width: 225px;
-            }
-
-            .hero-buttons,
-            .contact-actions {
-                flex-direction: column;
-            }
-
-            .button {
-                width: 100%;
-            }
-
-            .hero-panel,
-            .service-card {
-                padding: 26px;
-            }
-        }
-    
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:32px}
-.stat-card{padding:20px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.03)}
-.about-list{margin-top:20px;padding-left:20px;line-height:1.9}
-.about-list li{margin-bottom:6px}
-
-
-.competence-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:24px}
-.competence-card{padding:22px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.03)}
-.competence-card h4{margin:0 0 10px}
-.competence-card p{margin:0;color:var(--muted);line-height:1.6}
-
-
-.process-intro{
-    max-width:820px;
-    margin-bottom:42px;
-}
-
-.process-timeline{
-    position:relative;
-    display:grid;
-    grid-template-columns:repeat(5,minmax(0,1fr));
-    gap:18px;
-}
-
-.process-timeline::before{
-    content:"";
-    position:absolute;
-    top:42px;
-    left:7%;
-    right:7%;
-    height:1px;
-    background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
-    z-index:0;
-}
-
-.process-step{
-    position:relative;
-    z-index:1;
-    min-height:280px;
-    padding:28px 22px 24px;
-    border:1px solid rgba(40,96,180,.12);
-    border-radius:18px;
-    background:linear-gradient(180deg,rgba(19,40,74,.06),rgba(19,40,74,.02));
-    box-shadow:0 18px 45px rgba(18,42,74,.08);
-    transition:transform .25s ease,border-color .25s ease,background .25s ease;
-}
-
-.process-step:hover{
-    transform:translateY(-6px);
-    border-color:rgba(40,96,180,.28);
-    background:linear-gradient(180deg,rgba(32,78,154,.10),rgba(32,78,154,.04));
-}
-
-.process-number{
-    position:absolute;
-    top:16px;
-    right:18px;
-    font-size:.78rem;
-    letter-spacing:.12em;
-    color:var(--muted);
-}
-
-.process-icon{
-    width:60px;
-    height:60px;
-    display:grid;
-    place-items:center;
-    margin-bottom:22px;
-    border-radius:16px;
-    font-size:1.6rem;
-    background:linear-gradient(135deg,#e8f1ff,#d7e7ff);
-    border:1px solid rgba(59,130,246,.15);
-    box-shadow:0 8px 20px rgba(37,99,235,.12);
-}
-
-.process-step h3{
-    margin:0 0 12px;
-    font-size:1.05rem;
-}
-
-.process-step p{
-    margin:0;
-    color:var(--muted);
-    line-height:1.65;
-}
-
-@media (max-width:1050px){
-    .process-timeline{
-        grid-template-columns:repeat(2,minmax(0,1fr));
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Martin Křapka – opravy a repase automobilových převodovek. Férový přístup, kvalitní opravy a dlouholeté zkušenosti.">
+  <meta name="theme-color" content="#0d0d0f">
+  <title>Martin Křapka - Opravy převodovek</title>
+
+  <style>
+    :root {
+      --bg: #0d0d0f;
+      --bg-soft: #151518;
+      --panel: #1b1b1f;
+      --panel-light: #222227;
+      --text: #f5f5f5;
+      --muted: #b3b3ba;
+      --red: #d62828;
+      --red-dark: #aa1f1f;
+      --line: rgba(255,255,255,.1);
+      --shadow: 0 18px 45px rgba(0,0,0,.28);
+      --radius: 18px;
+      --max: 1160px;
     }
 
-    .process-timeline::before{
-        display:none;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(214,40,40,.11), transparent 30%),
+        radial-gradient(circle at 90% 35%, rgba(214,40,40,.07), transparent 26%),
+        linear-gradient(180deg, #0c0c0e 0%, #101013 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 92px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #ff6767;
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.45rem);
+      line-height: 1.08;
+      max-width: 760px;
+      letter-spacing: -.04em;
+    }
+
+    .section-copy {
+      color: var(--muted);
+      max-width: 720px;
+      margin-top: 18px;
+      font-size: 1.05rem;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(13,13,15,.88);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 124px;
+      height: 74px;
+      flex: 0 0 124px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      overflow: visible;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .brand-mark img {
+      display:block;
+      width:100%;
+      height:auto;
+      object-fit:contain;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-text strong {
+      font-size: 1rem;
+      letter-spacing: .01em;
+    }
+
+    .brand-text span {
+      color: var(--muted);
+      font-size: .75rem;
+      margin-top: 5px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #d7d7db;
+      font-size: .94rem;
+      transition: color .2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .nav-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--red);
+      padding: 11px 17px;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .nav-phone:hover {
+      transform: translateY(-1px);
+      background: #e32f2f;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 0;
+      color: white;
+      width: 42px;
+      height: 42px;
+      cursor: pointer;
+    }
+
+    .menu-toggle span,
+    .menu-toggle::before,
+    .menu-toggle::after {
+      content: "";
+      display: block;
+      width: 24px;
+      height: 2px;
+      margin: 5px auto;
+      background: currentColor;
+      transition: .2s ease;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 92px 0 74px;
+      min-height: calc(100vh - 76px);
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: block;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1.03fr .97fr;
+      grid-template-areas:
+        "title image"
+        "copy image"
+        "brands image"
+        "actions image";
+      column-gap: 64px;
+      align-items: center;
+    }
+
+    .hero-content h1 { grid-area: title; }
+    .hero-copy { grid-area: copy; }
+    .hero-image { grid-area: image; }
+    .hero-brands { grid-area: brands; }
+    .hero-actions { grid-area: actions; }
+
+    .hero h1 {
+      font-size: clamp(3rem, 7.3vw, 6.35rem);
+      line-height: .94;
+      letter-spacing: -.065em;
+      max-width: 760px;
+    }
+
+    .hero h1 span {
+      color: #ef4040;
+    }
+
+    .hero-copy {
+      color: var(--muted);
+      max-width: 640px;
+      font-size: clamp(1.03rem, 2vw, 1.2rem);
+      margin-top: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 12px;
+      font-weight: 800;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: #fff;
+      box-shadow: 0 14px 32px rgba(214,40,40,.22);
+    }
+
+    .btn-primary:hover {
+      background: #e42e2e;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,.17);
+      background: rgba(255,255,255,.03);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,.35);
+      background: rgba(255,255,255,.06);
+      transform: translateY(-2px);
+    }
+
+    .hero-note {
+      color: #8f8f96;
+      font-size: .86rem;
+      margin-top: 18px;
+    }
+
+    .hero-image {
+      position: relative;
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      isolation: isolate;
+    }
+
+    .hero-image::before {
+      content: "";
+      position: absolute;
+      z-index: -2;
+      width: 78%;
+      aspect-ratio: 1;
+      right: -8%;
+      top: 12%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(214,40,40,.28) 0%, rgba(214,40,40,.12) 34%, transparent 68%);
+      filter: blur(22px);
+    }
+
+    .hero-image::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: 13%;
+      right: 2%;
+      bottom: 7%;
+      height: 22%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(214,40,40,.34) 0%, rgba(214,40,40,.14) 38%, transparent 72%);
+      filter: blur(24px);
+      opacity: .78;
+      transform: scale(.92);
+    }
+
+    .hero-image img {
+      display: block;
+      width: min(100%, 640px);
+      max-width: 640px;
+      margin: 0 auto;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 34px 34px rgba(0,0,0,.58));
+      transform-origin: 52% 62%;
+      will-change: transform, opacity, filter;
+    }
+
+    .hero-image.visible img {
+      animation: gearbox-enter 1.05s cubic-bezier(.2,.75,.25,1) both;
+    }
+
+    .hero-image.visible::after {
+      animation: gearbox-glow 3.8s ease-in-out 1.05s infinite alternate;
+    }
+
+    @keyframes gearbox-enter {
+      0% {
+        opacity: 0;
+        transform: translateY(24px) scale(.94);
+        filter: blur(5px) drop-shadow(0 18px 24px rgba(0,0,0,.35));
+      }
+      65% {
+        opacity: 1;
+        transform: translateY(-3px) scale(1.012);
+        filter: blur(0) drop-shadow(0 38px 40px rgba(0,0,0,.62));
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0) drop-shadow(0 34px 34px rgba(0,0,0,.58));
+      }
+    }
+
+    @keyframes gearbox-glow {
+      from {
+        opacity: .58;
+        transform: scale(.9);
+      }
+      to {
+        opacity: .92;
+        transform: scale(1.04);
+      }
+    }
+
+
+    .hero-brands{
+      margin-top:32px;
+      margin-bottom:34px;
+      padding:22px 26px;
+      border-left:4px solid var(--red);
+      border-radius:0 14px 14px 0;
+      background:rgba(255,255,255,.035);
+      backdrop-filter:blur(6px);
+    }
+
+    .hero-brands span{
+      display:block;
+      color:#ff6b6b;
+      font-size:.8rem;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin-bottom:8px;
+    }
+
+    .hero-brands strong{
+      display:block;
+      font-size:1.35rem;
+      font-weight:800;
+      margin-bottom:8px;
+    }
+
+    .hero-brands p{
+      margin:0;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    /* Quick facts */
+    .quick-facts {
+      padding-bottom: 24px;
+    }
+
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .fact {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.025);
+      padding: 22px;
+    }
+
+    .fact strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 5px;
+    }
+
+    .fact span {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    /* Services */
+    .services {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 42px;
+    }
+
+    .service-card {
+      min-height: 250px;
+      padding: 28px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.015));
+      transition: transform .22s ease, border-color .22s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(214,40,40,.45);
+    }
+
+    .service-number {
+      color: #ef5555;
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: .14em;
+    }
+
+    .service-card h3 {
+      font-size: 1.35rem;
+      margin-top: 40px;
+      margin-bottom: 12px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: .96rem;
+    }
+
+    /* About */
+    .about-grid {
+      display: block;
+      max-width: 760px;
+    }
+
+    .about-panel {
+      min-height: 410px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background:
+        linear-gradient(145deg, rgba(214,40,40,.11), transparent 45%),
+        var(--panel);
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      box-shadow: var(--shadow);
+    }
+
+    .about-panel-label {
+      color: #ff6b6b;
+      font-weight: 800;
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    .about-panel strong {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      max-width: 430px;
+      margin-top: 14px;
+    }
+
+    .about-list {
+      list-style: none;
+      margin-top: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .about-list li {
+      position: relative;
+      color: #d3d3d7;
+      padding-left: 30px;
+    }
+
+    .about-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #ff5555;
+      font-weight: 900;
+    }
+
+    /* Brands */
+    .brands {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 38px;
+    }
+
+    .brand-card {
+      min-height: 126px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: rgba(255,255,255,.025);
+      border: 1px solid var(--line);
+      font-size: clamp(1.1rem, 2vw, 1.45rem);
+      font-weight: 900;
+      letter-spacing: .03em;
+    }
+
+    .brands-note {
+      color: var(--muted);
+      margin-top: 18px;
+      font-size: .92rem;
+    }
+
+    /* Process */
+    .process-grid {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .process-step {
+      padding: 28px;
+      border-left: 3px solid var(--red);
+      background: rgba(255,255,255,.025);
+      border-radius: 0 14px 14px 0;
+    }
+
+    .process-step span {
+      color: #ff6363;
+      font-weight: 900;
+      font-size: .8rem;
+      letter-spacing: .12em;
+    }
+
+    .process-step h3 {
+      margin: 12px 0 8px;
+      font-size: 1.2rem;
+    }
+
+    .process-step p {
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+
+    .about-brands {
+      margin-top: 30px;
+      padding: 22px 24px;
+      border-left: 3px solid var(--red);
+      background: rgba(255,255,255,.035);
+      border-radius: 0 14px 14px 0;
+    }
+
+    .about-brands span {
+      display: block;
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .about-brands strong {
+      display: block;
+      font-size: 1.12rem;
+      line-height: 1.45;
+    }
+
+    .about-brands p {
+      color: var(--muted);
+      margin-top: 8px;
+      font-size: .95rem;
+    }
+
+
+    /* Reviews */
+    .reviews {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .reviews-summary {
+      margin-top: 38px;
+      padding: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(214,40,40,.1), rgba(255,255,255,.02));
+    }
+
+    .score-group {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .google-label {
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .score-number {
+      display: block;
+      font-size: clamp(3rem, 7vw, 5rem);
+      font-weight: 900;
+      line-height: .9;
+      letter-spacing: -.06em;
+      margin-top: 8px;
+    }
+
+    .stars {
+      color: #f7c948;
+      font-size: 1.18rem;
+      letter-spacing: .08em;
+      white-space: nowrap;
+    }
+
+    .reviews-count {
+      color: var(--muted);
+      margin-top: 7px;
+    }
+
+    .reviews-grid {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .review-card {
+      min-height: 250px;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.015));
+      transition: transform .22s ease, border-color .22s ease;
+    }
+
+    .review-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(214,40,40,.45);
+    }
+
+    .review-author {
+      margin-top: 15px;
+      font-size: 1.02rem;
+    }
+
+    .review-meta,
+    .review-date {
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .review-date {
+      margin-top: 3px;
+    }
+
+    .review-text {
+      color: #dedee2;
+      margin-top: 18px;
+      font-size: .96rem;
+    }
+
+    .review-card details {
+      margin-top: 18px;
+    }
+
+    .review-card details .review-text {
+      margin-top: 12px;
+    }
+
+    .review-card summary {
+      color: #ff6868;
+      cursor: pointer;
+      font-weight: 800;
+      list-style: none;
+    }
+
+    .review-card summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .reviews-footer {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Contact */
+    .contact-wrap {
+      border: 1px solid rgba(214,40,40,.3);
+      border-radius: 24px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      background:
+        linear-gradient(135deg, rgba(214,40,40,.16), transparent 45%),
+        var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-main {
+      padding: clamp(34px, 6vw, 66px);
+    }
+
+    .contact-main h2 {
+      font-size: clamp(1.8rem, 3.8vw, 3rem);
+      line-height: 1;
+      letter-spacing: -.05em;
+      max-width: 620px;
+    }
+
+    Jpx;
+      max-width: 570px;
+    }
+
+
+    .contact-logo {
+      width:min(100%,460px);
+      margin-bottom:28px;
+      padding:0;
+      border-radius:0;
+      background:transparent;
+    }
+
+    .contact-logo img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .contact-phone {
+      display: inline-block;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      line-height: 1;
+      font-weight: 900;
+      margin-top: 30px;
+      letter-spacing: -.05em;
+    }
+
+    .contact-phone:hover {
+      color: #ff5d5d;
+    }
+
+    .contact-side {
+      border-left: 1px solid var(--line);
+      padding: clamp(30px, 5vw, 54px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 24px;
+      background: rgba(0,0,0,.16);
+    }
+
+    .contact-item small {
+      display: block;
+      color: #8e8e95;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .contact-item strong {
+      font-size: 1.08rem;
+    }
+
+    /* Footer */
+    footer {
+      padding: 30px 0 42px;
+      color: #898990;
+      font-size: .88rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    /* Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 920px) {
+      .nav-links {
+        position: fixed;
+        top: 76px;
+        left: 20px;
+        right: 20px;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: #17171b;
+        box-shadow: var(--shadow);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: .2s ease;
+      }
+
+      .nav-links.open {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+      }
+
+
+      .brand-mark {
+        width:96px;
+        height:58px;
+        flex-basis:96px;
+      }
+
+      .brand-text strong {
+        font-size: .88rem;
+      }
+      .menu-toggle { display: block; }
+      .nav-phone { display: none; }
+
+      .hero-content {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hero-content h1 {
+        order: 1;
+        width: 100%;
+      }
+
+      .hero-copy {
+        order: 2;
+        width: 100%;
+      }
+
+      .hero-image {
+        order: 3;
+        width: 100%;
+        min-height: 310px;
+        margin: 8px 0 10px;
+      }
+
+      .hero-image img {
+        width: min(80%, 320px);
+        margin: 0 auto;
+      }
+
+      .hero-brands {
+        order: 4;
+        width: 100%;
+      }
+
+      .hero-actions {
+        order: 5;
+        width: 100%;
+      }
+      .about-grid,
+      .contact-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero{
+        padding-top:40px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 72px;
+      }
+
+      .hero-image {
+        min-height: 390px;
+      }
+
+      .facts-grid,
+      .services-grid,
+      .brand-grid,
+      .process-grid,
+      .reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .reviews-summary {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .contact-side {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .hero-video-desktop {
+        display: none !important;
+      }
+
+      .hero-animation-mobile {
+        display: block !important;
+      }
+      .container {
+        width: min(calc(100% - 28px), var(--max));
+      }
+
+      .section { padding: 72px 0; }
+      .hero { padding: 60px 0 54px; }
+      .hero-grid { gap: 38px; }
+      .hero h1 { font-size: clamp(2.9rem, 16vw, 4.65rem); }
+      .hero-actions { flex-direction: column; }
+      .btn { width: 100%; }
+      .facts-grid,
+      .services-grid,
+      .brand-grid,
+      .process-grid,
+      .reviews-grid {
+        grid-template-columns: 1fr;
+      }
+      .score-group { align-items: flex-start; }
+      .hero-image { min-height: 310px; }
+      .brand-text span { display: none; }
+      .contact-phone { font-size: clamp(1.55rem, 8vw, 2.2rem); }
+      .footer-inner { flex-direction: column; }
     }
 }
 
-@media (max-width:640px){
-    .process-timeline{
-        grid-template-columns:1fr;
+
+    /* Animovana prevodovka s pruhlednym pozadim */
+    .hero-image {
+      overflow: visible;
+      isolation: auto;
+      background: transparent;
     }
 
-    .process-step{
-        min-height:0;
-        padding:24px 20px;
+    .hero-video {
+      display: block;
+      width: min(100%, 520px);
+      max-width: 520px;
+      height: auto;
+      margin: 0 auto;
+      object-fit: contain;
+      mix-blend-mode: normal;
+      filter: drop-shadow(0 28px 30px rgba(0,0,0,.5));
+      transform-origin: 52% 62%;
+      will-change: transform, opacity, filter;
     }
-}
 
 
-.combined-grid{display:grid;grid-template-columns:1fr;gap:28px;margin-top:20px}
-.offer-card{background:linear-gradient(180deg,rgba(19,40,74,.06),rgba(19,40,74,.02));border:1px solid rgba(40,96,180,.12);border-radius:18px;padding:30px}
-.offer-card h3{margin-top:0;margin-bottom:20px}
-.offer-card ul{margin:0;padding-left:20px;line-height:2}
-.mini-step{display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)}
-.mini-step:last-child{border-bottom:none}
-.mini-step span{width:34px;height:34px;border-radius:50%;background:#2563eb;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex:none}
-@media(max-width:900px){.combined-grid{grid-template-columns:1fr}}
-
-
-.cta-contact{
-    margin:34px 0 26px;
-    padding-top:24px;
-    border-top:1px solid rgba(255,255,255,.12);
-}
-
-.cta-contact-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:16px 28px;
-    color:rgba(255,255,255,.92);
-}
-
-.cta-contact-grid strong{
-    color:#fff;
-}
-
-.cta-contact-grid span{
-    color:rgba(255,255,255,.75);
-}
-
-@media (max-width:700px){
-    .cta-contact-grid{
-        grid-template-columns:1fr;
+    .hero-animation-mobile {
+      display: none;
     }
-}
+
+    .hero-image.visible .hero-video {
+      animation: gearbox-video-enter 1.05s cubic-bezier(.2,.75,.25,1) both;
+    }
+
+    @keyframes gearbox-video-enter {
+      from { opacity: 0; transform: translateY(22px) scale(.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @media (max-width: 920px) {
+      .hero-video { width: min(100%, 420px); }
+    }
+
+    @media (max-width: 620px) {
+      .hero-image {
+        width: min(100%, 360px) !important;
+        max-width: 360px !important;
+        min-height: 270px;
+        margin: 10px auto 18px !important;
+        overflow: visible !important;
+        background: transparent !important;
+        -webkit-mask-image: none !important;
+        mask-image: none !important;
+      }
+
+      .hero-video {
+        width: min(100%, 340px) !important;
+        max-width: 340px !important;
+        mix-blend-mode: normal !important;
+        -webkit-mask-image: none !important;
+        mask-image: none !important;
+      }
+
+      .hero-image::before {
+        opacity: .28;
+      }
+
+      .hero-image::after {
+        opacity: .18;
+      }
+    }
 
 
-.services-dark{
-    position:relative;
-    overflow:hidden;
-    background:
-        radial-gradient(circle at 82% 18%, rgba(22,135,255,.20), transparent 28%),
-        radial-gradient(circle at 12% 85%, rgba(41,104,175,.14), transparent 30%),
-        linear-gradient(135deg, #04101f, #08203b 72%, #09284a);
-    color:var(--text);
-}
+    /* Zobrazeni jedine animace podle velikosti obrazovky */
+    .hero-video-desktop {
+      display: block !important;
+    }
 
-.services-dark::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    pointer-events:none;
-    opacity:.20;
-    background-image:
-        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
-    background-size:64px 64px;
-}
+    .hero-animation-mobile {
+      display: none !important;
+    }
 
-.services-dark .container{
-    position:relative;
-    z-index:1;
-}
+    @media (max-width: 620px) {
+      .hero-video-desktop {
+        display: none !important;
+      }
 
-.services-dark .section-title{
-    color:#fff;
-}
-
-.services-dark .section-copy{
-    color:#c2d0df;
-}
-
-.services-dark .offer-card{
-    border:1px solid rgba(255,255,255,.11);
-    background:linear-gradient(145deg, rgba(255,255,255,.085), rgba(255,255,255,.035));
-    box-shadow:0 28px 70px rgba(0,0,0,.22);
-    backdrop-filter:blur(12px);
-    transition:transform .25s ease,border-color .25s ease,background .25s ease;
-}
-
-.services-dark .offer-card:hover{
-    transform:translateY(-5px);
-    border-color:rgba(74,165,255,.35);
-    background:linear-gradient(145deg, rgba(255,255,255,.11), rgba(255,255,255,.045));
-}
-
-.services-dark .offer-card h3{
-    color:#fff;
-}
-
-.services-dark .offer-card ul,
-.services-dark .mini-step{
-    color:#dce7f2;
-}
-
-.services-dark .mini-step{
-    border-bottom:1px solid rgba(255,255,255,.09);
-}
-
-.services-dark .mini-step span{
-    background:var(--blue-500);
-    box-shadow:0 8px 22px rgba(22,135,255,.28);
-}
-
-
-.services-dark .combined-grid{
-    max-width:900px;
-}
-
-.services-dark .offer-card{
-    min-height:auto;
-}
-
-
-#experience{
-    scroll-margin-top:110px;
-}
-
-
-
-/* Barevny rytmus jednotlivych sekci */
-.hero {
-    background:
-        radial-gradient(circle at 76% 24%, rgba(22, 135, 255, 0.20), transparent 30%),
-        radial-gradient(circle at 90% 72%, rgba(41, 104, 175, 0.16), transparent 32%),
-        linear-gradient(135deg, #04101f, #071321 72%, #0a2038);
-}
-
-.services-dark {
-    background:
-        radial-gradient(circle at 82% 18%, rgba(22, 135, 255, 0.18), transparent 28%),
-        radial-gradient(circle at 12% 85%, rgba(41, 104, 175, 0.12), transparent 30%),
-        linear-gradient(135deg, #0a1d31, #0e2238 72%, #123052);
-}
-
-#about {
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(180deg, #071321 0%, #0b1726 100%);
-    color: var(--text);
-}
-
-#about::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.12;
-    background-image:
-        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
-    background-size: 64px 64px;
-}
-
-#about .container {
-    position: relative;
-    z-index: 1;
-}
-
-#about .section-title,
-#about h3 {
-    color: #ffffff;
-}
-
-#about .section-copy,
-#about .competence-card p,
-#about .stat-card span {
-    color: #d2deeb;
-}
-
-#about .stat-card,
-#about .competence-card {
-    border-color: rgba(255, 255, 255, 0.13);
-    background: rgba(255, 255, 255, 0.055);
-    box-shadow: 0 18px 40px rgba(4, 16, 31, 0.14);
-}
-
-.contact {
-    background:
-        radial-gradient(circle at 15% 18%, rgba(22, 135, 255, 0.10), transparent 28%),
-        linear-gradient(135deg, #081626, #0b2139 64%, #0f3155);
-}
+      .hero-animation-mobile {
+        display: block !important;
+      }
+    }
 
 </style>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KQBBKBWH2T"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-KQBBKBWH2T');
-</script>
-
-
-<style>
-.contact-box{
-    padding:42px !important;
-}
-.contact-box h2{
-    font-size:40px !important;
-    max-width:650px !important;
-    margin-bottom:12px !important;
-}
-.contact-box p{
-    font-size:17px !important;
-    max-width:620px !important;
-}
-.contact-info-card{
-    max-width:380px !important;
-    padding:18px !important;
-    margin-top:22px !important;
-}
-.contact-name{font-size:18px !important;}
-.contact-role{font-size:13px !important;margin-bottom:10px !important;}
-.contact-row{font-size:14px !important;padding:8px 0 !important;}
-</style>
-
-<style>
-/* Výrazně kompaktnější kontaktní sekce */
-#contact{
-    padding:54px 0 !important;
-}
-
-#contact .container{
-    width:min(900px, calc(100% - 40px)) !important;
-}
-
-#contact .contact-box{
-    max-width:900px !important;
-    margin:0 auto !important;
-    padding:30px 34px !important;
-    border-radius:20px !important;
-    background:
-        radial-gradient(circle at 88% 18%, rgba(74,165,255,.12), transparent 34%),
-        linear-gradient(135deg, #0b2a4a 0%, #103d69 58%, #174f82 100%) !important;
-    box-shadow:
-        0 14px 34px rgba(0,0,0,.20),
-        inset 0 1px 0 rgba(255,255,255,.04) !important;
-}
-
-#contact .contact-box h2{
-    max-width:600px !important;
-    font-size:34px !important;
-    line-height:1.12 !important;
-    letter-spacing:-0.03em !important;
-}
-
-#contact .contact-box p{
-    max-width:620px !important;
-    margin-top:12px !important;
-    font-size:15px !important;
-    line-height:1.5 !important;
-}
-
-#contact .cta-contact{
-    margin-top:20px !important;
-    padding-top:18px !important;
-}
-
-#contact .cta-contact > div{
-    gap:9px !important;
-    font-size:15px !important;
-}
-
-#contact .cta-contact > div > div{
-    line-height:1.35 !important;
-}
-
-@media (max-width:760px){
-    #contact{
-        padding:42px 0 !important;
-    }
-
-    #contact .container{
-        width:min(100% - 28px, 900px) !important;
-    }
-
-    #contact .contact-box{
-        padding:26px 22px !important;
-        border-radius:18px !important;
-    }
-
-    #contact .contact-box h2{
-        font-size:29px !important;
-    }
-
-    #contact .contact-box p{
-        font-size:14px !important;
-    }
-}
-</style>
-
-
-<style>
-#contact .cta-contact a{
-    color:#fff;
-    text-decoration:none;
-    cursor:pointer;
-}
-#contact .cta-contact a:hover{
-    color:#8bc7ff;
-    text-decoration:underline;
-}
-</style>
-
-
-<style>
-/* Nové sekce: profesní vývoj, technologie a reference */
-.portfolio-section{
-    position:relative;
-    overflow:hidden;
-    padding:88px 0;
-    background:
-        radial-gradient(circle at 88% 12%, rgba(22,135,255,.12), transparent 28%),
-        linear-gradient(180deg,#081626 0%,#0a1b2f 100%);
-    color:var(--text);
-}
-
-.portfolio-section.alt{
-    background:
-        radial-gradient(circle at 12% 82%, rgba(74,165,255,.10), transparent 30%),
-        linear-gradient(135deg,#0a1d31,#0d2744 72%,#12385f);
-}
-
-.portfolio-section .section-copy{
-    color:#c9d7e5;
-}
-
-.career-timeline{
-    position:relative;
-    display:grid;
-    gap:18px;
-    max-width:920px;
-    margin-top:42px;
-    padding-left:34px;
-}
-
-.career-timeline::before{
-    content:"";
-    position:absolute;
-    left:9px;
-    top:12px;
-    bottom:12px;
-    width:2px;
-    background:linear-gradient(180deg,#4aa5ff,rgba(74,165,255,.12));
-}
-
-.career-item{
-    position:relative;
-    padding:24px 26px;
-    border:1px solid rgba(112,178,255,.16);
-    border-radius:18px;
-    background:
-        radial-gradient(circle at 90% 12%,rgba(74,165,255,.10),transparent 32%),
-        linear-gradient(135deg,rgba(11,44,79,.92),rgba(24,85,143,.58));
-    box-shadow:0 16px 38px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,255,255,.04);
-}
-
-.career-item::before{
-    content:"";
-    position:absolute;
-    left:-33px;
-    top:30px;
-    width:14px;
-    height:14px;
-    border-radius:50%;
-    background:#4aa5ff;
-    box-shadow:0 0 0 6px rgba(74,165,255,.14);
-}
-
-.career-period{
-    color:#8bc7ff;
-    font-size:13px;
-    font-weight:800;
-    letter-spacing:.12em;
-    text-transform:uppercase;
-}
-
-.career-item h3{
-    margin-top:7px;
-    font-size:21px;
-}
-
-.career-item p{
-    margin-top:8px;
-    color:#d2deeb;
-}
-
-.tech-grid{
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-    margin-top:38px;
-    max-width:980px;
-}
-
-.tech-chip{
-    display:inline-flex;
-    align-items:center;
-    min-height:46px;
-    padding:0 18px;
-    border:1px solid rgba(112,178,255,.18);
-    border-radius:999px;
-    background:linear-gradient(135deg,rgba(11,44,79,.92),rgba(24,85,143,.56));
-    color:#fff;
-    font-size:14px;
-    font-weight:700;
-    box-shadow:0 10px 26px rgba(0,0,0,.16);
-    transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
-}
-
-.tech-chip:hover{
-    transform:translateY(-3px);
-    border-color:rgba(74,165,255,.46);
-    box-shadow:0 15px 34px rgba(0,0,0,.22),0 0 22px rgba(74,165,255,.10);
-}
-
-.reference-grid{
-    display:grid;
-    grid-template-columns:repeat(3,minmax(0,1fr));
-    gap:18px;
-    margin-top:42px;
-}
-
-.reference-card{
-    min-height:235px;
-    padding:26px;
-    border:1px solid rgba(112,178,255,.17);
-    border-radius:18px;
-    background:
-        radial-gradient(circle at 88% 16%,rgba(74,165,255,.13),transparent 34%),
-        linear-gradient(135deg,#0b2c4f 0%,#123f70 58%,#18558f 100%);
-    box-shadow:0 16px 38px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.05);
-    transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
-}
-
-.reference-card:hover{
-    transform:translateY(-5px);
-    border-color:rgba(74,165,255,.38);
-    box-shadow:0 22px 50px rgba(0,0,0,.28),0 0 28px rgba(74,165,255,.14);
-}
-
-.reference-label{
-    color:#8bc7ff;
-    font-size:12px;
-    font-weight:800;
-    letter-spacing:.13em;
-    text-transform:uppercase;
-}
-
-.reference-card h3{
-    margin-top:12px;
-    font-size:21px;
-    line-height:1.3;
-}
-
-.reference-card p{
-    margin-top:12px;
-    color:#d6e2ee;
-    font-size:15px;
-}
-
-@media(max-width:900px){
-    .reference-grid{
-        grid-template-columns:1fr;
-    }
-}
-
-@media(max-width:760px){
-    .portfolio-section{
-        padding:68px 0;
-    }
-
-    .career-timeline{
-        padding-left:28px;
-    }
-
-    .career-item{
-        padding:21px 20px;
-    }
-
-    .career-item::before{
-        left:-27px;
-    }
-
-    .tech-chip{
-        min-height:42px;
-        padding:0 15px;
-        font-size:13px;
-    }
-}
-</style>
-
-
-<style>
-/* Čistá hero sekce bez pravého panelu */
-.hero-grid{
-    grid-template-columns:minmax(0, 900px) !important;
-    justify-content:start;
-    gap:0 !important;
-}
-
-.hero-grid > div{
-    width:100%;
-}
-
-@media (max-width:1000px){
-    .hero-grid{
-        grid-template-columns:1fr !important;
-    }
-}
-</style>
-
 </head>
-
 <body>
-<header>
-    <div class="header-container">
-        <nav aria-label="Hlavní navigace">
-            <a class="brand" href="#home" aria-label="MN Analysis – úvod">
-                <img src="data:image/png;base64,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" alt="MN Analysis – IT analýza a konzultace">
-            </a>
 
-            <button class="menu-toggle" aria-label="Menu">☰</button>
-
-            <div class="nav-links">
-                <a href="#services">Služby</a>
-                <a href="#about">O mně</a>
-                <a href="#experience">Zkušenosti</a>
-                <a href="#career">Praxe</a>
-                <a href="#technologies">Technologie</a>
-                <a href="#contact">Kontakt</a>
-            </div>
-        </nav>
-    </div>
-</header>
-
-<main>
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-grid">
-                <div>
-                    <span class="eyebrow">IT analýza &amp; konzultace</span>
-
-                    <h1>
-                        Od business požadavku k
-                        <span>funkčnímu IT řešení.</span>
-                    </h1>
-
-                    <p class="hero-text">
-                        Specializuji se na business a systémovou analýzu v oblasti telekomunikací. Věnuji se analýze požadavků, návrhu systémových a integračních řešení, tvorbě technických specifikací a koordinaci mezi businessem a vývojovým týmem. Podílím se na implementaci, testování i dokumentaci změn v komplexních IT systémech.
-                    </p>
-
-                    <div class="hero-buttons">
-                        <a class="button button-primary" href="#contact">Nezávazná konzultace</a>
-                        <a class="button button-secondary" href="#services">Zobrazit služby</a>
-                    </div>
-                </div>
-            </div>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#uvod" class="brand" aria-label="Martin Křapka – přejít na úvod">
+        <div class="brand-mark">
+          <img src="logo-martin-krapka4.png" alt="Martin Křapka – Opravy převodovek">
         </div>
+        <div class="brand-text">
+          <strong>Martin Křapka - Opravy převodovek</strong>
+          <span>Férový přístup, kvalitní opravy a dlouholeté zkušenosti.</span>
+        </div>
+      </a>
+
+      <button class="menu-toggle" aria-label="Otevřít menu" aria-expanded="false"><span></span></button>
+
+      <ul class="nav-links">
+        <li><a href="#o-nas">O nás</a></li>
+        <li><a href="#recenze">Recenze</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+
+      <a class="nav-phone" href="tel:+420608208060">+420 608 208 060</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="uvod">
+      <div class="container hero-grid">
+        <div class="hero-content reveal">
+          <h1>Opravy<br><span>převodovek</span></h1>
+
+          <p class="hero-copy">
+            Opravujeme automobilové převodovky výměnným způsobem. Repasované převodovky máme skladem, osobní odběr nebo dopravu řešíme po dohodě.
+          </p>
+
+          <div class="hero-image reveal">
+            <video class="hero-video hero-video-desktop" autoplay muted loop playsinline preload="auto" aria-label="Animovaná automobilová převodovka">
+              <source src="prevodovka-animace-transparent-8s.webm" type="video/webm">
+              <source src="prevodovka-animace(2)-opraveno.mp4" type="video/mp4">
+            </video>
+            <img class="hero-video hero-animation-mobile" src="prevodovka-animace-mobile-8s.apng" alt="Animovaná automobilová převodovka">
+          </div>
+
+          <div class="hero-brands">
+            <span>Nejčastěji opravujeme</span>
+            <strong>Volkswagen · Škoda · Audi · Seat</strong>
+            <p>Ostatní značky jsou možné po předchozí telefonické domluvě.</p>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="tel:+420608208060">Kontakt: +420 608 208 060</a>
+          </div>
+        </div>
+      </div>
     </section>
 
-    
-<section class="section-light services-dark" id="services">
-<div class="container">
-<span class="eyebrow">Jak mohu pomoci</span>
+    <!-- RYCHLÉ INFORMACE -->
+    <section class="quick-facts">
+      <div class="container facts-grid">
+        <div class="fact reveal"><strong>Výměnný způsob</strong><span>Rychlejší řešení bez zbytečného čekání.</span></div>
+        <div class="fact reveal"><strong>Převodovky skladem</strong><span>Dostupnost ověříme telefonicky.</span></div>
+        <div class="fact reveal"><strong>Osobní odběr</strong><span>Nebo doprava po vzájemné dohodě.</span></div>
+        <div class="fact reveal"><strong>Přímá domluva</strong><span>Bez složitého objednávkového systému.</span></div>
+      </div>
+    </section>
 
-<h2 class="section-title">Co mohu projektu nabídnout</h2>
+    <!-- O NÁS -->
+    <section class="section" id="o-nas">
+      <div class="container about-grid">
+        <div class="reveal">
+          <h2 class="section-title">Bez zbytečných řečí a složitostí</h2>
+          <p class="section-copy">
+            Každou zakázku řešíme individuálně. Vše s vámi předem probereme a navrhneme nejvhodnější způsob opravy převodovky.
+          </p>
 
-<p class="section-copy" style="max-width:820px;margin-bottom:42px;">
-Od business požadavků až po úspěšné nasazení řešení. Pomáhám propojit business s vývojem a podílím se na celém životním cyklu projektu.
-</p>
-
-<div class="combined-grid">
-
-<div class="offer-card">
-<h3>Oblasti, ve kterých pomohu</h3>
-<ul>
-<li>Business analýza</li>
-<li>Systémová analýza</li>
-<li>Návrh integračních řešení</li>
-<li>Provisioning a konfigurace služeb</li>
-<li>Technické specifikace</li>
-<li>Testování a UAT</li>
-<li>Technická dokumentace</li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-
-
-    <section id="about">
-    <div class="container">
-        <div class="about-content">
-            <span class="eyebrow">Kdo stojí za MN Analysis</span>
-
-            <h2 class="section-title">Propojuji business, procesy a technologie.</h2>
-
-            <p class="section-copy">
-                Jsem IT analytik s více než <strong>10 lety zkušeností v telekomunikačním oboru</strong>, kde pomáhám převádět business požadavky do funkčních IT řešení. Specializuji se na business a systémovou analýzu, návrh řešení, provisioning, integrace a implementaci změn v komplexních informačních systémech.
-            </p>
-
-            <p class="section-copy">
-                Spolupracuji s klienty, projektovými manažery, vývojáři i testery a podílím se na celém životním cyklu projektu – od prvotní analýzy až po úspěšné nasazení do produkčního prostředí.
-            </p>
-
-            <div class="stats-grid" id="experience">
-                <div class="stat-card">
-                    <strong>10+ let</strong>
-                    <span>Zkušeností v telekomunikacích</span>
-                </div>
-                <div class="stat-card">
-                    <strong>Business &amp; System Analysis</strong>
-                    <span>Analýza požadavků a návrh řešení</span>
-                </div>
-                <div class="stat-card">
-                    <strong>Provisioning &amp; Integrace</strong>
-                    <span>Konfigurace procesů a služeb</span>
-                </div>
-            </div>
-
-            <h3 style="margin-top:48px;">Klíčové kompetence</h3>
-
-            <div class="competence-grid">
-                <div class="competence-card"><h4>📊 Business analýza</h4><p>Analýza požadavků • Business procesy • Funkční specifikace</p></div>
-                <div class="competence-card"><h4>⚙️ Systémová analýza</h4><p>Návrh řešení • Datové modely • Integrace systémů</p></div>
-                <div class="competence-card"><h4>🔄 Telco & Provisioning</h4><p>Konfigurace procesů • Provisioning • Workflow</p></div>
-                <div class="competence-card"><h4>🧪 Implementace a testování</h4><p>Podpora vývoje • Testovací scénáře • UAT</p></div>
-                <div class="competence-card"><h4>📄 Dokumentace</h4><p>Technické specifikace • Analytická dokumentace</p></div>
-                <div class="competence-card"><h4>🤝 Spolupráce</h4><p>Klienti • PM • Vývojáři • Testeři</p></div>
-            </div>
+          <ul class="about-list">
+            <li>Individuální posouzení každé zakázky</li>
+            <li>Jasná telefonická domluva předem</li>
+            <li>Praktické řešení podle konkrétní závady</li>
+          </ul>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-    
 
-    
-<section class="portfolio-section" id="career">
-    <div class="container">
-        <span class="eyebrow">Profesní vývoj</span>
-        <h2 class="section-title">Zkušenosti postavené na reálných telco projektech.</h2>
-        <p class="section-copy">
-            Více než deset let se pohybuji v prostředí telekomunikačních a integračních systémů. Postupně jsem se zaměřil na propojení business požadavků, systémového návrhu, implementace a testování.
+    <!-- GOOGLE RECENZE -->
+    <section class="section reviews" id="recenze">
+      <div class="container">
+        <div class="eyebrow reveal">Hodnocení zákazníků</div>
+        <h2 class="section-title reveal">Zkušenosti zákazníků z Google</h2>
+        <p class="section-copy reveal">
+          Níže jsou vybraná veřejná hodnocení zákazníků. Kliknutím na tlačítko se otevřou všechny recenze přímo v Google Maps.
         </p>
 
-        <div class="career-timeline">
-            <article class="career-item">
-                <div class="career-period">Současnost</div>
-                <h3>MN Analysis</h3>
-                <p>Business a systémová analýza, konzultace, návrh řešení a podpora implementace změn v komplexních IT systémech.</p>
-            </article>
-
-            <article class="career-item">
-                <div class="career-period">Poslední roky</div>
-                <h3>Business &amp; System Analyst v telekomunikačních projektech</h3>
-                <p>Analýza požadavků, návrh procesů a integrací, tvorba technických specifikací, komunikace s vývojem a podpora testování.</p>
-            </article>
-
-            <article class="career-item">
-                <div class="career-period">10+ let praxe</div>
-                <h3>Telekomunikační IT a provisioning</h3>
-                <p>Zkušenosti s objednávkovými procesy, konfigurací služeb, provisioningem, integračními rozhraními a řešením změn napříč životním cyklem projektu.</p>
-            </article>
+        <div class="reviews-summary reveal">
+          <div class="score-group">
+            <div>
+              <span class="google-label">Google hodnocení</span>
+              <strong class="score-number">5,0</strong>
+            </div>
+            <div>
+              <div class="stars" aria-label="5 hvězdiček">★★★★★</div>
+              <p class="reviews-count">30 hodnocení na Google</p>
+            </div>
+          </div>
+          <a class="btn btn-primary" href="https://www.google.com/maps/place/Autoservis+G%C3%A1l+%26+R%C5%AF%C5%BEi%C4%8Dka/@50.5078898,13.6991679,17z/data=!4m8!3m7!1s0x470a20e8b8cc2e71:0xaf1bcd48a75a9deb!8m2!3d50.5078898!4d13.6991679!9m1!1b1!16s%2Fg%2F11cjp5flsb?entry=ttu&g_ep=EgoyMDI2MDcyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Přečíst všechny recenze</a>
         </div>
-    </div>
-</section>
 
-<section class="portfolio-section alt" id="technologies">
-    <div class="container">
-        <span class="eyebrow">Nástroje a technologie</span>
-        <h2 class="section-title">Technologie, se kterými pracuji.</h2>
-        <p class="section-copy">
-            Nástroje využívám podle potřeb projektu – od analýzy a dokumentace přes návrh rozhraní až po ověřování integračních scénářů.
-        </p>
+        <div class="reviews-grid">
+          <article class="review-card reveal">
+            <div class="stars" aria-hidden="true">★★★★★</div>
+            <h3 class="review-author">Martin Břešťal</h3>
+            <p class="review-meta">Místní průvodce · 59 recenzí · 17 fotek</p>
+            <p class="review-date">Před měsícem</p>
+            <p class="review-text">Servis určitě doporučuji, pan Křapka byl ochotný, skvělá komunikace a vše bylo bez problémů.</p>
+          </article>
 
-        <div class="tech-grid" aria-label="Používané nástroje a technologie">
-            <span class="tech-chip">Jira</span>
-            <span class="tech-chip">Confluence</span>
-            <span class="tech-chip">SQL</span>
-            <span class="tech-chip">REST API</span>
-            <span class="tech-chip">OpenAPI / Swagger</span>
-            <span class="tech-chip">Postman</span>
-            <span class="tech-chip">JSON</span>
-            <span class="tech-chip">XML</span>
-            <span class="tech-chip">BPMN</span>
-            <span class="tech-chip">Git</span>
-            <span class="tech-chip">SpEL</span>
-            <span class="tech-chip">UAT a testovací scénáře</span>
+          <article class="review-card reveal">
+            <div class="stars" aria-hidden="true">★★★★★</div>
+            <h3 class="review-author">Zdeněk Voráček</h3>
+            <p class="review-meta">Místní průvodce · 11 recenzí</p>
+            <p class="review-date">Před 9 měsíci</p>
+            <p class="review-text">Super servis, vstřícnost, ochota a kvalitně odvedená práce. Oprava převodovky proběhla rychleji, než bylo původně domluveno.</p>
+            <details>
+              <summary>Zobrazit celou recenzi</summary>
+              <p class="review-text">Chtěl bych touto cestou moc poděkovat servisu převodovek, panu Křepkovi a panu Gálovi. Po poruše převodovky na voze Seat Ateca mi německý servis nabídl pouze novou převodovku za 13 000 eur. Po obvolání mnoha opraven jsem se dostal na tento servis. Přístup byl velmi ochotný a vstřícný. Přestože byla avizována delší čekací doba, vozidlo bylo opraveno už za osm dní. Po dohodě jsem si ho mohl vyzvednout i večer po směně. Za mě skvělý servis, ochota, kvalita práce a velmi příjemné jednání.</p>
+            </details>
+          </article>
+
+          <article class="review-card reveal">
+            <div class="stars" aria-hidden="true">★★★★★</div>
+            <h3 class="review-author">Stanislav Bříza</h3>
+            <p class="review-meta">4 recenze</p>
+            <p class="review-date">Před 2 lety</p>
+            <p class="review-text">Naprosto úžasný servis! Super jednání, rychlost opravy a dobrá cena. Mnohokrát děkuji. Mohu doporučit všem.</p>
+          </article>
+
+          <article class="review-card reveal">
+            <div class="stars" aria-hidden="true">★★★★★</div>
+            <h3 class="review-author">Andrew B.</h3>
+            <p class="review-meta">Místní průvodce · 82 recenzí · 138 fotek</p>
+            <p class="review-date">Před 7 lety</p>
+            <p class="review-text">Roky zkušeností dělají svoje. Pro koncernové vozy VW, Škoda nebo Audi velmi dobrý servis. Za tři roky jsem spokojený a otec, který tam jezdí déle, také.</p>
+          </article>
+
+          <article class="review-card reveal">
+            <div class="stars" aria-hidden="true">★★★★★</div>
+            <h3 class="review-author">Pavel Kučera</h3>
+            <p class="review-meta">1 recenze</p>
+            <p class="review-date">Před měsícem</p>
+            <p class="review-text">Super přístup, auto opravené.</p>
+          </article>
+
+          <article class="review-card reveal">
+            <div class="stars" aria-hidden="true">★★★★★</div>
+            <h3 class="review-author">Jan Leško</h3>
+            <p class="review-meta">Místní průvodce · 417 recenzí · 675 fotek</p>
+            <p class="review-date">Upraveno před 11 měsíci</p>
+            <p class="review-text">Parádní přístup, rychlý servis, oprava DSG, doporučuji.</p>
+          </article>
+
+          <article class="review-card reveal">
+            <div class="stars" aria-hidden="true">★★★★★</div>
+            <h3 class="review-author">Josef Bartko</h3>
+            <p class="review-meta">2 recenze · 1 fotka</p>
+            <p class="review-date">Před rokem</p>
+            <p class="review-text">Profesionální jednání, rychlost.</p>
+          </article>
         </div>
-    </div>
-</section>
 
-<section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-box">
-                <h2>Pojďme najít správné řešení pro váš projekt.</h2>
-                <p>
-Specializuji se na business a systémovou analýzu v oblasti telekomunikací. Pokud hledáte zkušeného analytika pro nový projekt, implementaci změn nebo odbornou konzultaci, rád s vámi projdu vaše požadavky a navrhnu vhodný postup.
-                </p>
-
-<div class="cta-contact" style="margin-top:36px;padding-top:28px;border-top:1px solid rgba(255,255,255,.15)">
-<div style="display:flex;flex-direction:column;gap:16px;font-size:18px;color:#fff">
-<div>👤 <strong>Miroslav Navrátil</strong><br><span style="opacity:.8">Business &amp; System Analyst</span></div>
-<div>📞 <a href="tel:+420725501253">+420&nbsp;725&nbsp;501&nbsp;253</a></div>
-<div>📧 <a href="mailto:info@mnanalysis.cz">info@mnanalysis.cz</a></div>
-<div>🌐 <a href="https://www.mnanalysis.cz" target="_blank" rel="noopener noreferrer">www.mnanalysis.cz</a></div>
-<div>🧾 IČO: XXXX</div>
-</div>
-</div>
-</div>
+        <div class="reviews-footer reveal">
+          <a class="btn btn-primary" href="https://www.google.com/maps/place/Autoservis+G%C3%A1l+%26+R%C5%AF%C5%BEi%C4%8Dka/@50.5078898,13.6991679,17z/data=!4m8!3m7!1s0x470a20e8b8cc2e71:0xaf1bcd48a75a9deb!8m2!3d50.5078898!4d13.6991679!9m1!1b1!16s%2Fg%2F11cjp5flsb?entry=ttu&g_ep=EgoyMDI2MDcyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Zobrazit všech 30 recenzí na Google</a>
         </div>
-    
-</section>
-</main>
+      </div>
+    </section>
 
-<footer>
-    <div class="container">
-        © 2026 MN Analysis · IT analýza &amp; konzultace
+    <!-- KONTAKT -->
+    <section class="section" id="kontakt">
+      <div class="container">
+        <div class="contact-wrap reveal">
+          <div class="contact-main">
+            <div class="contact-logo">
+              <img src="logo-martin-krapka4.png" alt="Martin Křapka – Opravy převodovek">
+            </div>
+            <div class="eyebrow">Kontakt</div>
+            <h2>Potřebujete poradit s převodovkou?</h2>
+            <p>Sdělte nám telefonicky značku a model vozu případně označení převodovky.</p>
+            <a class="contact-phone" href="tel:+420608208060">+420 608 208 060</a>
+          </div>
+
+          <aside class="contact-side">
+            <div class="contact-item">
+              <small>Domluva</small>
+              <strong>Telefonicky předem</strong>
+            </div>
+            <div class="contact-item">
+              <small>Předání</small>
+              <strong>Osobní odběr nebo doprava po dohodě</strong>
+            </div>
+            <div class="contact-item">
+              <small>Značky</small>
+              <strong>VW, Škoda, Audi, Seat a další dle dohody</strong>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Martin Křapka – Opravy převodovek</span>
+      <a href="#uvod">Zpět nahoru ↑</a>
     </div>
-</footer>
+  </footer>
 
-<script>
-document.addEventListener('DOMContentLoaded',()=>{
- const btn=document.querySelector('.menu-toggle');
- const nav=document.querySelector('.nav-links');
- btn.addEventListener('click',()=>nav.classList.toggle('open'));
- nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
-});
-</script>
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
 
+    toggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const heroVideo = document.querySelector('.hero-video');
+
+    const playHeroVideo = () => {
+      if (!heroVideo) return;
+      heroVideo.muted = true;
+      heroVideo.defaultMuted = true;
+      heroVideo.loop = true;
+      heroVideo.playsInline = true;
+      const playPromise = heroVideo.play();
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(() => {});
+      }
+    };
+
+    if (heroVideo) {
+      heroVideo.addEventListener('loadeddata', playHeroVideo);
+      heroVideo.addEventListener('canplay', playHeroVideo);
+      window.addEventListener('pageshow', playHeroVideo);
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) playHeroVideo();
+      });
+      document.addEventListener('touchstart', playHeroVideo, { once: true, passive: true });
+      document.addEventListener('click', playHeroVideo, { once: true });
+      playHeroVideo();
+    }
+  </script>
 </body>
 </html>
