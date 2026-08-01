@@ -802,9 +802,9 @@
 }
 
 
-.combined-grid{display:grid;grid-template-columns:1fr;gap:28px;margin-top:20px}
+.combined-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:20px}
 .offer-card{background:linear-gradient(180deg,rgba(19,40,74,.06),rgba(19,40,74,.02));border:1px solid rgba(40,96,180,.12);border-radius:18px;padding:30px}
-.offer-card h3{margin-top:0;margin-bottom:20px}
+.offer-card h3{margin-top:8px;margin-bottom:20px;font-size:24px}.offer-card-label{display:inline-flex;align-items:center;gap:9px;color:var(--blue-300);font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.offer-card-label::before{content:"";width:22px;height:2px;border-radius:999px;background:var(--blue-500)}
 .offer-card ul{margin:0;padding-left:20px;line-height:2}
 .mini-step{display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)}
 .mini-step:last-child{border-bottom:none}
@@ -909,7 +909,7 @@
 
 
 .services-dark .combined-grid{
-    max-width:900px;
+    max-width:1180px;
 }
 
 .services-dark .offer-card{
@@ -1216,12 +1216,49 @@ gtag('config', 'G-KQBBKBWH2T');
     color:#d2deeb;
 }
 
+.tech-categories{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:22px;
+    margin-top:38px;
+}
+
+.tech-category{
+    padding:30px;
+    border:1px solid rgba(112,178,255,.17);
+    border-radius:20px;
+    background:
+        radial-gradient(circle at 88% 10%,rgba(74,165,255,.12),transparent 34%),
+        linear-gradient(145deg,rgba(11,44,79,.88),rgba(18,63,112,.48));
+    box-shadow:0 18px 44px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+.tech-category-label{
+    display:block;
+    color:#8bc7ff;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+}
+
+.tech-category h3{
+    margin-top:10px;
+    font-size:24px;
+    line-height:1.25;
+}
+
+.tech-category p{
+    margin-top:10px;
+    color:#c9d7e5;
+    font-size:15px;
+}
+
 .tech-grid{
     display:flex;
     flex-wrap:wrap;
     gap:12px;
-    margin-top:38px;
-    max-width:980px;
+    margin-top:24px;
 }
 
 .tech-chip{
@@ -1291,7 +1328,8 @@ gtag('config', 'G-KQBBKBWH2T');
 }
 
 @media(max-width:900px){
-    .reference-grid{
+    .reference-grid,
+    .tech-categories{
         grid-template-columns:1fr;
     }
 }
@@ -1586,7 +1624,8 @@ Od business požadavků až po úspěšné nasazení řešení. Pomáhám propoj
 <div class="combined-grid">
 
 <div class="offer-card">
-<h3>Oblasti, ve kterých pomohu</h3>
+<span class="offer-card-label">IT &amp; Telco analýza</span>
+<h3>Analýza, procesy a integrace</h3>
 <ul>
 <li>Business analýza</li>
 <li>Systémová analýza</li>
@@ -1595,7 +1634,20 @@ Od business požadavků až po úspěšné nasazení řešení. Pomáhám propoj
 <li>Technické specifikace</li>
 <li>Testování a UAT</li>
 <li>Technická dokumentace</li>
-<li>Tvorba moderních webových prezentací</li>
+</ul>
+</div>
+
+<div class="offer-card">
+<span class="offer-card-label">Tvorba webů</span>
+<h3>Moderní webové prezentace</h3>
+<ul>
+<li>Návrh struktury a obsahu webu</li>
+<li>Moderní responzivní design</li>
+<li>HTML, CSS a JavaScript realizace</li>
+<li>Optimalizace pro mobilní zařízení</li>
+<li>Základní SEO a rychlost webu</li>
+<li>Nasazení webu a domény</li>
+<li>Následné úpravy a rozvoj</li>
 </ul>
 </div>
 </div>
@@ -1723,28 +1775,43 @@ Od business požadavků až po úspěšné nasazení řešení. Pomáhám propoj
         <span class="eyebrow">Nástroje a technologie</span>
         <h2 class="section-title">Technologie, se kterými pracuji.</h2>
         <p class="section-copy">
-            Nástroje využívám podle potřeb projektu – od analýzy a dokumentace přes návrh rozhraní až po ověřování integračních scénářů.
+            Nástroje používám podle typu projektu. Jinou sadu využívám pro analýzu, integrace a telco procesy a jinou pro návrh a realizaci webových prezentací.
         </p>
 
-        <div class="tech-grid" aria-label="Používané nástroje a technologie">
-            <span class="tech-chip">Jira</span>
-            <span class="tech-chip">Confluence</span>
-            <span class="tech-chip">SQL</span>
-            <span class="tech-chip">REST API</span>
-            <span class="tech-chip">OpenAPI / Swagger</span>
-            <span class="tech-chip">Postman</span>
-            <span class="tech-chip">JSON</span>
-            <span class="tech-chip">XML</span>
-            <span class="tech-chip">BPMN</span>
-            <span class="tech-chip">Git</span>
-            <span class="tech-chip">SpEL</span>
-            <span class="tech-chip">UAT a testovací scénáře</span>
-            <span class="tech-chip">HTML5</span>
-            <span class="tech-chip">CSS3</span>
-            <span class="tech-chip">JavaScript</span>
-            <span class="tech-chip">Responzivní design</span>
-            <span class="tech-chip">SEO základy</span>
-            <span class="tech-chip">GitHub Pages</span>
+        <div class="tech-categories">
+            <article class="tech-category" aria-labelledby="tech-analysis-title">
+                <span class="tech-category-label">IT &amp; Telco analýza</span>
+                <h3 id="tech-analysis-title">Analýza, integrace a testování</h3>
+                <p>Nástroje pro práci s požadavky, procesy, daty, rozhraními a ověřováním integračních scénářů.</p>
+                <div class="tech-grid" aria-label="Nástroje pro IT a telco analýzu">
+                    <span class="tech-chip">Jira</span>
+                    <span class="tech-chip">Confluence</span>
+                    <span class="tech-chip">SQL</span>
+                    <span class="tech-chip">REST API</span>
+                    <span class="tech-chip">OpenAPI / Swagger</span>
+                    <span class="tech-chip">Postman</span>
+                    <span class="tech-chip">JSON</span>
+                    <span class="tech-chip">XML</span>
+                    <span class="tech-chip">BPMN</span>
+                    <span class="tech-chip">SpEL</span>
+                    <span class="tech-chip">UAT a testovací scénáře</span>
+                </div>
+            </article>
+
+            <article class="tech-category" aria-labelledby="tech-web-title">
+                <span class="tech-category-label">Tvorba webů</span>
+                <h3 id="tech-web-title">Vývoj, design a nasazení</h3>
+                <p>Technologie pro tvorbu responzivních webů, jejich správu, optimalizaci a publikaci.</p>
+                <div class="tech-grid" aria-label="Nástroje a technologie pro tvorbu webů">
+                    <span class="tech-chip">HTML5</span>
+                    <span class="tech-chip">CSS3</span>
+                    <span class="tech-chip">JavaScript</span>
+                    <span class="tech-chip">Responzivní design</span>
+                    <span class="tech-chip">SEO základy</span>
+                    <span class="tech-chip">Git</span>
+                    <span class="tech-chip">GitHub Pages</span>
+                </div>
+            </article>
         </div>
     </div>
 </section>
