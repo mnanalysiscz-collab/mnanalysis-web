@@ -172,7 +172,7 @@
         }
 
         nav {
-            min-height: 92px;
+            min-height: 76px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -191,37 +191,9 @@
         }
 
         .brand img {
-            width: 340px;
+            width: 258px;
             height: auto;
             display: block;
-            transform-origin: left center;
-            transition: transform .35s ease, filter .35s ease;
-            animation: logoGlow 6s ease-in-out infinite;
-        }
-
-        .brand:hover img {
-            transform: translateY(-2px) scale(1.04);
-            filter:
-                drop-shadow(0 0 10px rgba(40, 140, 255, .45))
-                drop-shadow(0 0 30px rgba(40, 140, 255, .22));
-        }
-
-        @keyframes logoGlow {
-            0%, 100% {
-                transform: scale(1);
-                filter: drop-shadow(0 0 0 rgba(22, 135, 255, .18));
-            }
-            50% {
-                transform: scale(1.015);
-                filter: drop-shadow(0 0 18px rgba(22, 135, 255, .28));
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .brand img {
-                animation: none;
-                transition: none;
-            }
         }
 
         .nav-links {
@@ -294,7 +266,7 @@
             grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
             gap: 80px;
             align-items: center;
-            padding: 55px 0 112px;
+            padding: 28px 0 95px;
         }
 
         .hero h1 {
@@ -657,7 +629,7 @@
             }
 
             .brand img {
-                width: 250px;
+                width: 190px;
             }
 
 
@@ -704,7 +676,7 @@
 
         @media (max-width: 480px) {
             .brand img {
-                width: 260px;
+                width: 205px;
             }
 
             .hero-buttons,
@@ -1384,7 +1356,7 @@ gtag('config', 'G-KQBBKBWH2T');
     <div class="header-container">
         <nav aria-label="Hlavní navigace">
             <a class="brand" href="#home" aria-label="MN Analysis – úvod">
-                <img src="mnn-logo-realAnalysis.png" alt="MN Analysis – IT analýza a tvorba webů">
+                <img src="logo-mn-analysis-transparent.png" alt="MN Analysis – IT analýza a tvorba webů">
             </a>
 
             <button class="menu-toggle" aria-label="Menu">☰</button>
