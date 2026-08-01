@@ -986,6 +986,31 @@
         linear-gradient(135deg, #081626, #0b2139 64%, #0f3155);
 }
 
+
+
+/* Header tuning */
+header, nav{
+  min-height:68px !important;
+}
+.brand{
+  display:flex;
+  align-items:center;
+}
+.brand img{
+  width:300px !important;
+  height:auto;
+  display:block;
+  transition:filter .25s ease, opacity .25s ease;
+}
+.brand img:hover{
+  filter:brightness(1.08);
+  opacity:.98;
+  transform:none !important;
+}
+.hero-grid{
+  padding-top:24px !important;
+}
+
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KQBBKBWH2T"></script>
@@ -1422,77 +1447,6 @@ header.is-scrolled .brand img{
 }
 </style>
 
-
-<style>
-/* Finalni oprava proporci hlavicky a orezu loga */
-header{
-    border-bottom-color:rgba(255,255,255,.06) !important;
-}
-.header-container{
-    width:min(1280px, calc(100% - 40px)) !important;
-}
-nav{
-    min-height:88px !important;
-    gap:28px !important;
-}
-.brand{
-    position:relative !important;
-    width:310px !important;
-    height:84px !important;
-    overflow:hidden !important;
-    flex:0 0 310px !important;
-}
-.brand img{
-    position:absolute !important;
-    top:50% !important;
-    left:50% !important;
-    width:310px !important;
-    max-width:none !important;
-    height:auto !important;
-    transform:translate(-50%,-50%) scale(1.28) !important;
-    transition:filter .2s ease,opacity .2s ease !important;
-}
-.brand:hover img{
-    transform:translate(-50%,-50%) scale(1.28) !important;
-    filter:brightness(1.1) saturate(1.06) !important;
-}
-.nav-links{
-    margin-left:32px !important;
-}
-header.is-scrolled nav{
-    min-height:72px !important;
-}
-header.is-scrolled .brand{
-    height:68px !important;
-}
-header.is-scrolled .brand img{
-    width:286px !important;
-    transform:translate(-50%,-50%) scale(1.28) !important;
-}
-.hero{
-    min-height:calc(100vh - 88px) !important;
-}
-.hero-grid{
-    padding:26px 0 88px !important;
-}
-@media(max-width:900px){
-    .brand{width:250px !important;flex-basis:250px !important;}
-    .brand img{width:250px !important;}
-    .nav-links{margin-left:auto !important;}
-}
-@media(max-width:760px){
-    nav{min-height:68px !important;}
-    .brand{width:205px !important;height:62px !important;flex-basis:205px !important;}
-    .brand img{width:205px !important;transform:translate(-50%,-50%) scale(1.24) !important;}
-    .brand:hover img{transform:translate(-50%,-50%) scale(1.24) !important;}
-    header.is-scrolled nav{min-height:62px !important;}
-    header.is-scrolled .brand{height:56px !important;}
-    header.is-scrolled .brand img{width:190px !important;transform:translate(-50%,-50%) scale(1.24) !important;}
-    .nav-links{top:68px !important;}
-    header.is-scrolled .nav-links{top:62px !important;}
-}
-</style>
-
 </head>
 
 <body>
@@ -1500,7 +1454,7 @@ header.is-scrolled .brand img{
     <div class="header-container">
         <nav aria-label="Hlavní navigace">
             <a class="brand" href="#home" aria-label="MN Analysis – úvod">
-                <img src="mnn-logo-realAnalysis.png" alt="MN Analysis">
+                <img src="a_clean_graphic_logo_on_a_black_background_transp.png" alt="MN Analysis">
             </a>
 
             <button class="menu-toggle" aria-label="Menu">☰</button>
