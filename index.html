@@ -172,7 +172,7 @@
         }
 
         nav {
-            min-height: 76px;
+            min-height: 82px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -191,7 +191,7 @@
         }
 
         .brand img {
-            width: 258px;
+            width: 285px;
             height: auto;
             display: block;
         }
@@ -266,7 +266,7 @@
             grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
             gap: 80px;
             align-items: center;
-            padding: 28px 0 95px;
+            padding: 55px 0 112px;
         }
 
         .hero h1 {
@@ -629,7 +629,7 @@
             }
 
             .brand img {
-                width: 190px;
+                width: 205px;
             }
 
 
@@ -676,7 +676,7 @@
 
         @media (max-width: 480px) {
             .brand img {
-                width: 205px;
+                width: 225px;
             }
 
             .hero-buttons,
@@ -1349,6 +1349,65 @@ gtag('config', 'G-KQBBKBWH2T');
 @media(max-width:900px){.web-offer-grid{grid-template-columns:1fr}.projects-preview{align-items:flex-start;flex-direction:column}}
 </style>
 
+
+<style>
+/* Final compact premium header */
+header{
+    transition:background .3s ease,box-shadow .3s ease,border-color .3s ease;
+}
+header.is-scrolled{
+    background:rgba(4,16,31,.96);
+    border-bottom-color:rgba(74,165,255,.16);
+    box-shadow:0 10px 35px rgba(0,0,0,.20);
+}
+nav{
+    min-height:76px !important;
+    transition:min-height .3s ease;
+}
+.brand{
+    position:relative;
+}
+.brand img{
+    width:258px !important;
+    height:auto;
+    display:block;
+    transform-origin:left center;
+    transition:transform .3s ease,filter .3s ease,width .3s ease;
+}
+.brand:hover img{
+    transform:translateY(-1px) scale(1.035);
+    filter:drop-shadow(0 0 10px rgba(74,165,255,.35)) drop-shadow(0 0 24px rgba(22,135,255,.18));
+}
+header.is-scrolled nav{
+    min-height:66px !important;
+}
+header.is-scrolled .brand img{
+    width:232px !important;
+}
+.hero{
+    min-height:calc(100vh - 76px) !important;
+}
+.hero-grid{
+    padding:28px 0 95px !important;
+}
+@media(max-width:760px){
+    nav{min-height:68px !important;}
+    .brand img{width:190px !important;}
+    header.is-scrolled nav{min-height:62px !important;}
+    header.is-scrolled .brand img{width:174px !important;}
+    .nav-links{top:68px !important;}
+    header.is-scrolled .nav-links{top:62px !important;}
+    .hero{min-height:auto !important;}
+}
+@media(max-width:480px){
+    .brand img{width:205px !important;}
+    header.is-scrolled .brand img{width:185px !important;}
+}
+@media(prefers-reduced-motion:reduce){
+    header,nav,.brand img{transition:none !important;}
+}
+</style>
+
 </head>
 
 <body>
@@ -1356,7 +1415,7 @@ gtag('config', 'G-KQBBKBWH2T');
     <div class="header-container">
         <nav aria-label="Hlavní navigace">
             <a class="brand" href="#home" aria-label="MN Analysis – úvod">
-                <img src="logo-mn-analysis-transparent.png" alt="MN Analysis – IT analýza a tvorba webů">
+                <img src="mnn-logo-realAnalysis.png" alt="MN Analysis">
             </a>
 
             <button class="menu-toggle" aria-label="Menu">☰</button>
@@ -1609,8 +1668,16 @@ Ať už řešíte nový IT projekt, implementaci změn nebo moderní webovou pre
 document.addEventListener('DOMContentLoaded',()=>{
  const btn=document.querySelector('.menu-toggle');
  const nav=document.querySelector('.nav-links');
- btn.addEventListener('click',()=>nav.classList.toggle('open'));
- nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+ const header=document.querySelector('header');
+
+ if(btn && nav){
+   btn.addEventListener('click',()=>nav.classList.toggle('open'));
+   nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+ }
+
+ const updateHeader=()=>header?.classList.toggle('is-scrolled',window.scrollY>24);
+ updateHeader();
+ window.addEventListener('scroll',updateHeader,{passive:true});
 });
 </script>
 
