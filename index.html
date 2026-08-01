@@ -1377,87 +1377,21 @@ gtag('config', 'G-KQBBKBWH2T');
 
 <style>
 /* Kompaktní hlavička pro logo mejricek.png */
-header{
-    min-height:0 !important;
-    transition:background .25s ease,box-shadow .25s ease,border-color .25s ease;
-}
-header.is-scrolled{
-    background:rgba(4,16,31,.97);
-    border-bottom-color:rgba(74,165,255,.14);
-    box-shadow:0 8px 24px rgba(0,0,0,.18);
-}
-.header-container{
-    width:min(1280px, calc(100% - 40px)) !important;
-}
-nav{
-    min-height:56px !important;
-    height:56px;
-    gap:24px !important;
-    transition:height .25s ease,min-height .25s ease;
-}
-.brand{
-    position:relative;
-    display:flex;
-    align-items:center;
-    flex:0 0 auto;
-    height:56px;
-}
-.brand img{
-    width:300px !important;
-    height:auto;
-    display:block;
-    transition:filter .22s ease,opacity .22s ease,width .25s ease;
-}
-.brand:hover img{
-    filter:brightness(1.10) saturate(1.06);
-    opacity:.98;
-    transform:none !important;
-}
-.nav-links{
-    margin-left:auto;
-    gap:28px !important;
-}
-header.is-scrolled nav{
-    min-height:52px !important;
-    height:52px;
-}
-header.is-scrolled .brand{
-    height:52px;
-}
-header.is-scrolled .brand img{
-    width:282px !important;
-}
-.hero{
-    min-height:calc(100vh - 56px) !important;
-}
-.hero-grid{
-    padding:12px 0 84px !important;
-}
-@media(max-width:900px){
-    .brand img{width:260px !important;}
-    header.is-scrolled .brand img{width:244px !important;}
-    .nav-links{gap:22px !important;}
-}
-@media(max-width:760px){
-    .header-container{width:min(100% - 28px, 1280px) !important;}
-    nav{min-height:56px !important;height:56px;}
-    .brand{height:56px;}
-    .brand img{width:220px !important;}
-    header.is-scrolled nav{min-height:52px !important;height:52px;}
-    header.is-scrolled .brand{height:52px;}
-    header.is-scrolled .brand img{width:205px !important;}
-    .nav-links{top:56px !important;}
-    header.is-scrolled .nav-links{top:52px !important;}
-    .hero{min-height:auto !important;}
-    .hero-grid{padding:56px 0 78px !important;}
-}
-@media(max-width:480px){
-    .brand img{width:205px !important;}
-    header.is-scrolled .brand img{width:192px !important;}
-}
-@media(prefers-reduced-motion:reduce){
-    header,nav,.brand img{transition:none !important;}
-}
+header{min-height:0!important;transition:background .25s ease,box-shadow .25s ease,border-color .25s ease;}
+header.is-scrolled{background:rgba(4,16,31,.97);border-bottom-color:rgba(74,165,255,.14);box-shadow:0 8px 24px rgba(0,0,0,.18);}
+.header-container{width:min(1280px,calc(100% - 40px))!important;}
+nav{min-height:72px!important;height:72px!important;gap:28px;}
+.brand{display:flex;align-items:center;height:72px;}
+.brand img{width:300px!important;height:auto;display:block;transition:filter .2s ease;}
+.brand:hover img{filter:brightness(1.08);}
+.nav-links{margin-left:auto;}
+header.is-scrolled nav{min-height:64px!important;height:64px!important;}
+header.is-scrolled .brand{height:64px;}
+header.is-scrolled .brand img{width:285px!important;}
+.hero{min-height:calc(100vh - 72px)!important;}
+.hero-grid{padding-top:28px!important;}
+@media(max-width:760px){nav{min-height:64px!important;height:64px!important}.brand{height:64px}.brand img{width:230px!important}header.is-scrolled nav{min-height:58px!important;height:58px!important}header.is-scrolled .brand{height:58px}header.is-scrolled .brand img{width:215px!important}}
+@media(prefers-reduced-motion:reduce){header,nav,.brand img{transition:none!important;}}
 </style>
 
 </head>
