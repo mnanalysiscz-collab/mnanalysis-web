@@ -1376,8 +1376,9 @@ gtag('config', 'G-KQBBKBWH2T');
 
 
 <style>
-/* Kompaktni hlavicka s vetsim a ostrym logem */
+/* Kompaktní hlavička pro logo mejricek.png */
 header{
+    min-height:0 !important;
     transition:background .25s ease,box-shadow .25s ease,border-color .25s ease;
 }
 header.is-scrolled{
@@ -1386,16 +1387,20 @@ header.is-scrolled{
     box-shadow:0 8px 24px rgba(0,0,0,.18);
 }
 .header-container{
-    width:min(1180px, calc(100% - 40px)) !important;
+    width:min(1280px, calc(100% - 40px)) !important;
 }
 nav{
-    min-height:66px !important;
+    min-height:56px !important;
+    height:56px;
     gap:24px !important;
-    transition:min-height .25s ease;
+    transition:height .25s ease,min-height .25s ease;
 }
 .brand{
     position:relative;
+    display:flex;
+    align-items:center;
     flex:0 0 auto;
+    height:56px;
 }
 .brand img{
     width:300px !important;
@@ -1404,39 +1409,47 @@ nav{
     transition:filter .22s ease,opacity .22s ease,width .25s ease;
 }
 .brand:hover img{
-    filter:brightness(1.12) saturate(1.08);
+    filter:brightness(1.10) saturate(1.06);
+    opacity:.98;
+    transform:none !important;
 }
 .nav-links{
     margin-left:auto;
     gap:28px !important;
 }
 header.is-scrolled nav{
-    min-height:58px !important;
+    min-height:52px !important;
+    height:52px;
+}
+header.is-scrolled .brand{
+    height:52px;
 }
 header.is-scrolled .brand img{
-    width:276px !important;
+    width:282px !important;
 }
 .hero{
-    min-height:calc(100vh - 66px) !important;
+    min-height:calc(100vh - 56px) !important;
 }
 .hero-grid{
-    padding:20px 0 88px !important;
+    padding:12px 0 84px !important;
 }
 @media(max-width:900px){
     .brand img{width:260px !important;}
-    header.is-scrolled .brand img{width:242px !important;}
+    header.is-scrolled .brand img{width:244px !important;}
     .nav-links{gap:22px !important;}
 }
 @media(max-width:760px){
-    .header-container{width:min(100% - 28px, 1180px) !important;}
-    nav{min-height:64px !important;}
+    .header-container{width:min(100% - 28px, 1280px) !important;}
+    nav{min-height:56px !important;height:56px;}
+    .brand{height:56px;}
     .brand img{width:220px !important;}
-    header.is-scrolled nav{min-height:58px !important;}
+    header.is-scrolled nav{min-height:52px !important;height:52px;}
+    header.is-scrolled .brand{height:52px;}
     header.is-scrolled .brand img{width:205px !important;}
-    .nav-links{top:64px !important;}
-    header.is-scrolled .nav-links{top:58px !important;}
+    .nav-links{top:56px !important;}
+    header.is-scrolled .nav-links{top:52px !important;}
     .hero{min-height:auto !important;}
-    .hero-grid{padding:64px 0 82px !important;}
+    .hero-grid{padding:56px 0 78px !important;}
 }
 @media(max-width:480px){
     .brand img{width:205px !important;}
@@ -1454,7 +1467,7 @@ header.is-scrolled .brand img{
     <div class="header-container">
         <nav aria-label="Hlavní navigace">
             <a class="brand" href="#home" aria-label="MN Analysis – úvod">
-                <img src="a_clean_graphic_logo_on_a_black_background_transp.png" alt="MN Analysis">
+                <img src="mejricek.png" alt="MN Analysis">
             </a>
 
             <button class="menu-toggle" aria-label="Menu">☰</button>
