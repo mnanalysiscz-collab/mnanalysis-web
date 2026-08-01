@@ -1351,57 +1351,71 @@ gtag('config', 'G-KQBBKBWH2T');
 
 
 <style>
-/* Final compact premium header */
+/* Kompaktni hlavicka s vetsim a ostrym logem */
 header{
-    transition:background .3s ease,box-shadow .3s ease,border-color .3s ease;
+    transition:background .25s ease,box-shadow .25s ease,border-color .25s ease;
 }
 header.is-scrolled{
-    background:rgba(4,16,31,.96);
-    border-bottom-color:rgba(74,165,255,.16);
-    box-shadow:0 10px 35px rgba(0,0,0,.20);
+    background:rgba(4,16,31,.97);
+    border-bottom-color:rgba(74,165,255,.14);
+    box-shadow:0 8px 24px rgba(0,0,0,.18);
+}
+.header-container{
+    width:min(1180px, calc(100% - 40px)) !important;
 }
 nav{
-    min-height:76px !important;
-    transition:min-height .3s ease;
+    min-height:66px !important;
+    gap:24px !important;
+    transition:min-height .25s ease;
 }
 .brand{
     position:relative;
+    flex:0 0 auto;
 }
 .brand img{
-    width:258px !important;
+    width:300px !important;
     height:auto;
     display:block;
-    transform-origin:left center;
-    transition:transform .3s ease,filter .3s ease,width .3s ease;
+    transition:filter .22s ease,opacity .22s ease,width .25s ease;
 }
 .brand:hover img{
-    transform:translateY(-1px) scale(1.035);
-    filter:drop-shadow(0 0 10px rgba(74,165,255,.35)) drop-shadow(0 0 24px rgba(22,135,255,.18));
+    filter:brightness(1.12) saturate(1.08);
+}
+.nav-links{
+    margin-left:auto;
+    gap:28px !important;
 }
 header.is-scrolled nav{
-    min-height:66px !important;
+    min-height:58px !important;
 }
 header.is-scrolled .brand img{
-    width:232px !important;
+    width:276px !important;
 }
 .hero{
-    min-height:calc(100vh - 76px) !important;
+    min-height:calc(100vh - 66px) !important;
 }
 .hero-grid{
-    padding:28px 0 95px !important;
+    padding:20px 0 88px !important;
+}
+@media(max-width:900px){
+    .brand img{width:260px !important;}
+    header.is-scrolled .brand img{width:242px !important;}
+    .nav-links{gap:22px !important;}
 }
 @media(max-width:760px){
-    nav{min-height:68px !important;}
-    .brand img{width:190px !important;}
-    header.is-scrolled nav{min-height:62px !important;}
-    header.is-scrolled .brand img{width:174px !important;}
-    .nav-links{top:68px !important;}
-    header.is-scrolled .nav-links{top:62px !important;}
+    .header-container{width:min(100% - 28px, 1180px) !important;}
+    nav{min-height:64px !important;}
+    .brand img{width:220px !important;}
+    header.is-scrolled nav{min-height:58px !important;}
+    header.is-scrolled .brand img{width:205px !important;}
+    .nav-links{top:64px !important;}
+    header.is-scrolled .nav-links{top:58px !important;}
     .hero{min-height:auto !important;}
+    .hero-grid{padding:64px 0 82px !important;}
 }
 @media(max-width:480px){
     .brand img{width:205px !important;}
-    header.is-scrolled .brand img{width:185px !important;}
+    header.is-scrolled .brand img{width:192px !important;}
 }
 @media(prefers-reduced-motion:reduce){
     header,nav,.brand img{transition:none !important;}
