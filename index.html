@@ -1394,6 +1394,123 @@ header.is-scrolled .brand img{width:285px!important;}
 @media(prefers-reduced-motion:reduce){header,nav,.brand img{transition:none!important;}}
 </style>
 
+
+<style>
+/* Prostorove logo v hlavicce + zmenseni pri scrollovani */
+header{
+    position:fixed !important;
+    top:0;
+    left:0;
+    right:0;
+    z-index:100;
+    min-height:0 !important;
+    background:linear-gradient(180deg,rgba(4,16,31,.72),rgba(4,16,31,.18) 72%,transparent) !important;
+    border-bottom:1px solid transparent !important;
+    backdrop-filter:none !important;
+    transition:background .35s ease,box-shadow .35s ease,border-color .35s ease,backdrop-filter .35s ease;
+}
+
+.header-container{
+    width:min(1380px,calc(100% - 48px)) !important;
+}
+
+header nav{
+    height:118px !important;
+    min-height:118px !important;
+    align-items:flex-start !important;
+    padding-top:12px;
+    transition:height .35s ease,min-height .35s ease,padding .35s ease;
+}
+
+.brand{
+    position:relative;
+    z-index:2;
+    width:390px;
+    height:104px !important;
+    display:flex;
+    align-items:center;
+    overflow:visible;
+    flex:0 0 auto;
+    transition:width .35s ease,height .35s ease,transform .35s ease;
+}
+
+.brand img{
+    width:100% !important;
+    height:auto !important;
+    max-height:100%;
+    object-fit:contain;
+    object-position:left center;
+    filter:drop-shadow(0 12px 28px rgba(0,0,0,.32));
+    transition:width .35s ease,filter .35s ease,transform .25s ease !important;
+}
+
+.brand:hover img{
+    transform:scale(1.02) !important;
+    filter:brightness(1.08) drop-shadow(0 14px 32px rgba(0,0,0,.38)) !important;
+}
+
+.nav-links{
+    padding-top:25px;
+    transition:padding .35s ease;
+}
+
+header.is-scrolled{
+    background:rgba(4,16,31,.88) !important;
+    border-bottom-color:rgba(74,165,255,.14) !important;
+    box-shadow:0 10px 30px rgba(0,0,0,.22) !important;
+    backdrop-filter:blur(16px) !important;
+}
+
+header.is-scrolled nav{
+    height:68px !important;
+    min-height:68px !important;
+    padding-top:0;
+    align-items:center !important;
+}
+
+header.is-scrolled .brand{
+    width:235px;
+    height:60px !important;
+}
+
+header.is-scrolled .brand img{
+    width:100% !important;
+    filter:drop-shadow(0 7px 18px rgba(0,0,0,.26));
+}
+
+header.is-scrolled .nav-links{
+    padding-top:0;
+}
+
+.hero{
+    min-height:100svh !important;
+    padding-top:118px;
+}
+
+@media(max-width:1000px){
+    .brand{width:330px;height:92px !important;}
+    header.is-scrolled .brand{width:220px;height:58px !important;}
+}
+
+@media(max-width:760px){
+    .header-container{width:min(100% - 28px,1380px) !important;}
+    header nav{height:88px !important;min-height:88px !important;padding-top:6px;align-items:flex-start !important;}
+    .brand{width:250px;height:76px !important;}
+    .menu-toggle{margin-top:17px;position:relative;z-index:4;}
+    .nav-links{top:88px !important;padding-top:20px;}
+    header.is-scrolled nav{height:62px !important;min-height:62px !important;align-items:center !important;}
+    header.is-scrolled .brand{width:190px;height:54px !important;}
+    header.is-scrolled .menu-toggle{margin-top:0;}
+    header.is-scrolled .nav-links{top:62px !important;}
+    .hero{padding-top:88px;}
+}
+
+@media(max-width:480px){
+    .brand{width:220px;height:72px !important;}
+    header.is-scrolled .brand{width:175px;height:52px !important;}
+}
+</style>
+
 </head>
 
 <body>
@@ -1401,7 +1518,7 @@ header.is-scrolled .brand img{width:285px!important;}
     <div class="header-container">
         <nav aria-label="Hlavní navigace">
             <a class="brand" href="#home" aria-label="MN Analysis – úvod">
-                <img src="mejricek.png" alt="MN Analysis">
+                <img src="mnn-logo-realAnalysis.png" alt="MN Analysis">
             </a>
 
             <button class="menu-toggle" aria-label="Menu">☰</button>
