@@ -3706,12 +3706,11 @@ main > section:not(.hero){
 </style>
 
 
-<style id="mobile-hero-lite-v3">
-/* Mobile-only fallback. Desktop rendering is untouched. */
+<style id="mobile-hero-lite-v5">
+/* Mobile-only cloud fallback. Desktop rendering is untouched. */
 .hero-mobile-lite-v3{display:none;}
 
 @media (max-width:760px){
-    /* Disable heavy/experimental mobile hero renderers only on mobile. */
     .hero-liquid-fabric,
     .hero-mobile-fabric,
     .hero-mobile-css-liquid{
@@ -3725,117 +3724,168 @@ main > section:not(.hero){
         z-index:0;
         overflow:hidden;
         pointer-events:none;
-        background:
-            radial-gradient(ellipse at 78% 30%, rgba(47,156,255,.28) 0%, rgba(13,92,168,.15) 30%, rgba(4,39,77,.06) 50%, transparent 68%),
-            linear-gradient(135deg,#02070d 0%,#06111e 62%,#0a2340 100%);
+        background:linear-gradient(135deg,#02070d 0%,#06111e 62%,#0a2340 100%);
         transform:translateZ(0);
         backface-visibility:hidden;
     }
 
+    .hero-mobile-lite-v3 > span,
     .hero-mobile-lite-v3::before,
-    .hero-mobile-lite-v3::after,
-    .hero-mobile-lite-v3 .mobile-lite-fold-a,
-    .hero-mobile-lite-v3 .mobile-lite-fold-b,
-    .hero-mobile-lite-v3 .mobile-lite-glow{
-        content:"";
+    .hero-mobile-lite-v3::after{
         position:absolute;
         pointer-events:none;
-        will-change:transform;
-        transform:translate3d(0,0,0);
         backface-visibility:hidden;
+        will-change:transform;
     }
 
-    .hero-mobile-lite-v3 .mobile-lite-glow{
-        width:185vw;
-        height:105vw;
-        right:-92vw;
-        top:4vh;
-        border-radius:58% 42% 64% 36% / 46% 62% 38% 54%;
+    /* Broad illuminated cloud body: intentionally non-circular. */
+    .mobile-lite-glow{
+        width:205vw;
+        height:78vw;
+        right:-118vw;
+        top:8vh;
+        border-radius:46% 54% 41% 59% / 61% 43% 57% 39%;
         background:
-            radial-gradient(ellipse at 24% 58%, rgba(34,133,220,.34) 0%, rgba(10,72,132,.20) 34%, transparent 64%),
-            radial-gradient(ellipse at 43% 39%, rgba(70,177,255,.52) 0%, rgba(26,118,200,.30) 31%, transparent 63%),
-            radial-gradient(ellipse at 62% 55%, rgba(43,151,238,.42) 0%, rgba(14,86,153,.24) 34%, transparent 66%),
-            radial-gradient(ellipse at 79% 42%, rgba(27,115,196,.28) 0%, rgba(8,58,109,.16) 36%, transparent 68%);
-        filter:blur(34px);
-        opacity:.84;
-        transform:translate3d(0,0,0) rotate(-5deg);
-        animation:mnMobileGlowV4 24s ease-in-out infinite;
+            radial-gradient(ellipse 42% 78% at 18% 58%,rgba(36,145,238,.55) 0%,rgba(16,92,163,.30) 38%,transparent 72%),
+            radial-gradient(ellipse 36% 68% at 37% 42%,rgba(76,181,255,.60) 0%,rgba(22,110,191,.34) 36%,transparent 70%),
+            radial-gradient(ellipse 44% 76% at 58% 60%,rgba(41,151,240,.44) 0%,rgba(10,72,132,.24) 40%,transparent 74%),
+            radial-gradient(ellipse 34% 62% at 78% 40%,rgba(26,112,194,.30) 0%,rgba(6,48,91,.16) 42%,transparent 76%);
+        filter:blur(42px);
+        opacity:.88;
+        transform:rotate(-10deg) skewX(-8deg);
+        animation:mnCloudBody 28s ease-in-out infinite;
     }
 
-    .hero-mobile-lite-v3 .mobile-lite-fold-a{
-        width:180vw;
-        height:82vw;
-        left:-96vw;
-        top:-10vw;
-        border-radius:42% 58% 52% 48% / 62% 40% 60% 38%;
-        background:linear-gradient(136deg,#000204 0%,#02070d 43%,#071724 66%,#01050a 88%);
-        box-shadow:inset -26px -10px 56px rgba(24,95,160,.12),0 0 42px rgba(0,0,0,.28);
-        animation:mnMobileFoldAV3 30s cubic-bezier(.42,0,.58,1) infinite;
+    /* Upper sweeping dark fold: long and ribbon-like. */
+    .mobile-lite-fold-a{
+        width:220vw;
+        height:52vw;
+        left:-128vw;
+        top:-4vw;
+        border-radius:38% 62% 48% 52% / 72% 34% 66% 28%;
+        background:
+            linear-gradient(155deg,rgba(0,2,4,.98) 0%,rgba(1,5,10,.98) 48%,rgba(8,27,44,.94) 69%,rgba(1,5,9,.98) 88%);
+        box-shadow:inset -30px -18px 70px rgba(24,95,160,.13),0 22px 55px rgba(0,0,0,.30);
+        filter:blur(3px);
+        transform:rotate(11deg) skewX(-12deg);
+        animation:mnCloudFoldA 36s cubic-bezier(.42,0,.58,1) infinite;
     }
 
-    .hero-mobile-lite-v3 .mobile-lite-fold-b{
-        width:185vw;
-        height:94vw;
-        left:-86vw;
-        bottom:-34vw;
-        border-radius:60% 40% 38% 62% / 44% 60% 40% 56%;
-        background:linear-gradient(146deg,#000205 0%,#01050a 47%,#071521 70%,#000205 100%);
-        box-shadow:inset -18px -12px 48px rgba(18,75,130,.10),0 0 38px rgba(0,0,0,.26);
-        animation:mnMobileFoldBV3 38s cubic-bezier(.42,0,.58,1) infinite;
+    /* Lower fold, moving in a different phase to avoid blob motion. */
+    .mobile-lite-fold-b{
+        width:225vw;
+        height:58vw;
+        left:-120vw;
+        bottom:-18vw;
+        border-radius:63% 37% 58% 42% / 39% 66% 34% 61%;
+        background:
+            linear-gradient(25deg,rgba(0,2,5,.99) 0%,rgba(1,5,10,.98) 46%,rgba(7,23,37,.94) 68%,rgba(0,3,7,.99) 100%);
+        box-shadow:inset -26px 10px 64px rgba(18,75,130,.12),0 -18px 48px rgba(0,0,0,.28);
+        filter:blur(4px);
+        transform:rotate(-9deg) skewX(10deg);
+        animation:mnCloudFoldB 43s cubic-bezier(.42,0,.58,1) infinite;
+    }
+
+    /* Secondary wisps break the silhouette into a cloud instead of one blob. */
+    .mobile-lite-wisp-a{
+        width:150vw;
+        height:34vw;
+        left:-78vw;
+        top:29%;
+        border-radius:58% 42% 64% 36% / 50% 68% 32% 50%;
+        background:linear-gradient(100deg,rgba(0,3,7,.93),rgba(4,27,49,.72) 54%,rgba(20,94,157,.18) 78%,transparent);
+        filter:blur(18px);
+        transform:rotate(7deg) skewX(-18deg);
+        animation:mnCloudWispA 31s ease-in-out infinite;
+    }
+
+    .mobile-lite-wisp-b{
+        width:135vw;
+        height:28vw;
+        right:-76vw;
+        top:46%;
+        border-radius:42% 58% 37% 63% / 61% 39% 66% 34%;
+        background:linear-gradient(265deg,rgba(6,45,82,.28),rgba(3,18,33,.74) 48%,rgba(0,3,7,.94) 82%);
+        filter:blur(16px);
+        transform:rotate(-13deg) skewX(14deg);
+        animation:mnCloudWispB 37s ease-in-out infinite;
+    }
+
+    /* Soft moving mist crossing the lit area. */
+    .mobile-lite-mist{
+        width:175vw;
+        height:42vw;
+        left:-92vw;
+        top:18%;
+        border-radius:50%;
+        background:
+            radial-gradient(ellipse at 68% 50%,rgba(40,150,238,.20),rgba(11,72,128,.10) 42%,transparent 72%);
+        filter:blur(30px);
+        transform:rotate(-6deg) scaleX(1.15);
+        animation:mnCloudMist 34s ease-in-out infinite;
     }
 
     .hero-mobile-lite-v3::before{
-        width:150vw;
-        height:62vw;
-        left:-78vw;
-        top:28%;
-        border-radius:50%;
-        background:radial-gradient(ellipse at 50% 50%, rgba(0,3,7,.96) 0%, rgba(2,13,24,.80) 42%, rgba(5,42,77,.16) 64%, transparent 78%);
-        filter:blur(24px);
-        opacity:.86;
-        animation:mnMobileMidV3 34s ease-in-out infinite;
+        content:"";
+        inset:0;
+        z-index:5;
+        background:
+            linear-gradient(90deg,rgba(0,4,9,.43) 0%,rgba(0,5,11,.17) 49%,rgba(1,9,18,.018) 100%),
+            linear-gradient(180deg,rgba(0,4,9,.11),transparent 32%,transparent 73%,rgba(0,4,9,.24));
     }
 
     .hero-mobile-lite-v3::after{
-        inset:0;
-        background:
-            linear-gradient(90deg,rgba(0,4,9,.42) 0%,rgba(0,5,11,.18) 47%,rgba(1,9,18,.02) 100%),
-            linear-gradient(180deg,rgba(0,4,9,.12),transparent 32%,transparent 74%,rgba(0,4,9,.24));
+        content:"";
+        width:165vw;
+        height:32vw;
+        left:-82vw;
+        top:57%;
+        border-radius:50%;
+        background:linear-gradient(92deg,rgba(0,2,5,.94),rgba(3,18,31,.66) 58%,rgba(13,65,111,.10) 82%,transparent);
+        filter:blur(22px);
+        animation:mnCloudShadow 40s ease-in-out infinite;
     }
 
-    @keyframes mnMobileGlowV4{
-        0%{transform:translate3d(15vw,-3vh,0) rotate(-6deg) scale(.88,.94)}
-        30%{transform:translate3d(-2vw,3vh,0) rotate(-2deg) scale(1.00,.98)}
-        62%{transform:translate3d(-22vw,9vh,0) rotate(3deg) scale(1.12,1.06)}
-        82%{transform:translate3d(-31vw,12vh,0) rotate(1deg) scale(1.18,1.10)}
-        100%{transform:translate3d(15vw,-3vh,0) rotate(-6deg) scale(.88,.94)}
+    @keyframes mnCloudBody{
+        0%{transform:translate3d(18vw,-2vh,0) rotate(-10deg) skewX(-8deg) scale(.93,.96)}
+        34%{transform:translate3d(-5vw,3vh,0) rotate(-6deg) skewX(-4deg) scale(1.02,1.00)}
+        68%{transform:translate3d(-28vw,9vh,0) rotate(-2deg) skewX(-10deg) scale(1.11,1.06)}
+        100%{transform:translate3d(18vw,-2vh,0) rotate(-10deg) skewX(-8deg) scale(.93,.96)}
+    }
+    @keyframes mnCloudFoldA{
+        0%{transform:translate3d(-18vw,-6vw,0) rotate(11deg) skewX(-12deg) scaleX(.98)}
+        42%{transform:translate3d(20vw,10vw,0) rotate(15deg) skewX(-6deg) scaleX(1.06)}
+        74%{transform:translate3d(54vw,20vw,0) rotate(9deg) skewX(-15deg) scaleX(1.12)}
+        100%{transform:translate3d(-18vw,-6vw,0) rotate(11deg) skewX(-12deg) scaleX(.98)}
+    }
+    @keyframes mnCloudFoldB{
+        0%{transform:translate3d(-15vw,14vw,0) rotate(-9deg) skewX(10deg) scaleX(.97)}
+        45%{transform:translate3d(18vw,-4vw,0) rotate(-4deg) skewX(4deg) scaleX(1.04)}
+        76%{transform:translate3d(52vw,-17vw,0) rotate(-11deg) skewX(13deg) scaleX(1.11)}
+        100%{transform:translate3d(-15vw,14vw,0) rotate(-9deg) skewX(10deg) scaleX(.97)}
+    }
+    @keyframes mnCloudWispA{
+        0%{transform:translate3d(-14vw,4vw,0) rotate(7deg) skewX(-18deg)}
+        50%{transform:translate3d(31vw,-5vw,0) rotate(2deg) skewX(-8deg)}
+        100%{transform:translate3d(-14vw,4vw,0) rotate(7deg) skewX(-18deg)}
+    }
+    @keyframes mnCloudWispB{
+        0%{transform:translate3d(8vw,-2vw,0) rotate(-13deg) skewX(14deg)}
+        52%{transform:translate3d(-29vw,7vw,0) rotate(-7deg) skewX(5deg)}
+        100%{transform:translate3d(8vw,-2vw,0) rotate(-13deg) skewX(14deg)}
+    }
+    @keyframes mnCloudMist{
+        0%{transform:translate3d(-12vw,0,0) rotate(-6deg) scaleX(1.15)}
+        48%{transform:translate3d(34vw,8vw,0) rotate(1deg) scaleX(1.32)}
+        100%{transform:translate3d(-12vw,0,0) rotate(-6deg) scaleX(1.15)}
+    }
+    @keyframes mnCloudShadow{
+        0%{transform:translate3d(-9vw,3vw,0) rotate(4deg)}
+        55%{transform:translate3d(39vw,-6vw,0) rotate(-2deg)}
+        100%{transform:translate3d(-9vw,3vw,0) rotate(4deg)}
     }
 
-    @keyframes mnMobileFoldAV3{
-        0%{transform:translate3d(-12vw,-6vw,0) rotate(12deg) scale(.98)}
-        38%{transform:translate3d(21vw,13vw,0) rotate(16deg) scale(1.05)}
-        70%{transform:translate3d(49vw,26vw,0) rotate(10deg) scale(1.14)}
-        100%{transform:translate3d(-12vw,-6vw,0) rotate(12deg) scale(.98)}
-    }
-
-    @keyframes mnMobileFoldBV3{
-        0%{transform:translate3d(-10vw,15vw,0) rotate(-10deg) scale(.98)}
-        42%{transform:translate3d(20vw,-5vw,0) rotate(-5deg) scale(1.04)}
-        72%{transform:translate3d(48vw,-20vw,0) rotate(-11deg) scale(1.13)}
-        100%{transform:translate3d(-10vw,15vw,0) rotate(-10deg) scale(.98)}
-    }
-
-    @keyframes mnMobileMidV3{
-        0%{transform:translate3d(-10vw,4vw,0) scale(.96)}
-        44%{transform:translate3d(16vw,-3vw,0) scale(1.06)}
-        76%{transform:translate3d(35vw,7vw,0) scale(1.15)}
-        100%{transform:translate3d(-10vw,4vw,0) scale(.96)}
-    }
-
-    .hero > .container{
-        position:relative;
-        z-index:3;
-    }
+    .hero > .container{position:relative;z-index:3;}
 }
 </style>
 
@@ -3874,9 +3924,12 @@ main > section:not(.hero){
     <section class="hero" id="home">
 
         <div class="hero-mobile-lite-v3" aria-hidden="true">
-            <div class="mobile-lite-glow"></div>
-            <div class="mobile-lite-fold-a"></div>
-            <div class="mobile-lite-fold-b"></div>
+            <span class="mobile-lite-glow"></span>
+            <span class="mobile-lite-mist"></span>
+            <span class="mobile-lite-fold-a"></span>
+            <span class="mobile-lite-fold-b"></span>
+            <span class="mobile-lite-wisp-a"></span>
+            <span class="mobile-lite-wisp-b"></span>
         </div>
 
 
