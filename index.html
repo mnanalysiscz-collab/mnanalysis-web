@@ -3219,6 +3219,167 @@ header{
 }
 </style>
 
+
+<style>
+/* V27 — robustní mobilní liquid efekt bez SVG animací */
+.hero-mobile-css-liquid{
+    display:none;
+}
+
+@media(max-width:760px){
+    /* Vypneme mobilní SVG variantu a použijeme spolehlivou CSS vrstvu. */
+    .hero-mobile-fabric,
+    .hero-liquid-fabric{
+        display:none !important;
+    }
+
+    .hero-mobile-css-liquid{
+        display:block !important;
+        position:absolute;
+        inset:0;
+        z-index:0;
+        overflow:hidden;
+        pointer-events:none;
+        background:
+            radial-gradient(circle at 82% 25%,rgba(28,141,255,.22),transparent 34%),
+            linear-gradient(135deg,#01060c 0%,#06111e 60%,#0a2340 100%);
+    }
+
+    .mobile-blue-wash{
+        position:absolute;
+        width:125vw;
+        height:90vw;
+        right:-55vw;
+        top:6vh;
+        border-radius:48% 52% 60% 40% / 44% 58% 42% 56%;
+        background:
+            radial-gradient(ellipse at 45% 50%,
+                rgba(47,156,255,.62) 0%,
+                rgba(13,92,168,.42) 30%,
+                rgba(4,39,77,.22) 54%,
+                transparent 72%);
+        filter:blur(28px);
+        opacity:.86;
+        transform:translate3d(0,0,0) scale(.92);
+        animation:mobileBlueWash 24s ease-in-out infinite;
+        will-change:transform,border-radius;
+    }
+
+    .mobile-fold{
+        position:absolute;
+        background:
+            linear-gradient(135deg,#000204 0%,#02070d 44%,#081827 65%,#01050a 86%);
+        box-shadow:
+            inset -20px -10px 45px rgba(20,82,140,.13),
+            0 0 30px rgba(0,0,0,.22);
+        will-change:transform,border-radius;
+    }
+
+    .mobile-fold-a{
+        width:150vw;
+        height:72vw;
+        left:-78vw;
+        top:-10vw;
+        border-radius:38% 62% 54% 46% / 63% 38% 62% 37%;
+        transform:rotate(13deg) translate3d(0,0,0);
+        animation:mobileFoldA 31s cubic-bezier(.42,0,.58,1) infinite;
+    }
+
+    .mobile-fold-b{
+        width:160vw;
+        height:82vw;
+        left:-65vw;
+        bottom:-28vw;
+        border-radius:60% 40% 35% 65% / 42% 62% 38% 58%;
+        transform:rotate(-10deg) translate3d(0,0,0);
+        background:
+            linear-gradient(145deg,#000205 0%,#01050a 48%,#071521 69%,#000205 100%);
+        animation:mobileFoldB 39s cubic-bezier(.42,0,.58,1) infinite;
+    }
+
+    @keyframes mobileBlueWash{
+        0%{
+            transform:translate3d(12vw,-1vh,0) scale(.82) rotate(-4deg);
+            border-radius:48% 52% 60% 40% / 44% 58% 42% 56%;
+        }
+        35%{
+            transform:translate3d(-15vw,6vh,0) scale(1.02) rotate(4deg);
+            border-radius:62% 38% 44% 56% / 37% 61% 39% 63%;
+        }
+        68%{
+            transform:translate3d(-31vw,13vh,0) scale(1.18) rotate(-2deg);
+            border-radius:41% 59% 65% 35% / 58% 41% 59% 42%;
+        }
+        100%{
+            transform:translate3d(12vw,-1vh,0) scale(.82) rotate(-4deg);
+            border-radius:48% 52% 60% 40% / 44% 58% 42% 56%;
+        }
+    }
+
+    @keyframes mobileFoldA{
+        0%{
+            transform:translate3d(-10vw,-5vw,0) rotate(13deg) scale(1);
+        }
+        38%{
+            transform:translate3d(28vw,17vw,0) rotate(17deg) scale(1.08);
+        }
+        68%{
+            transform:translate3d(58vw,30vw,0) rotate(11deg) scale(1.18);
+        }
+        100%{
+            transform:translate3d(-10vw,-5vw,0) rotate(13deg) scale(1);
+        }
+    }
+
+    @keyframes mobileFoldB{
+        0%{
+            transform:translate3d(-8vw,16vw,0) rotate(-10deg) scale(1);
+        }
+        42%{
+            transform:translate3d(24vw,-7vw,0) rotate(-5deg) scale(1.05);
+        }
+        72%{
+            transform:translate3d(54vw,-22vw,0) rotate(-12deg) scale(1.15);
+        }
+        100%{
+            transform:translate3d(-8vw,16vw,0) rotate(-10deg) scale(1);
+        }
+    }
+
+    .hero-liquid-vignette{
+        z-index:1 !important;
+        background:
+            linear-gradient(90deg,rgba(0,4,9,.24) 0%,rgba(0,5,11,.09) 48%,rgba(1,9,18,.01) 100%),
+            linear-gradient(180deg,rgba(0,4,9,.08),transparent 36%,transparent 76%,rgba(0,4,9,.18)) !important;
+    }
+
+    .hero > .container{
+        position:relative;
+        z-index:3;
+    }
+}
+
+@media(max-width:480px){
+    .mobile-blue-wash{
+        width:145vw;
+        height:105vw;
+        right:-75vw;
+        top:8vh;
+        filter:blur(24px);
+    }
+    .mobile-fold-a{
+        width:175vw;
+        height:82vw;
+        left:-92vw;
+    }
+    .mobile-fold-b{
+        width:180vw;
+        height:92vw;
+        left:-82vw;
+    }
+}
+</style>
+
 </head>
 
 <body>
@@ -3254,6 +3415,13 @@ header{
     <section class="hero" id="home">
 
         
+        
+        <div class="hero-mobile-css-liquid" aria-hidden="true">
+            <div class="mobile-blue-wash"></div>
+            <div class="mobile-fold mobile-fold-a"></div>
+            <div class="mobile-fold mobile-fold-b"></div>
+        </div>
+
         <div class="hero-mobile-fabric" aria-hidden="true">
             <svg viewBox="0 0 900 1100" preserveAspectRatio="xMidYMid slice"
                  xmlns="http://www.w3.org/2000/svg">
