@@ -2861,6 +2861,118 @@ line-height:1.45;
 }
 </style>
 
+
+<style>
+/* V22 — plynulejší header na desktopu i mobilu
+   Neanimujeme height/min-height/backdrop-filter; pouze transform/opacity/background. */
+
+header{
+    will-change:background-color, box-shadow;
+    transition:
+        background-color .22s ease,
+        box-shadow .22s ease,
+        border-color .22s ease !important;
+}
+
+header nav{
+    height:88px !important;
+    min-height:88px !important;
+    padding-top:0 !important;
+    align-items:center !important;
+    transition:none !important;
+}
+
+.brand{
+    width:300px !important;
+    height:72px !important;
+    transform-origin:left center;
+    transition:transform .22s ease !important;
+    will-change:transform;
+}
+
+.brand img{
+    width:100% !important;
+    height:auto !important;
+    max-height:100% !important;
+    transition:filter .22s ease !important;
+    will-change:filter;
+}
+
+.nav-links{
+    padding-top:0 !important;
+    transition:none !important;
+}
+
+header.is-scrolled{
+    background:rgba(4,16,31,.94) !important;
+    border-bottom-color:rgba(74,165,255,.14) !important;
+    box-shadow:0 8px 24px rgba(0,0,0,.20) !important;
+    backdrop-filter:blur(10px) !important;
+}
+
+header.is-scrolled nav{
+    height:68px !important;
+    min-height:68px !important;
+}
+
+header.is-scrolled .brand{
+    transform:scale(.78);
+}
+
+header.is-scrolled .brand img{
+    filter:drop-shadow(0 6px 16px rgba(0,0,0,.24)) !important;
+}
+
+.hero{
+    padding-top:88px !important;
+}
+
+@media(max-width:760px){
+    header nav{
+        height:72px !important;
+        min-height:72px !important;
+    }
+
+    .brand{
+        width:220px !important;
+        height:58px !important;
+    }
+
+    .menu-toggle{
+        margin-top:0 !important;
+    }
+
+    .nav-links{
+        top:72px !important;
+    }
+
+    header.is-scrolled nav{
+        height:60px !important;
+        min-height:60px !important;
+    }
+
+    header.is-scrolled .brand{
+        transform:scale(.84);
+    }
+
+    header.is-scrolled .nav-links{
+        top:60px !important;
+    }
+
+    .hero{
+        padding-top:72px !important;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    header,
+    .brand,
+    .brand img{
+        transition:none !important;
+    }
+}
+</style>
+
 </head>
 
 <body>
@@ -3450,9 +3562,21 @@ document.addEventListener('DOMContentLoaded',()=>{
    nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
  }
 
- const updateHeader=()=>header?.classList.toggle('is-scrolled',window.scrollY>24);
+ let headerTicking = false;
+ const updateHeader = () => {
+   const shouldScroll = window.scrollY > 24;
+   if (header?.classList.contains('is-scrolled') !== shouldScroll) {
+     header?.classList.toggle('is-scrolled', shouldScroll);
+   }
+   headerTicking = false;
+ };
  updateHeader();
- window.addEventListener('scroll',updateHeader,{passive:true});
+ window.addEventListener('scroll', () => {
+   if (!headerTicking) {
+     window.requestAnimationFrame(updateHeader);
+     headerTicking = true;
+   }
+ }, {passive:true});
 });
 </script>
 
