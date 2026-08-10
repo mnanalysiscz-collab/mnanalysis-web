@@ -3598,77 +3598,57 @@ main > section:not(.hero){
 
 
 <style>
-/* =========================================================
-   MOBILE HERO FIX — desktop rules are not changed.
-   Uses the exact same V8 liquid-fabric SVG as desktop.
-   Only the crop/position is adjusted for portrait screens.
-   ========================================================= */
+/* MOBILE HERO — používá přesně stejné SVG jako desktop */
 @media (max-width:760px){
-
-    /* Disable the old experimental mobile imitations. */
+    /* vypnout staré mobilní náhražky */
     .hero-mobile-css-liquid,
     .hero-mobile-fabric{
         display:none !important;
     }
 
-    /* Keep the original desktop liquid SVG as the only background animation. */
+    /* původní desktopová animace přesně do hero, bez přesahů */
     .hero-liquid-fabric{
         display:block !important;
         position:absolute !important;
         inset:0 !important;
-        z-index:0 !important;
         width:100% !important;
         height:100% !important;
         overflow:hidden !important;
         opacity:1 !important;
+        z-index:0 !important;
         pointer-events:none !important;
     }
 
-    /*
-       Critical fix:
-       Previous mobile rules enlarged BOTH the wrapper and the SVG,
-       which pushed the blue glow far outside the phone viewport.
-       Here the wrapper stays 1:1 with the hero and only the SVG is cropped.
-    */
     .hero-liquid-fabric svg{
         display:block !important;
         position:absolute !important;
-        top:0 !important;
-        left:0 !important;
-        width:165% !important;
+        inset:0 !important;
+        width:100% !important;
         height:100% !important;
         max-width:none !important;
-        transform:translate3d(-45%,0,0) !important;
-        transform-origin:center center !important;
-        backface-visibility:hidden !important;
-        -webkit-backface-visibility:hidden !important;
+        transform:none !important;
     }
 
-    /* Lighter overlay so the same blue glow remains visible behind the copy. */
+    /* žádný horizontální přesah = žádná černá čára vpravo */
+    html,
+    body,
+    .hero{
+        max-width:100% !important;
+        overflow-x:hidden !important;
+    }
+
+    /* na telefonu trochu méně ztmavení, aby modrý mrak nezanikl */
     .hero-liquid-vignette{
-        z-index:1 !important;
         background:
             linear-gradient(90deg,
-                rgba(0,4,9,.42) 0%,
-                rgba(0,5,11,.20) 48%,
-                rgba(1,9,18,.04) 100%),
+                rgba(0,4,9,.40) 0%,
+                rgba(0,5,11,.18) 48%,
+                rgba(1,9,18,.025) 100%),
             linear-gradient(180deg,
-                rgba(0,4,9,.14) 0%,
+                rgba(0,4,9,.12),
                 transparent 31%,
-                transparent 73%,
-                rgba(0,4,9,.23) 100%) !important;
-    }
-
-    .hero > .container{
-        position:relative !important;
-        z-index:3 !important;
-    }
-}
-
-@media (max-width:480px){
-    .hero-liquid-fabric svg{
-        width:175% !important;
-        transform:translate3d(-50%,0,0) !important;
+                transparent 74%,
+                rgba(0,4,9,.20)) !important;
     }
 }
 </style>
@@ -4495,8 +4475,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    /* Mobil: stejná hero animace jako desktop, necháme ji stabilně běžet.
-       Desktop podmínka a jeho chování zůstávají beze změny. */
+    /* Na mobilu musí hero animace zůstat aktivní.
+       Optimalizační observer níže je pouze pro desktop. */
     if (window.matchMedia('(max-width: 760px)').matches) {
         desktopLiquid.unpauseAnimations();
         return;
@@ -4518,6 +4498,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     heroAnimationObserver.observe(hero);
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const liquid = document.querySelector('.hero-liquid-fabric svg');
+    if (!liquid) return;
+
+    const mobile = window.matchMedia('(max-width: 760px)');
+    const applyLiquidCrop = () => {
+        liquid.setAttribute(
+            'preserveAspectRatio',
+            mobile.matches ? 'xMaxYMid slice' : 'xMidYMid slice'
+        );
+
+        if (mobile.matches && liquid.unpauseAnimations &&
+            !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            liquid.unpauseAnimations();
+        }
+    };
+
+    applyLiquidCrop();
+
+    if (mobile.addEventListener) {
+        mobile.addEventListener('change', applyLiquidCrop);
+    }
 });
 </script>
 
