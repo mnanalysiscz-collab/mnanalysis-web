@@ -3567,6 +3567,35 @@ header{
 }
 </style>
 
+
+<style>
+/* V30 — performance pass při scrollování dalších sekcí.
+   Vzhled desktopu ani mobilu neměníme. */
+
+/* Prohlížeč nemusí renderovat sekce hluboko mimo viewport. */
+main > section:not(.hero){
+    content-visibility:auto;
+    contain-intrinsic-size:800px;
+}
+
+/* Izolace těžších sekcí omezuje překreslování okolí. */
+.web-section,
+.erecepce-section,
+.pricing-section,
+.services-dark,
+#about,
+.contact{
+    contain:paint;
+}
+
+/* GPU vrstva pouze tam, kde už jsou efekty/animace. */
+.hero-liquid-fabric,
+.hero-liquid-fabric svg{
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+}
+</style>
+
 </head>
 
 <body>
@@ -4373,6 +4402,38 @@ document.addEventListener('DOMContentLoaded', () => {
             if (svg.pauseAnimations) svg.pauseAnimations();
         });
     }
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const hero = document.querySelector('.hero');
+    const desktopLiquid = document.querySelector('.hero-liquid-fabric svg');
+    if (!hero || !desktopLiquid || !desktopLiquid.pauseAnimations || !desktopLiquid.unpauseAnimations) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion) {
+        desktopLiquid.pauseAnimations();
+        return;
+    }
+
+    /* Nejdůležitější optimalizace:
+       jakmile hero odjede z obrazovky, SVG animace se úplně zastaví.
+       Při návratu se zase plynule spustí. */
+    const heroAnimationObserver = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+            desktopLiquid.unpauseAnimations();
+        } else {
+            desktopLiquid.pauseAnimations();
+        }
+    }, {
+        root: null,
+        threshold: 0,
+        rootMargin: '100px 0px 100px 0px'
+    });
+
+    heroAnimationObserver.observe(hero);
 });
 </script>
 
