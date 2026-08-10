@@ -3380,6 +3380,131 @@ header{
 }
 </style>
 
+
+<style>
+/* V28 — mobilní efekt více jako mrak / inkoust, méně jako ploché pruhy */
+@media(max-width:760px){
+    .mobile-blue-wash{
+        width:135vw !important;
+        height:110vw !important;
+        right:-68vw !important;
+        top:4vh !important;
+        border-radius:50% !important;
+        background:
+            radial-gradient(circle at 42% 48%,
+                rgba(67,168,255,.58) 0%,
+                rgba(27,124,221,.40) 18%,
+                rgba(10,75,142,.28) 34%,
+                rgba(3,37,76,.18) 50%,
+                rgba(1,12,27,.06) 63%,
+                transparent 76%) !important;
+        filter:blur(42px) !important;
+        opacity:.90 !important;
+        animation:mobileCloudWash 34s ease-in-out infinite !important;
+    }
+
+    .mobile-fold{
+        border-radius:50% !important;
+        box-shadow:none !important;
+        background:
+            radial-gradient(ellipse at 50% 50%,
+                rgba(0,2,5,.98) 0%,
+                rgba(2,8,15,.95) 34%,
+                rgba(4,18,33,.80) 53%,
+                rgba(2,9,17,.40) 68%,
+                transparent 82%) !important;
+        filter:blur(34px) !important;
+        opacity:.96;
+    }
+
+    .mobile-fold-a{
+        width:145vw !important;
+        height:85vw !important;
+        left:-75vw !important;
+        top:-8vw !important;
+        animation:mobileCloudA 38s cubic-bezier(.42,0,.58,1) infinite !important;
+    }
+
+    .mobile-fold-b{
+        width:155vw !important;
+        height:92vw !important;
+        left:-70vw !important;
+        bottom:-30vw !important;
+        animation:mobileCloudB 46s cubic-bezier(.42,0,.58,1) infinite !important;
+    }
+
+    .hero-mobile-css-liquid::after{
+        content:"";
+        position:absolute;
+        width:125vw;
+        height:78vw;
+        left:-55vw;
+        top:32%;
+        border-radius:50%;
+        background:
+            radial-gradient(ellipse at 50% 50%,
+                rgba(1,7,14,.92) 0%,
+                rgba(4,23,42,.72) 38%,
+                rgba(5,42,77,.24) 60%,
+                transparent 78%);
+        filter:blur(38px);
+        opacity:.72;
+        animation:mobileCloudMid 42s ease-in-out infinite;
+        will-change:transform;
+    }
+
+    @keyframes mobileCloudWash{
+        0%{transform:translate3d(16vw,-2vh,0) scale(.78)}
+        30%{transform:translate3d(-4vw,3vh,0) scale(.92)}
+        56%{transform:translate3d(-24vw,8vh,0) scale(1.12)}
+        76%{transform:translate3d(-36vw,14vh,0) scale(1.24)}
+        100%{transform:translate3d(16vw,-2vh,0) scale(.78)}
+    }
+
+    @keyframes mobileCloudA{
+        0%{transform:translate3d(-14vw,-7vw,0) rotate(8deg) scale(.94)}
+        34%{transform:translate3d(18vw,11vw,0) rotate(13deg) scale(1.02)}
+        62%{transform:translate3d(45vw,23vw,0) rotate(9deg) scale(1.13)}
+        80%{transform:translate3d(61vw,31vw,0) rotate(5deg) scale(1.22)}
+        100%{transform:translate3d(-14vw,-7vw,0) rotate(8deg) scale(.94)}
+    }
+
+    @keyframes mobileCloudB{
+        0%{transform:translate3d(-10vw,18vw,0) rotate(-8deg) scale(.96)}
+        38%{transform:translate3d(16vw,-3vw,0) rotate(-3deg) scale(1.03)}
+        66%{transform:translate3d(42vw,-19vw,0) rotate(-7deg) scale(1.12)}
+        82%{transform:translate3d(57vw,-27vw,0) rotate(-10deg) scale(1.18)}
+        100%{transform:translate3d(-10vw,18vw,0) rotate(-8deg) scale(.96)}
+    }
+
+    @keyframes mobileCloudMid{
+        0%{transform:translate3d(-8vw,5vw,0) scale(.95)}
+        40%{transform:translate3d(19vw,-4vw,0) scale(1.06)}
+        72%{transform:translate3d(37vw,7vw,0) scale(1.16)}
+        100%{transform:translate3d(-8vw,5vw,0) scale(.95)}
+    }
+}
+
+@media(max-width:480px){
+    .mobile-blue-wash{
+        width:155vw !important;
+        height:122vw !important;
+        right:-82vw !important;
+        filter:blur(38px) !important;
+    }
+    .mobile-fold-a{
+        width:170vw !important;
+        height:98vw !important;
+        left:-92vw !important;
+    }
+    .mobile-fold-b{
+        width:180vw !important;
+        height:105vw !important;
+        left:-88vw !important;
+    }
+}
+</style>
+
 </head>
 
 <body>
