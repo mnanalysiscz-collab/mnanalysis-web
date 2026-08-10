@@ -2973,6 +2973,126 @@ header.is-scrolled .brand img{
 }
 </style>
 
+
+<style>
+/* V23 — ultra smooth header
+   Žádná změna výšky headeru při scrollu = žádný layout reflow.
+   Mění se jen GPU-friendly transform loga + opacity/background. */
+
+header{
+    height:76px !important;
+    min-height:76px !important;
+    background:rgba(4,16,31,.20) !important;
+    border-bottom:1px solid transparent !important;
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+    transition:background-color .18s linear, box-shadow .18s linear, border-color .18s linear !important;
+    contain:layout paint;
+}
+
+header nav{
+    height:76px !important;
+    min-height:76px !important;
+    padding:0 !important;
+    align-items:center !important;
+    transition:none !important;
+}
+
+.brand{
+    width:280px !important;
+    height:64px !important;
+    transform:translateZ(0) scale(1) !important;
+    transform-origin:left center !important;
+    transition:transform .18s linear !important;
+    will-change:transform;
+}
+
+.brand img{
+    width:100% !important;
+    height:auto !important;
+    max-height:100% !important;
+    transform:none !important;
+    transition:none !important;
+    filter:drop-shadow(0 8px 20px rgba(0,0,0,.28)) !important;
+    backface-visibility:hidden;
+}
+
+.nav-links{
+    padding-top:0 !important;
+    transition:none !important;
+}
+
+header.is-scrolled{
+    height:76px !important;
+    min-height:76px !important;
+    background:rgba(4,16,31,.94) !important;
+    border-bottom-color:rgba(74,165,255,.13) !important;
+    box-shadow:0 8px 22px rgba(0,0,0,.18) !important;
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+}
+
+header.is-scrolled nav{
+    height:76px !important;
+    min-height:76px !important;
+    padding:0 !important;
+}
+
+header.is-scrolled .brand{
+    width:280px !important;
+    height:64px !important;
+    transform:translateZ(0) scale(.88) !important;
+}
+
+header.is-scrolled .brand img{
+    width:100% !important;
+    filter:drop-shadow(0 6px 16px rgba(0,0,0,.22)) !important;
+}
+
+.hero{
+    padding-top:76px !important;
+}
+
+@media(max-width:760px){
+    header,
+    header.is-scrolled{
+        height:66px !important;
+        min-height:66px !important;
+    }
+
+    header nav,
+    header.is-scrolled nav{
+        height:66px !important;
+        min-height:66px !important;
+        padding:0 !important;
+    }
+
+    .brand,
+    header.is-scrolled .brand{
+        width:210px !important;
+        height:54px !important;
+    }
+
+    header.is-scrolled .brand{
+        transform:translateZ(0) scale(.90) !important;
+    }
+
+    .menu-toggle,
+    header.is-scrolled .menu-toggle{
+        margin-top:0 !important;
+    }
+
+    .nav-links,
+    header.is-scrolled .nav-links{
+        top:66px !important;
+    }
+
+    .hero{
+        padding-top:66px !important;
+    }
+}
+</style>
+
 </head>
 
 <body>
@@ -3562,21 +3682,24 @@ document.addEventListener('DOMContentLoaded',()=>{
    nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
  }
 
- let headerTicking = false;
- const updateHeader = () => {
-   const shouldScroll = window.scrollY > 24;
-   if (header?.classList.contains('is-scrolled') !== shouldScroll) {
-     header?.classList.toggle('is-scrolled', shouldScroll);
-   }
-   headerTicking = false;
- };
- updateHeader();
- window.addEventListener('scroll', () => {
-   if (!headerTicking) {
-     window.requestAnimationFrame(updateHeader);
-     headerTicking = true;
-   }
- }, {passive:true});
+ const hero = document.querySelector('.hero');
+ if (hero && header) {
+   const marker = document.createElement('div');
+   marker.setAttribute('aria-hidden','true');
+   marker.style.position = 'absolute';
+   marker.style.top = '24px';
+   marker.style.left = '0';
+   marker.style.width = '1px';
+   marker.style.height = '1px';
+   marker.style.pointerEvents = 'none';
+   hero.prepend(marker);
+
+   const observer = new IntersectionObserver(([entry]) => {
+     header.classList.toggle('is-scrolled', !entry.isIntersecting);
+   }, {threshold:0});
+
+   observer.observe(marker);
+ }
 });
 </script>
 
