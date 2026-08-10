@@ -3746,15 +3746,20 @@ main > section:not(.hero){
     }
 
     .hero-mobile-lite-v3 .mobile-lite-glow{
-        width:150vw;
-        height:110vw;
-        right:-78vw;
-        top:7vh;
-        border-radius:50%;
-        background:radial-gradient(ellipse at 48% 50%, rgba(62,169,255,.56) 0%, rgba(23,111,190,.34) 28%, rgba(7,53,98,.13) 52%, transparent 72%);
-        filter:blur(28px);
-        opacity:.82;
-        animation:mnMobileGlowV3 22s ease-in-out infinite;
+        width:185vw;
+        height:105vw;
+        right:-92vw;
+        top:4vh;
+        border-radius:58% 42% 64% 36% / 46% 62% 38% 54%;
+        background:
+            radial-gradient(ellipse at 24% 58%, rgba(34,133,220,.34) 0%, rgba(10,72,132,.20) 34%, transparent 64%),
+            radial-gradient(ellipse at 43% 39%, rgba(70,177,255,.52) 0%, rgba(26,118,200,.30) 31%, transparent 63%),
+            radial-gradient(ellipse at 62% 55%, rgba(43,151,238,.42) 0%, rgba(14,86,153,.24) 34%, transparent 66%),
+            radial-gradient(ellipse at 79% 42%, rgba(27,115,196,.28) 0%, rgba(8,58,109,.16) 36%, transparent 68%);
+        filter:blur(34px);
+        opacity:.84;
+        transform:translate3d(0,0,0) rotate(-5deg);
+        animation:mnMobileGlowV4 24s ease-in-out infinite;
     }
 
     .hero-mobile-lite-v3 .mobile-lite-fold-a{
@@ -3798,11 +3803,12 @@ main > section:not(.hero){
             linear-gradient(180deg,rgba(0,4,9,.12),transparent 32%,transparent 74%,rgba(0,4,9,.24));
     }
 
-    @keyframes mnMobileGlowV3{
-        0%{transform:translate3d(14vw,-2vh,0) scale(.84)}
-        34%{transform:translate3d(-6vw,4vh,0) scale(.98)}
-        66%{transform:translate3d(-26vw,11vh,0) scale(1.14)}
-        100%{transform:translate3d(14vw,-2vh,0) scale(.84)}
+    @keyframes mnMobileGlowV4{
+        0%{transform:translate3d(15vw,-3vh,0) rotate(-6deg) scale(.88,.94)}
+        30%{transform:translate3d(-2vw,3vh,0) rotate(-2deg) scale(1.00,.98)}
+        62%{transform:translate3d(-22vw,9vh,0) rotate(3deg) scale(1.12,1.06)}
+        82%{transform:translate3d(-31vw,12vh,0) rotate(1deg) scale(1.18,1.10)}
+        100%{transform:translate3d(15vw,-3vh,0) rotate(-6deg) scale(.88,.94)}
     }
 
     @keyframes mnMobileFoldAV3{
