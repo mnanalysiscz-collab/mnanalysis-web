@@ -3596,6 +3596,83 @@ main > section:not(.hero){
 }
 </style>
 
+
+<style>
+/* =========================================================
+   MOBILE HERO FIX — desktop rules are not changed.
+   Uses the exact same V8 liquid-fabric SVG as desktop.
+   Only the crop/position is adjusted for portrait screens.
+   ========================================================= */
+@media (max-width:760px){
+
+    /* Disable the old experimental mobile imitations. */
+    .hero-mobile-css-liquid,
+    .hero-mobile-fabric{
+        display:none !important;
+    }
+
+    /* Keep the original desktop liquid SVG as the only background animation. */
+    .hero-liquid-fabric{
+        display:block !important;
+        position:absolute !important;
+        inset:0 !important;
+        z-index:0 !important;
+        width:100% !important;
+        height:100% !important;
+        overflow:hidden !important;
+        opacity:1 !important;
+        pointer-events:none !important;
+    }
+
+    /*
+       Critical fix:
+       Previous mobile rules enlarged BOTH the wrapper and the SVG,
+       which pushed the blue glow far outside the phone viewport.
+       Here the wrapper stays 1:1 with the hero and only the SVG is cropped.
+    */
+    .hero-liquid-fabric svg{
+        display:block !important;
+        position:absolute !important;
+        top:0 !important;
+        left:0 !important;
+        width:165% !important;
+        height:100% !important;
+        max-width:none !important;
+        transform:translate3d(-45%,0,0) !important;
+        transform-origin:center center !important;
+        backface-visibility:hidden !important;
+        -webkit-backface-visibility:hidden !important;
+    }
+
+    /* Lighter overlay so the same blue glow remains visible behind the copy. */
+    .hero-liquid-vignette{
+        z-index:1 !important;
+        background:
+            linear-gradient(90deg,
+                rgba(0,4,9,.42) 0%,
+                rgba(0,5,11,.20) 48%,
+                rgba(1,9,18,.04) 100%),
+            linear-gradient(180deg,
+                rgba(0,4,9,.14) 0%,
+                transparent 31%,
+                transparent 73%,
+                rgba(0,4,9,.23) 100%) !important;
+    }
+
+    .hero > .container{
+        position:relative !important;
+        z-index:3 !important;
+    }
+}
+
+@media (max-width:480px){
+    .hero-liquid-fabric svg{
+        width:175% !important;
+        transform:translate3d(-50%,0,0) !important;
+    }
+}
+</style>
+
 </head>
 
 <body>
@@ -4415,6 +4492,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reducedMotion) {
         desktopLiquid.pauseAnimations();
+        return;
+    }
+
+    /* Mobil: stejná hero animace jako desktop, necháme ji stabilně běžet.
+       Desktop podmínka a jeho chování zůstávají beze změny. */
+    if (window.matchMedia('(max-width: 760px)').matches) {
+        desktopLiquid.unpauseAnimations();
         return;
     }
 
