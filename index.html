@@ -4062,12 +4062,72 @@ document.addEventListener('DOMContentLoaded', () => {
     const svg = document.querySelector('.hero-liquid-fabric > svg');
     if (!svg) return;
 
-    // Keep the current portrait crop, but let the original V8 SVG animation run.
+    /*
+      Mobile fallback for browsers where SVG SMIL is unreliable.
+      The artwork stays identical to desktop. Only the animation engine changes:
+      the same four V8 elements are moved through the same key positions/timings.
+    */
     svg.setAttribute('preserveAspectRatio', 'xMaxYMid slice');
 
-    if (svg.unpauseAnimations) {
-        try { svg.unpauseAnimations(); } catch (e) {}
+    const smilNodes = [...svg.querySelectorAll('animateTransform')];
+    if (smilNodes.length < 4) return;
+
+    const targets = smilNodes.slice(0, 4).map(node => node.parentElement);
+    smilNodes.forEach(node => node.remove());
+
+    const tracks = [
+        { duration: 44000, times: [0, .30, .56, .80, 1], points: [[-300,-150],[-115,-60],[80,10],[185,75],[-300,-150]] },
+        { duration: 53000, times: [0, .28, .55, .80, 1], points: [[-230,110],[-80,55],[90,-5],[165,-80],[-230,110]] },
+        { duration: 49000, times: [0, .31, .58, .81, 1], points: [[-250,-80],[-60,-25],[105,35],[170,70],[-250,-80]] },
+        { duration: 57000, times: [0, .30, .57, .82, 1], points: [[-420,-70],[-120,15],[120,80],[300,120],[-420,-70]] }
+    ];
+
+    // Smooth approximation of the desktop cubic-bezier(.42,0,.58,1).
+    const ease = t => t * t * (3 - 2 * t);
+
+    function sample(track, elapsed) {
+        const p = (elapsed % track.duration) / track.duration;
+        let i = 0;
+        while (i < track.times.length - 2 && p > track.times[i + 1]) i++;
+
+        const t0 = track.times[i];
+        const t1 = track.times[i + 1];
+        const local = ease(Math.max(0, Math.min(1, (p - t0) / (t1 - t0))));
+        const a = track.points[i];
+        const b = track.points[i + 1];
+
+        return [
+            a[0] + (b[0] - a[0]) * local,
+            a[1] + (b[1] - a[1]) * local
+        ];
     }
+
+    const started = performance.now();
+    let rafId = 0;
+    let visible = true;
+
+    function frame(now) {
+        if (visible) {
+            const elapsed = now - started;
+            targets.forEach((target, index) => {
+                if (!target) return;
+                const [x, y] = sample(tracks[index], elapsed);
+                target.setAttribute('transform', `translate(${x.toFixed(2)} ${y.toFixed(2)})`);
+            });
+        }
+        rafId = requestAnimationFrame(frame);
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+        visible = entry.isIntersecting;
+    }, { rootMargin: '100px 0px 100px 0px', threshold: 0 });
+
+    const hero = document.querySelector('.hero');
+    if (hero) observer.observe(hero);
+
+    rafId = requestAnimationFrame(frame);
+
+    window.addEventListener('pagehide', () => cancelAnimationFrame(rafId), { once:true });
 });
 </script>
 
