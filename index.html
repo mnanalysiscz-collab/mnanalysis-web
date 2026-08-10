@@ -2827,6 +2827,40 @@ line-height:1.45;
 }
 </style>
 
+
+<style>
+/* V21 — hero animace znovu viditelná na mobilu, desktop beze změny */
+@media(max-width:760px){
+    .hero-liquid-fabric{
+        opacity:1 !important;
+        inset:-8% -22% -5% -18% !important;
+    }
+    .hero-liquid-fabric svg{
+        width:140% !important;
+        height:115% !important;
+        max-width:none !important;
+        transform:translate3d(-10%,0,0) scale(1.08) !important;
+        transform-origin:center center;
+    }
+    .hero-liquid-vignette{
+        background:
+            linear-gradient(90deg,rgba(0,4,9,.36) 0%,rgba(0,5,11,.16) 48%,rgba(1,9,18,.02) 100%),
+            linear-gradient(180deg,rgba(0,4,9,.12),transparent 32%,transparent 72%,rgba(0,4,9,.22)) !important;
+    }
+}
+@media(max-width:480px){
+    .hero-liquid-fabric{
+        opacity:1 !important;
+        inset:-10% -34% -8% -24% !important;
+    }
+    .hero-liquid-fabric svg{
+        width:155% !important;
+        height:120% !important;
+        transform:translate3d(-13%,0,0) scale(1.10) !important;
+    }
+}
+</style>
+
 </head>
 
 <body>
