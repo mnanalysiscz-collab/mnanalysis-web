@@ -3505,6 +3505,68 @@ header{
 }
 </style>
 
+
+<style>
+/* V29 — mobil používá stejný liquid-fabric efekt jako desktop */
+@media(max-width:760px){
+    .hero-mobile-css-liquid,
+    .hero-mobile-fabric{
+        display:none !important;
+    }
+
+    .hero-liquid-fabric{
+        display:block !important;
+        position:absolute !important;
+        inset:-18% -62% -16% -48% !important;
+        z-index:0 !important;
+        overflow:visible !important;
+        opacity:1 !important;
+        pointer-events:none !important;
+    }
+
+    .hero-liquid-fabric svg{
+        display:block !important;
+        width:210% !important;
+        height:145% !important;
+        max-width:none !important;
+        transform:translate3d(-23%,2%,0) scale(1.03) !important;
+        transform-origin:center center !important;
+    }
+
+    /* Na mobilu efekt méně zakrývat, jinak modrá zanikne. */
+    .hero-liquid-vignette{
+        z-index:1 !important;
+        background:
+            linear-gradient(90deg,
+                rgba(0,4,9,.24) 0%,
+                rgba(0,5,11,.09) 43%,
+                rgba(1,9,18,0) 100%),
+            linear-gradient(180deg,
+                rgba(0,4,9,.07),
+                transparent 30%,
+                transparent 78%,
+                rgba(0,4,9,.15)) !important;
+    }
+
+    .hero > .container{
+        position:relative !important;
+        z-index:3 !important;
+    }
+}
+
+@media(max-width:480px){
+    .hero-liquid-fabric{
+        inset:-20% -78% -18% -60% !important;
+    }
+
+    .hero-liquid-fabric svg{
+        width:235% !important;
+        height:150% !important;
+        transform:translate3d(-27%,2%,0) scale(1.04) !important;
+    }
+}
+</style>
+
 </head>
 
 <body>
