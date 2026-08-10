@@ -3166,6 +3166,409 @@ header{
 
 
 <style>
+/* V26 — samostatná mobilní varianta liquid-fabric efektu */
+.hero-mobile-fabric{
+    display:none;
+}
+
+@media(max-width:760px){
+    /* Desktopová SVG vrstva se na mobilu skryje; používá se optimalizovaná mobilní verze. */
+    .hero-liquid-fabric{
+        display:none !important;
+    }
+
+    .hero-mobile-fabric{
+        display:block;
+        position:absolute;
+        inset:0;
+        z-index:0;
+        overflow:hidden;
+        pointer-events:none;
+        opacity:1;
+    }
+
+    .hero-mobile-fabric svg{
+        display:block;
+        width:125%;
+        height:115%;
+        max-width:none;
+        transform:translate3d(-10%,-3%,0) scale(1.04);
+        transform-origin:center;
+        backface-visibility:hidden;
+    }
+
+    .hero-liquid-vignette{
+        z-index:1;
+        background:
+            linear-gradient(90deg,rgba(0,4,9,.31) 0%,rgba(0,5,11,.12) 50%,rgba(1,9,18,.01) 100%),
+            linear-gradient(180deg,rgba(0,4,9,.10),transparent 34%,transparent 75%,rgba(0,4,9,.20)) !important;
+    }
+
+    .hero > .container{
+        position:relative;
+        z-index:3;
+    }
+}
+
+@media(max-width:480px){
+    .hero-mobile-fabric svg{
+        width:140%;
+        height:120%;
+        transform:translate3d(-15%,-4%,0) scale(1.05);
+    }
+}
+</style>
+
+
+<style>
+/* V27 — robustní mobilní liquid efekt bez SVG animací */
+.hero-mobile-css-liquid{
+    display:none;
+}
+
+@media(max-width:760px){
+    /* Vypneme mobilní SVG variantu a použijeme spolehlivou CSS vrstvu. */
+    .hero-mobile-fabric,
+    .hero-liquid-fabric{
+        display:none !important;
+    }
+
+    .hero-mobile-css-liquid{
+        display:block !important;
+        position:absolute;
+        inset:0;
+        z-index:0;
+        overflow:hidden;
+        pointer-events:none;
+        background:
+            radial-gradient(circle at 82% 25%,rgba(28,141,255,.22),transparent 34%),
+            linear-gradient(135deg,#01060c 0%,#06111e 60%,#0a2340 100%);
+    }
+
+    .mobile-blue-wash{
+        position:absolute;
+        width:125vw;
+        height:90vw;
+        right:-55vw;
+        top:6vh;
+        border-radius:48% 52% 60% 40% / 44% 58% 42% 56%;
+        background:
+            radial-gradient(ellipse at 45% 50%,
+                rgba(47,156,255,.62) 0%,
+                rgba(13,92,168,.42) 30%,
+                rgba(4,39,77,.22) 54%,
+                transparent 72%);
+        filter:blur(28px);
+        opacity:.86;
+        transform:translate3d(0,0,0) scale(.92);
+        animation:mobileBlueWash 24s ease-in-out infinite;
+        will-change:transform,border-radius;
+    }
+
+    .mobile-fold{
+        position:absolute;
+        background:
+            linear-gradient(135deg,#000204 0%,#02070d 44%,#081827 65%,#01050a 86%);
+        box-shadow:
+            inset -20px -10px 45px rgba(20,82,140,.13),
+            0 0 30px rgba(0,0,0,.22);
+        will-change:transform,border-radius;
+    }
+
+    .mobile-fold-a{
+        width:150vw;
+        height:72vw;
+        left:-78vw;
+        top:-10vw;
+        border-radius:38% 62% 54% 46% / 63% 38% 62% 37%;
+        transform:rotate(13deg) translate3d(0,0,0);
+        animation:mobileFoldA 31s cubic-bezier(.42,0,.58,1) infinite;
+    }
+
+    .mobile-fold-b{
+        width:160vw;
+        height:82vw;
+        left:-65vw;
+        bottom:-28vw;
+        border-radius:60% 40% 35% 65% / 42% 62% 38% 58%;
+        transform:rotate(-10deg) translate3d(0,0,0);
+        background:
+            linear-gradient(145deg,#000205 0%,#01050a 48%,#071521 69%,#000205 100%);
+        animation:mobileFoldB 39s cubic-bezier(.42,0,.58,1) infinite;
+    }
+
+    @keyframes mobileBlueWash{
+        0%{
+            transform:translate3d(12vw,-1vh,0) scale(.82) rotate(-4deg);
+            border-radius:48% 52% 60% 40% / 44% 58% 42% 56%;
+        }
+        35%{
+            transform:translate3d(-15vw,6vh,0) scale(1.02) rotate(4deg);
+            border-radius:62% 38% 44% 56% / 37% 61% 39% 63%;
+        }
+        68%{
+            transform:translate3d(-31vw,13vh,0) scale(1.18) rotate(-2deg);
+            border-radius:41% 59% 65% 35% / 58% 41% 59% 42%;
+        }
+        100%{
+            transform:translate3d(12vw,-1vh,0) scale(.82) rotate(-4deg);
+            border-radius:48% 52% 60% 40% / 44% 58% 42% 56%;
+        }
+    }
+
+    @keyframes mobileFoldA{
+        0%{
+            transform:translate3d(-10vw,-5vw,0) rotate(13deg) scale(1);
+        }
+        38%{
+            transform:translate3d(28vw,17vw,0) rotate(17deg) scale(1.08);
+        }
+        68%{
+            transform:translate3d(58vw,30vw,0) rotate(11deg) scale(1.18);
+        }
+        100%{
+            transform:translate3d(-10vw,-5vw,0) rotate(13deg) scale(1);
+        }
+    }
+
+    @keyframes mobileFoldB{
+        0%{
+            transform:translate3d(-8vw,16vw,0) rotate(-10deg) scale(1);
+        }
+        42%{
+            transform:translate3d(24vw,-7vw,0) rotate(-5deg) scale(1.05);
+        }
+        72%{
+            transform:translate3d(54vw,-22vw,0) rotate(-12deg) scale(1.15);
+        }
+        100%{
+            transform:translate3d(-8vw,16vw,0) rotate(-10deg) scale(1);
+        }
+    }
+
+    .hero-liquid-vignette{
+        z-index:1 !important;
+        background:
+            linear-gradient(90deg,rgba(0,4,9,.24) 0%,rgba(0,5,11,.09) 48%,rgba(1,9,18,.01) 100%),
+            linear-gradient(180deg,rgba(0,4,9,.08),transparent 36%,transparent 76%,rgba(0,4,9,.18)) !important;
+    }
+
+    .hero > .container{
+        position:relative;
+        z-index:3;
+    }
+}
+
+@media(max-width:480px){
+    .mobile-blue-wash{
+        width:145vw;
+        height:105vw;
+        right:-75vw;
+        top:8vh;
+        filter:blur(24px);
+    }
+    .mobile-fold-a{
+        width:175vw;
+        height:82vw;
+        left:-92vw;
+    }
+    .mobile-fold-b{
+        width:180vw;
+        height:92vw;
+        left:-82vw;
+    }
+}
+</style>
+
+
+<style>
+/* V28 — mobilní efekt více jako mrak / inkoust, méně jako ploché pruhy */
+@media(max-width:760px){
+    .mobile-blue-wash{
+        width:135vw !important;
+        height:110vw !important;
+        right:-68vw !important;
+        top:4vh !important;
+        border-radius:50% !important;
+        background:
+            radial-gradient(circle at 42% 48%,
+                rgba(67,168,255,.58) 0%,
+                rgba(27,124,221,.40) 18%,
+                rgba(10,75,142,.28) 34%,
+                rgba(3,37,76,.18) 50%,
+                rgba(1,12,27,.06) 63%,
+                transparent 76%) !important;
+        filter:blur(42px) !important;
+        opacity:.90 !important;
+        animation:mobileCloudWash 34s ease-in-out infinite !important;
+    }
+
+    .mobile-fold{
+        border-radius:50% !important;
+        box-shadow:none !important;
+        background:
+            radial-gradient(ellipse at 50% 50%,
+                rgba(0,2,5,.98) 0%,
+                rgba(2,8,15,.95) 34%,
+                rgba(4,18,33,.80) 53%,
+                rgba(2,9,17,.40) 68%,
+                transparent 82%) !important;
+        filter:blur(34px) !important;
+        opacity:.96;
+    }
+
+    .mobile-fold-a{
+        width:145vw !important;
+        height:85vw !important;
+        left:-75vw !important;
+        top:-8vw !important;
+        animation:mobileCloudA 38s cubic-bezier(.42,0,.58,1) infinite !important;
+    }
+
+    .mobile-fold-b{
+        width:155vw !important;
+        height:92vw !important;
+        left:-70vw !important;
+        bottom:-30vw !important;
+        animation:mobileCloudB 46s cubic-bezier(.42,0,.58,1) infinite !important;
+    }
+
+    .hero-mobile-css-liquid::after{
+        content:"";
+        position:absolute;
+        width:125vw;
+        height:78vw;
+        left:-55vw;
+        top:32%;
+        border-radius:50%;
+        background:
+            radial-gradient(ellipse at 50% 50%,
+                rgba(1,7,14,.92) 0%,
+                rgba(4,23,42,.72) 38%,
+                rgba(5,42,77,.24) 60%,
+                transparent 78%);
+        filter:blur(38px);
+        opacity:.72;
+        animation:mobileCloudMid 42s ease-in-out infinite;
+        will-change:transform;
+    }
+
+    @keyframes mobileCloudWash{
+        0%{transform:translate3d(16vw,-2vh,0) scale(.78)}
+        30%{transform:translate3d(-4vw,3vh,0) scale(.92)}
+        56%{transform:translate3d(-24vw,8vh,0) scale(1.12)}
+        76%{transform:translate3d(-36vw,14vh,0) scale(1.24)}
+        100%{transform:translate3d(16vw,-2vh,0) scale(.78)}
+    }
+
+    @keyframes mobileCloudA{
+        0%{transform:translate3d(-14vw,-7vw,0) rotate(8deg) scale(.94)}
+        34%{transform:translate3d(18vw,11vw,0) rotate(13deg) scale(1.02)}
+        62%{transform:translate3d(45vw,23vw,0) rotate(9deg) scale(1.13)}
+        80%{transform:translate3d(61vw,31vw,0) rotate(5deg) scale(1.22)}
+        100%{transform:translate3d(-14vw,-7vw,0) rotate(8deg) scale(.94)}
+    }
+
+    @keyframes mobileCloudB{
+        0%{transform:translate3d(-10vw,18vw,0) rotate(-8deg) scale(.96)}
+        38%{transform:translate3d(16vw,-3vw,0) rotate(-3deg) scale(1.03)}
+        66%{transform:translate3d(42vw,-19vw,0) rotate(-7deg) scale(1.12)}
+        82%{transform:translate3d(57vw,-27vw,0) rotate(-10deg) scale(1.18)}
+        100%{transform:translate3d(-10vw,18vw,0) rotate(-8deg) scale(.96)}
+    }
+
+    @keyframes mobileCloudMid{
+        0%{transform:translate3d(-8vw,5vw,0) scale(.95)}
+        40%{transform:translate3d(19vw,-4vw,0) scale(1.06)}
+        72%{transform:translate3d(37vw,7vw,0) scale(1.16)}
+        100%{transform:translate3d(-8vw,5vw,0) scale(.95)}
+    }
+}
+
+@media(max-width:480px){
+    .mobile-blue-wash{
+        width:155vw !important;
+        height:122vw !important;
+        right:-82vw !important;
+        filter:blur(38px) !important;
+    }
+    .mobile-fold-a{
+        width:170vw !important;
+        height:98vw !important;
+        left:-92vw !important;
+    }
+    .mobile-fold-b{
+        width:180vw !important;
+        height:105vw !important;
+        left:-88vw !important;
+    }
+}
+</style>
+
+
+<style>
+/* V29 — mobil používá stejný liquid-fabric efekt jako desktop */
+@media(max-width:760px){
+    .hero-mobile-css-liquid,
+    .hero-mobile-fabric{
+        display:none !important;
+    }
+
+    .hero-liquid-fabric{
+        display:block !important;
+        position:absolute !important;
+        inset:-18% -62% -16% -48% !important;
+        z-index:0 !important;
+        overflow:visible !important;
+        opacity:1 !important;
+        pointer-events:none !important;
+    }
+
+    .hero-liquid-fabric svg{
+        display:block !important;
+        width:210% !important;
+        height:145% !important;
+        max-width:none !important;
+        transform:translate3d(-23%,2%,0) scale(1.03) !important;
+        transform-origin:center center !important;
+    }
+
+    /* Na mobilu efekt méně zakrývat, jinak modrá zanikne. */
+    .hero-liquid-vignette{
+        z-index:1 !important;
+        background:
+            linear-gradient(90deg,
+                rgba(0,4,9,.24) 0%,
+                rgba(0,5,11,.09) 43%,
+                rgba(1,9,18,0) 100%),
+            linear-gradient(180deg,
+                rgba(0,4,9,.07),
+                transparent 30%,
+                transparent 78%,
+                rgba(0,4,9,.15)) !important;
+    }
+
+    .hero > .container{
+        position:relative !important;
+        z-index:3 !important;
+    }
+}
+
+@media(max-width:480px){
+    .hero-liquid-fabric{
+        inset:-20% -78% -18% -60% !important;
+    }
+
+    .hero-liquid-fabric svg{
+        width:235% !important;
+        height:150% !important;
+        transform:translate3d(-27%,2%,0) scale(1.04) !important;
+    }
+}
+</style>
+
+
+<style>
 /* V30 — performance pass při scrollování dalších sekcí.
    Vzhled desktopu ani mobilu neměníme. */
 
@@ -3195,14 +3598,14 @@ main > section:not(.hero){
 
 
 <style id="mobile-hero-final-fix">
-/* Mobile uses the original desktop V8 SVG and its native animation.
-   Only crop/stacking differ for the portrait viewport. */
 @media (max-width:760px){
+    /* Old mobile experiments must never win the cascade. */
     .hero-mobile-css-liquid,
     .hero-mobile-fabric{
         display:none !important;
     }
 
+    /* Use the original desktop V8 SVG itself. */
     .hero-liquid-fabric{
         display:block !important;
         position:absolute !important;
@@ -3226,6 +3629,70 @@ main > section:not(.hero){
         overflow:hidden !important;
     }
 
+    /* Portrait crop of the same 1600x900 desktop artwork.
+       No translated oversized wrapper => no black strip on the right. */
+    .hero-liquid-fabric > svg.mobile-v8-active{
+        width:100% !important;
+        height:100% !important;
+    }
+
+    /* Mobile animation is CSS-driven because it is substantially more
+       reliable than SVG SMIL animateTransform on mobile browsers. */
+    .mobile-v8-fold-top{
+        transform-box:view-box;
+        transform-origin:center;
+        animation:mobileV8Top 44s cubic-bezier(.42,0,.58,1) infinite;
+        will-change:transform;
+    }
+    .mobile-v8-fold-bottom{
+        transform-box:view-box;
+        transform-origin:center;
+        animation:mobileV8Bottom 53s cubic-bezier(.42,0,.58,1) infinite;
+        will-change:transform;
+    }
+    .mobile-v8-fold-line{
+        transform-box:view-box;
+        transform-origin:center;
+        animation:mobileV8Line 49s cubic-bezier(.42,0,.58,1) infinite;
+        will-change:transform;
+    }
+    .mobile-v8-shadow{
+        transform-box:view-box;
+        transform-origin:center;
+        animation:mobileV8Shadow 57s cubic-bezier(.42,0,.58,1) infinite;
+        will-change:transform;
+    }
+
+    @keyframes mobileV8Top{
+        0%{transform:translate(-300px,-150px)}
+        30%{transform:translate(-115px,-60px)}
+        56%{transform:translate(80px,10px)}
+        80%{transform:translate(185px,75px)}
+        100%{transform:translate(-300px,-150px)}
+    }
+    @keyframes mobileV8Bottom{
+        0%{transform:translate(-230px,110px)}
+        28%{transform:translate(-80px,55px)}
+        55%{transform:translate(90px,-5px)}
+        80%{transform:translate(165px,-80px)}
+        100%{transform:translate(-230px,110px)}
+    }
+    @keyframes mobileV8Line{
+        0%{transform:translate(-250px,-80px)}
+        31%{transform:translate(-60px,-25px)}
+        58%{transform:translate(105px,35px)}
+        81%{transform:translate(170px,70px)}
+        100%{transform:translate(-250px,-80px)}
+    }
+    @keyframes mobileV8Shadow{
+        0%{transform:translate(-420px,-70px)}
+        30%{transform:translate(-120px,15px)}
+        57%{transform:translate(120px,80px)}
+        82%{transform:translate(300px,120px)}
+        100%{transform:translate(-420px,-70px)}
+    }
+
+    /* Keep the glow visible on portrait screens. */
     .hero-liquid-vignette{
         background:
             linear-gradient(90deg,rgba(0,4,9,.43),rgba(0,5,11,.17) 68%,rgba(1,9,18,.025)),
@@ -3234,6 +3701,134 @@ main > section:not(.hero){
 
     html,body,.hero{
         overflow-x:hidden !important;
+    }
+}
+</style>
+
+
+<style id="mobile-hero-lite-v3">
+/* Mobile-only fallback. Desktop rendering is untouched. */
+.hero-mobile-lite-v3{display:none;}
+
+@media (max-width:760px){
+    /* Disable heavy/experimental mobile hero renderers only on mobile. */
+    .hero-liquid-fabric,
+    .hero-mobile-fabric,
+    .hero-mobile-css-liquid{
+        display:none !important;
+    }
+
+    .hero-mobile-lite-v3{
+        display:block;
+        position:absolute;
+        inset:0;
+        z-index:0;
+        overflow:hidden;
+        pointer-events:none;
+        background:
+            radial-gradient(ellipse at 78% 30%, rgba(47,156,255,.28) 0%, rgba(13,92,168,.15) 30%, rgba(4,39,77,.06) 50%, transparent 68%),
+            linear-gradient(135deg,#02070d 0%,#06111e 62%,#0a2340 100%);
+        transform:translateZ(0);
+        backface-visibility:hidden;
+    }
+
+    .hero-mobile-lite-v3::before,
+    .hero-mobile-lite-v3::after,
+    .hero-mobile-lite-v3 .mobile-lite-fold-a,
+    .hero-mobile-lite-v3 .mobile-lite-fold-b,
+    .hero-mobile-lite-v3 .mobile-lite-glow{
+        content:"";
+        position:absolute;
+        pointer-events:none;
+        will-change:transform;
+        transform:translate3d(0,0,0);
+        backface-visibility:hidden;
+    }
+
+    .hero-mobile-lite-v3 .mobile-lite-glow{
+        width:150vw;
+        height:110vw;
+        right:-78vw;
+        top:7vh;
+        border-radius:50%;
+        background:radial-gradient(ellipse at 48% 50%, rgba(62,169,255,.56) 0%, rgba(23,111,190,.34) 28%, rgba(7,53,98,.13) 52%, transparent 72%);
+        filter:blur(28px);
+        opacity:.82;
+        animation:mnMobileGlowV3 22s ease-in-out infinite;
+    }
+
+    .hero-mobile-lite-v3 .mobile-lite-fold-a{
+        width:180vw;
+        height:82vw;
+        left:-96vw;
+        top:-10vw;
+        border-radius:42% 58% 52% 48% / 62% 40% 60% 38%;
+        background:linear-gradient(136deg,#000204 0%,#02070d 43%,#071724 66%,#01050a 88%);
+        box-shadow:inset -26px -10px 56px rgba(24,95,160,.12),0 0 42px rgba(0,0,0,.28);
+        animation:mnMobileFoldAV3 30s cubic-bezier(.42,0,.58,1) infinite;
+    }
+
+    .hero-mobile-lite-v3 .mobile-lite-fold-b{
+        width:185vw;
+        height:94vw;
+        left:-86vw;
+        bottom:-34vw;
+        border-radius:60% 40% 38% 62% / 44% 60% 40% 56%;
+        background:linear-gradient(146deg,#000205 0%,#01050a 47%,#071521 70%,#000205 100%);
+        box-shadow:inset -18px -12px 48px rgba(18,75,130,.10),0 0 38px rgba(0,0,0,.26);
+        animation:mnMobileFoldBV3 38s cubic-bezier(.42,0,.58,1) infinite;
+    }
+
+    .hero-mobile-lite-v3::before{
+        width:150vw;
+        height:62vw;
+        left:-78vw;
+        top:28%;
+        border-radius:50%;
+        background:radial-gradient(ellipse at 50% 50%, rgba(0,3,7,.96) 0%, rgba(2,13,24,.80) 42%, rgba(5,42,77,.16) 64%, transparent 78%);
+        filter:blur(24px);
+        opacity:.86;
+        animation:mnMobileMidV3 34s ease-in-out infinite;
+    }
+
+    .hero-mobile-lite-v3::after{
+        inset:0;
+        background:
+            linear-gradient(90deg,rgba(0,4,9,.42) 0%,rgba(0,5,11,.18) 47%,rgba(1,9,18,.02) 100%),
+            linear-gradient(180deg,rgba(0,4,9,.12),transparent 32%,transparent 74%,rgba(0,4,9,.24));
+    }
+
+    @keyframes mnMobileGlowV3{
+        0%{transform:translate3d(14vw,-2vh,0) scale(.84)}
+        34%{transform:translate3d(-6vw,4vh,0) scale(.98)}
+        66%{transform:translate3d(-26vw,11vh,0) scale(1.14)}
+        100%{transform:translate3d(14vw,-2vh,0) scale(.84)}
+    }
+
+    @keyframes mnMobileFoldAV3{
+        0%{transform:translate3d(-12vw,-6vw,0) rotate(12deg) scale(.98)}
+        38%{transform:translate3d(21vw,13vw,0) rotate(16deg) scale(1.05)}
+        70%{transform:translate3d(49vw,26vw,0) rotate(10deg) scale(1.14)}
+        100%{transform:translate3d(-12vw,-6vw,0) rotate(12deg) scale(.98)}
+    }
+
+    @keyframes mnMobileFoldBV3{
+        0%{transform:translate3d(-10vw,15vw,0) rotate(-10deg) scale(.98)}
+        42%{transform:translate3d(20vw,-5vw,0) rotate(-5deg) scale(1.04)}
+        72%{transform:translate3d(48vw,-20vw,0) rotate(-11deg) scale(1.13)}
+        100%{transform:translate3d(-10vw,15vw,0) rotate(-10deg) scale(.98)}
+    }
+
+    @keyframes mnMobileMidV3{
+        0%{transform:translate3d(-10vw,4vw,0) scale(.96)}
+        44%{transform:translate3d(16vw,-3vw,0) scale(1.06)}
+        76%{transform:translate3d(35vw,7vw,0) scale(1.15)}
+        100%{transform:translate3d(-10vw,4vw,0) scale(.96)}
+    }
+
+    .hero > .container{
+        position:relative;
+        z-index:3;
     }
 }
 </style>
@@ -3271,6 +3866,13 @@ main > section:not(.hero){
 
 <main>
     <section class="hero" id="home">
+
+        <div class="hero-mobile-lite-v3" aria-hidden="true">
+            <div class="mobile-lite-glow"></div>
+            <div class="mobile-lite-fold-a"></div>
+            <div class="mobile-lite-fold-b"></div>
+        </div>
+
 
         
         
@@ -3997,6 +4599,15 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const fabricSvg = document.querySelector('.hero-liquid-fabric svg');
+    if (fabricSvg && window.matchMedia('(prefers-reduced-motion: reduce)').matches && fabricSvg.pauseAnimations) {
+        fabricSvg.pauseAnimations();
+    }
+});
+</script>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -4028,12 +4639,28 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.hero-mobile-fabric svg').forEach(svg => {
+            if (svg.pauseAnimations) svg.pauseAnimations();
+        });
+    }
+});
+</script>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const hero = document.querySelector('.hero');
     const desktopLiquid = document.querySelector('.hero-liquid-fabric svg');
     if (!hero || !desktopLiquid || !desktopLiquid.pauseAnimations || !desktopLiquid.unpauseAnimations) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion) {
+        desktopLiquid.pauseAnimations();
+        return;
+    }
 
     /* Nejdůležitější optimalizace:
        jakmile hero odjede z obrazovky, SVG animace se úplně zastaví.
@@ -4063,71 +4690,37 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!svg) return;
 
     /*
-      Mobile fallback for browsers where SVG SMIL is unreliable.
-      The artwork stays identical to desktop. Only the animation engine changes:
-      the same four V8 elements are moved through the same key positions/timings.
+      Mobile only:
+      1. Keep exactly the desktop V8 artwork.
+      2. Crop toward the blue-lit right side.
+      3. Replace SVG SMIL movement with CSS transforms.
+         This avoids the mobile-browser animation issue.
     */
-    svg.setAttribute('preserveAspectRatio', 'xMaxYMid slice');
+    svg.classList.add('mobile-v8-active');
+    svg.setAttribute('preserveAspectRatio','xMaxYMid slice');
 
-    const smilNodes = [...svg.querySelectorAll('animateTransform')];
-    if (smilNodes.length < 4) return;
+    const animated = [...svg.querySelectorAll('animateTransform')];
+    animated.forEach(node => node.remove());
 
-    const targets = smilNodes.slice(0, 4).map(node => node.parentElement);
-    smilNodes.forEach(node => node.remove());
+    /* The four animated inner groups occur in the same order as V8 desktop SVG. */
+    const movingGroups = [...svg.querySelectorAll('g > g')].filter(g =>
+        g.querySelector('path, ellipse')
+    );
 
-    const tracks = [
-        { duration: 44000, times: [0, .30, .56, .80, 1], points: [[-300,-150],[-115,-60],[80,10],[185,75],[-300,-150]] },
-        { duration: 53000, times: [0, .28, .55, .80, 1], points: [[-230,110],[-80,55],[90,-5],[165,-80],[-230,110]] },
-        { duration: 49000, times: [0, .31, .58, .81, 1], points: [[-250,-80],[-60,-25],[105,35],[170,70],[-250,-80]] },
-        { duration: 57000, times: [0, .30, .57, .82, 1], points: [[-420,-70],[-120,15],[120,80],[300,120],[-420,-70]] }
-    ];
+    if (movingGroups[0]) movingGroups[0].classList.add('mobile-v8-fold-top');
+    if (movingGroups[1]) movingGroups[1].classList.add('mobile-v8-fold-bottom');
+    if (movingGroups[2]) movingGroups[2].classList.add('mobile-v8-fold-line');
 
-    // Smooth approximation of the desktop cubic-bezier(.42,0,.58,1).
-    const ease = t => t * t * (3 - 2 * t);
+    /* Shadow animation is on the ellipse itself in the fourth filtered group. */
+    const filteredGroups = [...svg.querySelectorAll('g[filter]')];
+    const shadowEllipse = filteredGroups[3]?.querySelector('ellipse');
+    if (shadowEllipse) shadowEllipse.classList.add('mobile-v8-shadow');
 
-    function sample(track, elapsed) {
-        const p = (elapsed % track.duration) / track.duration;
-        let i = 0;
-        while (i < track.times.length - 2 && p > track.times[i + 1]) i++;
-
-        const t0 = track.times[i];
-        const t1 = track.times[i + 1];
-        const local = ease(Math.max(0, Math.min(1, (p - t0) / (t1 - t0))));
-        const a = track.points[i];
-        const b = track.points[i + 1];
-
-        return [
-            a[0] + (b[0] - a[0]) * local,
-            a[1] + (b[1] - a[1]) * local
-        ];
+    /* If an older performance script paused the SVG timeline, release it.
+       CSS animation above does not depend on SMIL, but this keeps state sane. */
+    if (svg.unpauseAnimations) {
+        try { svg.unpauseAnimations(); } catch(e) {}
     }
-
-    const started = performance.now();
-    let rafId = 0;
-    let visible = true;
-
-    function frame(now) {
-        if (visible) {
-            const elapsed = now - started;
-            targets.forEach((target, index) => {
-                if (!target) return;
-                const [x, y] = sample(tracks[index], elapsed);
-                target.setAttribute('transform', `translate(${x.toFixed(2)} ${y.toFixed(2)})`);
-            });
-        }
-        rafId = requestAnimationFrame(frame);
-    }
-
-    const observer = new IntersectionObserver(([entry]) => {
-        visible = entry.isIntersecting;
-    }, { rootMargin: '100px 0px 100px 0px', threshold: 0 });
-
-    const hero = document.querySelector('.hero');
-    if (hero) observer.observe(hero);
-
-    rafId = requestAnimationFrame(frame);
-
-    window.addEventListener('pagehide', () => cancelAnimationFrame(rafId), { once:true });
 });
 </script>
 
