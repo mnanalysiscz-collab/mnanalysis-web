@@ -3597,16 +3597,15 @@ main > section:not(.hero){
 </style>
 
 
-<style>
-/* MOBILE HERO — používá přesně stejné SVG jako desktop */
+<style id="mobile-hero-final-fix">
 @media (max-width:760px){
-    /* vypnout staré mobilní náhražky */
+    /* Old mobile experiments must never win the cascade. */
     .hero-mobile-css-liquid,
     .hero-mobile-fabric{
         display:none !important;
     }
 
-    /* původní desktopová animace přesně do hero, bez přesahů */
+    /* Use the original desktop V8 SVG itself. */
     .hero-liquid-fabric{
         display:block !important;
         position:absolute !important;
@@ -3619,7 +3618,7 @@ main > section:not(.hero){
         pointer-events:none !important;
     }
 
-    .hero-liquid-fabric svg{
+    .hero-liquid-fabric > svg{
         display:block !important;
         position:absolute !important;
         inset:0 !important;
@@ -3627,28 +3626,81 @@ main > section:not(.hero){
         height:100% !important;
         max-width:none !important;
         transform:none !important;
+        overflow:hidden !important;
     }
 
-    /* žádný horizontální přesah = žádná černá čára vpravo */
-    html,
-    body,
-    .hero{
-        max-width:100% !important;
-        overflow-x:hidden !important;
+    /* Portrait crop of the same 1600x900 desktop artwork.
+       No translated oversized wrapper => no black strip on the right. */
+    .hero-liquid-fabric > svg.mobile-v8-active{
+        width:100% !important;
+        height:100% !important;
     }
 
-    /* na telefonu trochu méně ztmavení, aby modrý mrak nezanikl */
+    /* Mobile animation is CSS-driven because it is substantially more
+       reliable than SVG SMIL animateTransform on mobile browsers. */
+    .mobile-v8-fold-top{
+        transform-box:view-box;
+        transform-origin:center;
+        animation:mobileV8Top 44s cubic-bezier(.42,0,.58,1) infinite;
+        will-change:transform;
+    }
+    .mobile-v8-fold-bottom{
+        transform-box:view-box;
+        transform-origin:center;
+        animation:mobileV8Bottom 53s cubic-bezier(.42,0,.58,1) infinite;
+        will-change:transform;
+    }
+    .mobile-v8-fold-line{
+        transform-box:view-box;
+        transform-origin:center;
+        animation:mobileV8Line 49s cubic-bezier(.42,0,.58,1) infinite;
+        will-change:transform;
+    }
+    .mobile-v8-shadow{
+        transform-box:view-box;
+        transform-origin:center;
+        animation:mobileV8Shadow 57s cubic-bezier(.42,0,.58,1) infinite;
+        will-change:transform;
+    }
+
+    @keyframes mobileV8Top{
+        0%{transform:translate(-300px,-150px)}
+        30%{transform:translate(-115px,-60px)}
+        56%{transform:translate(80px,10px)}
+        80%{transform:translate(185px,75px)}
+        100%{transform:translate(-300px,-150px)}
+    }
+    @keyframes mobileV8Bottom{
+        0%{transform:translate(-230px,110px)}
+        28%{transform:translate(-80px,55px)}
+        55%{transform:translate(90px,-5px)}
+        80%{transform:translate(165px,-80px)}
+        100%{transform:translate(-230px,110px)}
+    }
+    @keyframes mobileV8Line{
+        0%{transform:translate(-250px,-80px)}
+        31%{transform:translate(-60px,-25px)}
+        58%{transform:translate(105px,35px)}
+        81%{transform:translate(170px,70px)}
+        100%{transform:translate(-250px,-80px)}
+    }
+    @keyframes mobileV8Shadow{
+        0%{transform:translate(-420px,-70px)}
+        30%{transform:translate(-120px,15px)}
+        57%{transform:translate(120px,80px)}
+        82%{transform:translate(300px,120px)}
+        100%{transform:translate(-420px,-70px)}
+    }
+
+    /* Keep the glow visible on portrait screens. */
     .hero-liquid-vignette{
         background:
-            linear-gradient(90deg,
-                rgba(0,4,9,.40) 0%,
-                rgba(0,5,11,.18) 48%,
-                rgba(1,9,18,.025) 100%),
-            linear-gradient(180deg,
-                rgba(0,4,9,.12),
-                transparent 31%,
-                transparent 74%,
-                rgba(0,4,9,.20)) !important;
+            linear-gradient(90deg,rgba(0,4,9,.43),rgba(0,5,11,.17) 68%,rgba(1,9,18,.025)),
+            linear-gradient(180deg,rgba(0,4,9,.12),transparent 34%,rgba(0,4,9,.20)) !important;
+    }
+
+    html,body,.hero{
+        overflow-x:hidden !important;
     }
 }
 </style>
@@ -4475,13 +4527,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    /* Na mobilu musí hero animace zůstat aktivní.
-       Optimalizační observer níže je pouze pro desktop. */
-    if (window.matchMedia('(max-width: 760px)').matches) {
-        desktopLiquid.unpauseAnimations();
-        return;
-    }
-
     /* Nejdůležitější optimalizace:
        jakmile hero odjede z obrazovky, SVG animace se úplně zastaví.
        Při návratu se zase plynule spustí. */
@@ -4502,28 +4547,44 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 
-<script>
+<script id="mobile-hero-final-controller">
 document.addEventListener('DOMContentLoaded', () => {
-    const liquid = document.querySelector('.hero-liquid-fabric svg');
-    if (!liquid) return;
+    if (!window.matchMedia('(max-width:760px)').matches) return;
 
-    const mobile = window.matchMedia('(max-width: 760px)');
-    const applyLiquidCrop = () => {
-        liquid.setAttribute(
-            'preserveAspectRatio',
-            mobile.matches ? 'xMaxYMid slice' : 'xMidYMid slice'
-        );
+    const svg = document.querySelector('.hero-liquid-fabric > svg');
+    if (!svg) return;
 
-        if (mobile.matches && liquid.unpauseAnimations &&
-            !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            liquid.unpauseAnimations();
-        }
-    };
+    /*
+      Mobile only:
+      1. Keep exactly the desktop V8 artwork.
+      2. Crop toward the blue-lit right side.
+      3. Replace SVG SMIL movement with CSS transforms.
+         This avoids the mobile-browser animation issue.
+    */
+    svg.classList.add('mobile-v8-active');
+    svg.setAttribute('preserveAspectRatio','xMaxYMid slice');
 
-    applyLiquidCrop();
+    const animated = [...svg.querySelectorAll('animateTransform')];
+    animated.forEach(node => node.remove());
 
-    if (mobile.addEventListener) {
-        mobile.addEventListener('change', applyLiquidCrop);
+    /* The four animated inner groups occur in the same order as V8 desktop SVG. */
+    const movingGroups = [...svg.querySelectorAll('g > g')].filter(g =>
+        g.querySelector('path, ellipse')
+    );
+
+    if (movingGroups[0]) movingGroups[0].classList.add('mobile-v8-fold-top');
+    if (movingGroups[1]) movingGroups[1].classList.add('mobile-v8-fold-bottom');
+    if (movingGroups[2]) movingGroups[2].classList.add('mobile-v8-fold-line');
+
+    /* Shadow animation is on the ellipse itself in the fourth filtered group. */
+    const filteredGroups = [...svg.querySelectorAll('g[filter]')];
+    const shadowEllipse = filteredGroups[3]?.querySelector('ellipse');
+    if (shadowEllipse) shadowEllipse.classList.add('mobile-v8-shadow');
+
+    /* If an older performance script paused the SVG timeline, release it.
+       CSS animation above does not depend on SMIL, but this keeps state sane. */
+    if (svg.unpauseAnimations) {
+        try { svg.unpauseAnimations(); } catch(e) {}
     }
 });
 </script>
