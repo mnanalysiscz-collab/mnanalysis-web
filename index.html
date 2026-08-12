@@ -3978,32 +3978,83 @@ main > section:not(.hero){
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 
 
-<style id="mn-hero-heading-manrope">
+<style id="mn-hero-script-accent">
 .hero h1 {
-    font-family: "Manrope", "Helvetica Neue", Arial, sans-serif !important;
+    font-family: "DM Sans", "Helvetica Neue", Arial, sans-serif !important;
     font-weight: 600 !important;
-    font-size: clamp(3.35rem, 5.15vw, 5.7rem) !important;
-    line-height: 1.01 !important;
-    letter-spacing: -0.052em !important;
-    max-width: 900px !important;
-    text-wrap: balance;
+    font-size: clamp(3.25rem, 5vw, 5.55rem) !important;
+    line-height: .98 !important;
+    letter-spacing: -0.05em !important;
+    max-width: 920px !important;
 }
-@media (max-width: 1100px) {
-    .hero h1 {
-        font-size: clamp(3.1rem, 6.2vw, 5rem) !important;
-        max-width: 780px !important;
-    }
+.hero h1 .hero-title-main {
+    display: block;
+}
+.hero h1 .hero-title-script {
+    display: block;
+    width: max-content;
+    margin: .04em 0 .03em .08em;
+    font-family: "Caveat", cursive !important;
+    font-size: 1.12em;
+    font-weight: 600 !important;
+    line-height: .9;
+    letter-spacing: -.025em !important;
+    color: #9fc8ef;
+}
+.hero h1 .hero-title-last {
+    color: #d7e8f8;
 }
 @media (max-width: 760px) {
     .hero h1 {
-        font-size: clamp(2.65rem, 11vw, 4.1rem) !important;
-        line-height: 1.02 !important;
-        letter-spacing: -0.045em !important;
+        font-size: clamp(2.6rem, 10.5vw, 4rem) !important;
+        line-height: 1 !important;
         max-width: 100% !important;
     }
+    .hero h1 .hero-title-script {
+        font-size: 1.08em;
+        margin-left: .03em;
+    }
+}
+</style>
+
+
+<style id="mn-hero-title-animation-scope">
+.hero h1 .hero-title-main {
+    animation: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    text-shadow: none !important;
+}
+.hero h1 .hero-title-main::before,
+.hero h1 .hero-title-main::after {
+    animation: none !important;
+}
+</style>
+
+
+<style id="mn-hero-main-title-white">
+.hero h1 .hero-title-main {
+    color: #ffffff !important;
+}
+</style>
+
+
+<style id="mn-hero-main-title-white-FINAL">
+.hero h1 > .hero-title-main:first-child,
+.hero h1 > .hero-title-main:first-child *,
+.hero h1 > .hero-title-main:first-child::before,
+.hero h1 > .hero-title-main:first-child::after {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+    background: none !important;
+    background-image: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    animation: none !important;
+    filter: none !important;
 }
 </style>
 
@@ -4334,10 +4385,7 @@ main > section:not(.hero){
                 <div>
                     
 
-                    <h1>
-                        Tvorba webových stránek
-                        <span>pro živnostníky a malé firmy.</span>
-                    </h1>
+                    <h1><span class="hero-title-main">Tvorba webových stránek</span><span class="hero-title-script">pro živnostníky<br>a malé firmy.</span></h1>
 
                     <p class="hero-audience">Moderní weby na míru pro živnostníky a malé firmy, které chtějí profesionální prezentaci a více nových zákazníků.</p>
 
