@@ -3926,12 +3926,21 @@ main > section:not(.hero){
 <style id="hero-final-video">
 /* Final hero: generated MN Analysis video, shifted slightly right. */
 .hero{position:relative;overflow:hidden;isolation:isolate;background:#000 !important;}
-.hero-video-final{position:absolute;inset:-5%;z-index:0;width:110%;height:110%;object-fit:cover;object-position:center center;transform:translateX(4%);pointer-events:none;background:#000;}
+.hero-video-final{position:absolute;inset:-5%;z-index:0;width:110%;height:110%;object-fit:cover;object-position:70% center;transform:translateX(4%);pointer-events:none;background:#000;}
 .hero-liquid-fabric,.hero-mobile-fabric,.hero-mobile-css-liquid,.hero-mobile-lite-v3{display:none !important;}
 .hero-liquid-vignette{display:block !important;position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.58) 0%,rgba(0,0,0,.30) 36%,rgba(0,0,0,.08) 64%,rgba(0,0,0,.01) 100%),linear-gradient(180deg,rgba(0,0,0,.08),transparent 30%,transparent 76%,rgba(0,0,0,.16)) !important;}
 .hero > .container{position:relative;z-index:3;}
 @media(max-width:760px){.hero-video-final{inset:-4% -10%;width:120%;height:108%;transform:translateX(3%);}.hero-liquid-vignette{background:linear-gradient(90deg,rgba(0,0,0,.52) 0%,rgba(0,0,0,.24) 58%,rgba(0,0,0,.05) 100%),linear-gradient(180deg,rgba(0,0,0,.08),transparent 32%,transparent 76%,rgba(0,0,0,.16)) !important;}}
 </style>
+
+<style id="mn-hero-video-position-final">
+@media (min-width: 761px) {
+  .hero video {
+    object-position: 70% center !important;
+  }
+}
+</style>
+
 </head>
 
 <body>
