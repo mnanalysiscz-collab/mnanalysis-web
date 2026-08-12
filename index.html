@@ -3941,6 +3941,72 @@ main > section:not(.hero){
 }
 </style>
 
+
+<style id="mn-hero-simplified-layout-final">
+/* Simplified hero: intro sentence followed directly by CTA buttons. */
+.hero .hero-sub,
+.hero .hero-description,
+.hero .hero-intro,
+.hero blockquote {
+    margin-top: 28px !important;
+    margin-bottom: 26px !important;
+}
+.hero .hero-actions,
+.hero .cta-group,
+.hero .hero-buttons {
+    margin-top: 0 !important;
+}
+</style>
+
+
+<style id="mn-hero-heading-final">
+.hero h1 {
+    font-family: "Arial", "Helvetica Neue", Helvetica, sans-serif !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.045em !important;
+    line-height: 0.98 !important;
+    font-size: clamp(3.5rem, 5.7vw, 6.3rem) !important;
+}
+@media (max-width: 760px) {
+    .hero h1 {
+        font-size: clamp(2.8rem, 12vw, 4.4rem) !important;
+        line-height: 0.98 !important;
+    }
+}
+</style>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+
+
+<style id="mn-hero-heading-manrope">
+.hero h1 {
+    font-family: "Manrope", "Helvetica Neue", Arial, sans-serif !important;
+    font-weight: 600 !important;
+    font-size: clamp(3.35rem, 5.15vw, 5.7rem) !important;
+    line-height: 1.01 !important;
+    letter-spacing: -0.052em !important;
+    max-width: 900px !important;
+    text-wrap: balance;
+}
+@media (max-width: 1100px) {
+    .hero h1 {
+        font-size: clamp(3.1rem, 6.2vw, 5rem) !important;
+        max-width: 780px !important;
+    }
+}
+@media (max-width: 760px) {
+    .hero h1 {
+        font-size: clamp(2.65rem, 11vw, 4.1rem) !important;
+        line-height: 1.02 !important;
+        letter-spacing: -0.045em !important;
+        max-width: 100% !important;
+    }
+}
+</style>
+
 </head>
 
 <body>
@@ -4266,7 +4332,7 @@ main > section:not(.hero){
         <div class="container">
             <div class="hero-grid">
                 <div>
-                    <span class="eyebrow">Tvorba webů &amp; IT analýza</span>
+                    
 
                     <h1>
                         Tvorba webových stránek
@@ -4278,21 +4344,6 @@ main > section:not(.hero){
                     <p class="hero-text">
                         Web netvořím jen podle vzhledu. Řeším jeho strukturu, obsah, rychlost, responzivitu a SEO tak, aby dával smysl vašemu podnikání i návštěvníkům.
                     </p>
-
-                    <div class="hero-highlights">
-<div class="hero-highlight">
-<strong>Weby na míru</strong>
-<span>Od návrhu struktury až po spuštění</span>
-</div>
-<div class="hero-highlight">
-<strong>Rychlost, SEO a responzivita</strong>
-<span>Moderní web připravený pro mobil i vyhledávače</span>
-</div>
-<div class="hero-highlight">
-<strong>Analytický přístup</strong>
-<span>Design má cíl, obsah má logiku a web má přinášet výsledek</span>
-</div>
-</div>
 
 <div class="hero-buttons">
                         <a class="button button-primary" href="#websites">Prohlédnout nabídku</a>
