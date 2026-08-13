@@ -4637,7 +4637,7 @@ main > section:not(.hero){
         <div class="portfolio-grid">
             <article class="portfolio-card">
                 <a class="portfolio-preview" href="https://mnanalysiscz-collab.github.io/prevodovky-auta-martin-krapka/" target="_blank" rel="noopener noreferrer" aria-label="Otevřít web Martin Křapka – opravy převodovek">
-                    <iframe src="https://mnanalysiscz-collab.github.io/prevodovky-auta-martin-krapka/" title="Náhled webu Martin Křapka – opravy převodovek" loading="lazy" tabindex="-1"></iframe>
+                    <iframe src="about:blank" data-src="https://mnanalysiscz-collab.github.io/prevodovky-auta-martin-krapka/" title="Náhled webu Martin Křapka – opravy převodovek" loading="lazy" tabindex="-1"></iframe>
                     <span class="portfolio-open">Otevřít web ↗</span>
                 </a>
                 <div class="portfolio-body">
@@ -4650,7 +4650,7 @@ main > section:not(.hero){
 
             <article class="portfolio-card">
                 <a class="portfolio-preview" href="https://mnanalysiscz-collab.github.io/FinanceOndrejKrapka/" target="_blank" rel="noopener noreferrer" aria-label="Otevřít web Ondřej Křapka – finance & leadership">
-                    <iframe src="https://mnanalysiscz-collab.github.io/FinanceOndrejKrapka/" title="Náhled webu Ondřej Křapka – finance & leadership" loading="lazy" tabindex="-1"></iframe>
+                    <iframe src="about:blank" data-src="https://mnanalysiscz-collab.github.io/FinanceOndrejKrapka/" title="Náhled webu Ondřej Křapka – finance & leadership" loading="lazy" tabindex="-1"></iframe>
                     <span class="portfolio-open">Otevřít web ↗</span>
                 </a>
                 <div class="portfolio-body">
@@ -5068,5 +5068,32 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+
+<script id="mn-portfolio-lazy-iframes">
+(function(){
+  const previews = document.querySelectorAll('.portfolio-preview iframe[data-src]');
+  if (!previews.length) return;
+
+  const loadPreview = (frame) => {
+    if (!frame.dataset.src) return;
+    frame.src = frame.dataset.src;
+    frame.removeAttribute('data-src');
+  };
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        loadPreview(entry.target);
+        obs.unobserve(entry.target);
+      });
+    }, { rootMargin: '600px 0px' });
+
+    previews.forEach((frame) => observer.observe(frame));
+  } else {
+    previews.forEach(loadPreview);
+  }
+})();
+</script>
 </body>
 </html>
