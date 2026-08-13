@@ -2762,6 +2762,7 @@ line-height:1.45;
   "@type": "ProfessionalService",
   "name": "MN Analysis",
   "url": "https://www.mnanalysis.cz/",
+  "sameAs": ["https://share.google/SiL7FKlchOaluuoub"],
   "email": "info@mnanalysis.cz",
   "telephone": "+420725501253",
   "description": "Tvorba moderních webových stránek pro živnostníky a malé firmy, SEO základ, správa webu a IT analýza.",
@@ -4118,6 +4119,8 @@ main > section:not(.hero){
 }
 </style>
 
+
+
 </head>
 
 <body>
@@ -4150,7 +4153,17 @@ main > section:not(.hero){
 </header>
 
 <main>
-    <section class="hero" id="home">
+    
+<style id="mn-hero-copy-down-v2">
+/* Posun textoveho bloku hero nize; typografie hero-text zustava puvodni. */
+.hero .hero-audience{margin-top:44px !important;}
+.hero .hero-audience + .hero-text{margin-top:22px !important;}
+@media(max-width:760px){
+  .hero .hero-audience{margin-top:34px !important;}
+  .hero .hero-audience + .hero-text{margin-top:20px !important;}
+}
+</style>
+<section class="hero" id="home">
         <video class="hero-video-final" autoplay muted loop playsinline preload="auto" aria-hidden="true">
             <source src="MN-Analysis-hero[1].mp4" type="video/mp4">
         </video>
@@ -4450,7 +4463,7 @@ main > section:not(.hero){
                     <p class="hero-audience">Moderní weby na míru pro živnostníky a malé firmy, které chtějí profesionální prezentaci a více nových zákazníků.</p>
 
                     <p class="hero-text">
-                        Web netvořím jen podle vzhledu. Řeším jeho strukturu, obsah, rychlost, responzivitu a SEO tak, aby dával smysl vašemu podnikání i návštěvníkům.
+                        Web netvořím jen podle vzhledu. Řeším také jeho strukturu, rychlost a SEO, aby byl připravený pro zákazníky i vyhledávače.
                     </p>
 
 <div class="hero-buttons">
