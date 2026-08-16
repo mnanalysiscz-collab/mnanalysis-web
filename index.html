@@ -2261,89 +2261,6 @@ line-height:1.45;
 
 
 <style>
-/* ===== eRecepce ===== */
-.erecepce-section{
-    position:relative;
-    overflow:hidden;
-    background:
-        radial-gradient(circle at 82% 18%,rgba(22,135,255,.18),transparent 28%),
-        linear-gradient(135deg,#071424,#0b2037 65%,#0d3153);
-    color:var(--text);
-}
-.erecepce-section .section-title{color:#fff;}
-.erecepce-section .section-copy{color:#c8d7e6;max-width:860px;}
-.erecepce-grid{
-    display:grid;
-    grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);
-    gap:22px;
-    margin-top:46px;
-}
-.erecepce-main-card,
-.erecepce-small-card{
-    border:1px solid rgba(255,255,255,.12);
-    background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025));
-    box-shadow:0 20px 55px rgba(0,0,0,.18);
-    backdrop-filter:blur(10px);
-}
-.erecepce-main-card{
-    padding:34px;
-    border-radius:22px;
-}
-.erecepce-main-card h3{margin-top:10px;font-size:30px;line-height:1.18;}
-.erecepce-main-card p{margin-top:14px;color:#c9d8e7;}
-.erecepce-kicker{
-    color:var(--blue-300);
-    font-size:12px;
-    font-weight:800;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-}
-.erecepce-list{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:12px 24px;
-    list-style:none;
-    margin-top:28px;
-}
-.erecepce-list li{
-    position:relative;
-    padding-left:22px;
-    color:#e5eef7;
-}
-.erecepce-list li::before{
-    content:"";
-    position:absolute;
-    left:0;
-    top:.62em;
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:var(--blue-400);
-    box-shadow:0 0 0 5px rgba(74,165,255,.10);
-}
-.erecepce-side{display:grid;gap:16px;}
-.erecepce-small-card{padding:24px;border-radius:18px;}
-.erecepce-small-card>span{
-    color:var(--blue-300);
-    font-size:12px;
-    font-weight:900;
-    letter-spacing:.14em;
-}
-.erecepce-small-card h3{margin-top:10px;font-size:21px;}
-.erecepce-small-card p{margin-top:9px;color:#c4d4e4;font-size:15px;}
-.erecepce-audience{
-    display:flex;
-    align-items:center;
-    gap:22px;
-    margin-top:22px;
-    padding:20px 24px;
-    border:1px solid rgba(255,255,255,.10);
-    border-radius:16px;
-    background:rgba(1,8,16,.23);
-}
-.erecepce-audience strong{white-space:nowrap;color:#fff;}
-.erecepce-audience span{color:#bfd0e0;}
-
 /* ===== Pricing ===== */
 .pricing-section{
     background:linear-gradient(180deg,#f5f8fc 0%,#ffffff 100%);
@@ -2458,7 +2375,6 @@ line-height:1.45;
 
 /* ===== Mobile polish only — desktop remains untouched ===== */
 @media(max-width:900px){
-    .erecepce-grid{grid-template-columns:1fr;}
     .pricing-grid{grid-template-columns:1fr;}
     .pricing-card-featured{transform:none;}
     .service-plans{grid-template-columns:1fr;}
@@ -2495,18 +2411,7 @@ line-height:1.45;
     .hero-liquid-fabric{opacity:.88;}
     .hero-liquid-fabric svg{transform:translate3d(8%,0,0) scale(1.02);}
 
-    .erecepce-section,
     .pricing-section{padding:78px 0;}
-    .erecepce-main-card{padding:26px 22px;}
-    .erecepce-main-card h3{font-size:25px;}
-    .erecepce-list{grid-template-columns:1fr;gap:11px;}
-    .erecepce-audience{
-        align-items:flex-start;
-        flex-direction:column;
-        gap:7px;
-        padding:18px 20px;
-    }
-    .erecepce-audience strong{white-space:normal;}
     .pricing-card{padding:26px 22px;}
     .pricing-price{font-size:32px;}
     .pricing-head p{min-height:0;}
@@ -2528,7 +2433,6 @@ line-height:1.45;
     .hero h1{font-size:clamp(40px,12.6vw,56px) !important;}
     .hero-grid{padding-top:34px !important;padding-bottom:62px !important;}
     .hero-liquid-fabric{opacity:.78;}
-    .erecepce-small-card{padding:21px 19px;}
     .pricing-card{border-radius:17px;}
     .pricing-price{font-size:30px;}
 }
@@ -3593,7 +3497,6 @@ main > section:not(.hero){
 
 /* Izolace těžších sekcí omezuje překreslování okolí. */
 .web-section,
-.erecepce-section,
 .pricing-section,
 .services-dark,
 #about,
@@ -4170,7 +4073,6 @@ main > section:not(.hero){
                         Služby <span aria-hidden="true">⌄</span>
                     </button>
                     <div class="nav-dropdown-menu">
-                        <a href="#erecepce"><strong>eRecepce</strong><small>Digitální příjem a správa poptávek</small></a>
                         <a href="#pricing"><strong>Ceník</strong><small>START, PROFI, PREMIUM a servis</small></a>
                         <a href="#services"><strong>IT &amp; Telco</strong><small>Business a systémová analýza</small></a>
                     </div>
@@ -4520,17 +4422,15 @@ main > section:not(.hero){
                 <div class="pricing-head">
                     <span class="pricing-name">START</span>
                     <strong class="pricing-price">7 900 Kč</strong>
-                    <p>Pro jednoduchou profesionální prezentaci.</p>
+                    <p>Pro živnostníky a menší firmy, které potřebují moderní profesionální web.</p>
                 </div>
                 <ul>
-                    <li>moderní web do cca 5 stránek</li>
-                    <li>mobilní verze</li>
+                    <li>web do cca 5 stránek</li>
+                    <li>responzivní zobrazení pro mobil, tablet i PC</li>
                     <li>kontaktní formulář</li>
-                    <li>napojení telefonu a e-mailu</li>
-                    <li>základní SEO</li>
-                    <li>nastavení titulku a popisů stránek</li>
-                    <li>Google Search Console</li>
-                    <li>sitemap</li>
+                    <li>propojení telefonu a e-mailu</li>
+                    <li>základní SEO nastavení</li>
+                    <li>Google Search Console + sitemap</li>
                     <li>základní nastavení Google Business Profile</li>
                     <li>nasazení webu na doménu</li>
                 </ul>
@@ -4542,20 +4442,18 @@ main > section:not(.hero){
                 <div class="pricing-head">
                     <span class="pricing-name">PROFI</span>
                     <strong class="pricing-price">11 900 Kč</strong>
-                    <p>Hlavní balíček pro firmy, které chtějí web využívat aktivně.</p>
+                    <p>Pro firmy, které chtějí web aktivně využívat k získávání nových zákazníků.</p>
                 </div>
                 <ul>
                     <li>vše ze START</li>
                     <li>web do cca 8–10 stránek</li>
-                    <li>SEO pro jednotlivé služby</li>
-                    <li>optimalizace obrázků</li>
-                    <li>Google Business Profile</li>
-                    <li>pomoc s ověřením firmy</li>
-                    <li>Google Search Console</li>
-                    <li>sitemap + robots.txt</li>
-                    <li>základní lokální SEO</li>
-                    <li>napojení Google Maps</li>
-                    <li>základní analytika</li>
+                    <li>samostatné stránky jednotlivých služeb</li>
+                    <li>optimalizace obrázků a rychlosti</li>
+                    <li>Google Business Profile + pomoc s ověřením</li>
+                    <li>technické SEO nastavení</li>
+                    <li>rozšířené SEO a lokální SEO</li>
+                    <li>Google Maps</li>
+                    <li>Google Analytics 4 + měření poptávek</li>
                     <li>1 kolo úprav po spuštění</li>
                 </ul>
                 <a class="button button-primary pricing-cta" href="#contact">Chci PROFI</a>
@@ -4565,16 +4463,15 @@ main > section:not(.hero){
                 <div class="pricing-head">
                     <span class="pricing-name">PREMIUM</span>
                     <strong class="pricing-price">16 900 Kč</strong>
-                    <p>Pro rozsáhlejší prezentaci a větší důraz na obsah a SEO.</p>
+                    <p>Pro firmy, které chtějí propracovanější web, více obsahu a silnější základ pro dlouhodobé SEO.</p>
                 </div>
                 <ul>
                     <li>vše z PROFI</li>
-                    <li>více podstránek</li>
+                    <li>rozsáhlejší struktura a více podstránek</li>
                     <li>pokročilejší SEO</li>
                     <li>texty vytvořené na míru</li>
-                    <li>více úprav</li>
                     <li>blog / reference / FAQ podle potřeby</li>
-                    <li>důkladnější optimalizace rychlosti</li>
+                    <li>rozšířená optimalizace rychlosti</li>
                     <li>3 kola úprav</li>
                 </ul>
                 <a class="button button-secondary pricing-cta" href="#contact">Mám zájem o PREMIUM</a>
@@ -4598,7 +4495,7 @@ main > section:not(.hero){
             </div>
         </div>
 
-        <p class="pricing-note">Měsíční servis je zcela volitelný. Web můžete bez omezení používat i bez pravidelného paušálu.<br><span>U rozsáhlejších projektů nebo rozšíření o eRecepci připravím individuální nabídku.</span></p>
+        <p class="pricing-note">Měsíční servis je zcela volitelný. Web můžete bez omezení používat i bez pravidelného paušálu.<br><span>U rozsáhlejších projektů připravím individuální nabídku podle konkrétního rozsahu.</span></p>
     </div>
 </section>
 
@@ -4800,8 +4697,7 @@ main > section:not(.hero){
                                     <option value="Nový web - PREMIUM">Nový web – PREMIUM (od 16 900 Kč)</option>
                                     <option value="Redesign webu">Redesign stávajícího webu</option>
                                 </optgroup>
-                                <optgroup label="eRecepce a správa">
-                                    <option value="eRecepce">eRecepce / práce s poptávkami</option>
+                                <optgroup label="Správa webu">
                                     <option value="Udrzba webu">Údržba webu</option>
                                     <option value="PRO servis">PRO servis</option>
                                 </optgroup>
